@@ -121,9 +121,14 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
         }
-        .login-box h2 {
+        .login-box h1 {
             color: #3B2510;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+        }
+        .login-box h2 {
+            color: #6B4F35;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
         }
         .login-box input {
             width: 100%;
@@ -147,6 +152,74 @@
             margin-top: 15px;
             font-size: 14px;
         }
+        .admin-link {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #ccc;
+            cursor: pointer;
+        }
+        .admin-link:hover {
+            color: #999;
+        }
+        
+        /* Estilos para la biblioteca con carpetas */
+        .carpeta {
+            background: #fefcf8;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #e8dfc8;
+        }
+        .carpeta-header {
+            background: #3B2510;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .carpeta-header:hover {
+            background: #4a3018;
+        }
+        .carpeta-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .carpeta-contenido {
+            padding: 15px;
+        }
+        .artefacto-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .artefacto-info {
+            flex: 1;
+        }
+        .artefacto-acciones {
+            display: flex;
+            gap: 8px;
+        }
+        .carpeta-vacia {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+        }
+        .selector-carpeta {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -162,6 +235,9 @@
         const SUPABASE_ANON_KEY = "sb_publishable_h5iDbbdeNO-H3ELQeIw2KQ_N-Ub1FXA";
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
+        // CONTRASEÑA PARA ACCESO DE PROFESORA
+        const ADMIN_PASSWORD = "marta2024";
+        
         function App() {
             const [cargando, setCargando] = React.useState(true);
             const [error, setError] = React.useState(null);
@@ -173,6 +249,7 @@
             const [grupos, setGrupos] = React.useState([]);
             const [gruposData, setGruposData] = React.useState([]);
             const [artefactos, setArtefactos] = React.useState([]);
+            const [carpetas, setCarpetas] = React.useState([]);
             const [tareasPorGrupo, setTareasPorGrupo] = React.useState({});
             const [tareasPorAlumno, setTareasPorAlumno] = React.useState({});
             const [calificaciones, setCalificaciones] = React.useState({});
@@ -180,14 +257,18 @@
             const [toast, setToast] = React.useState(null);
             const [mostrarModalArtefacto, setMostrarModalArtefacto] = React.useState(false);
             const [mostrarModalCopiarGrupo, setMostrarModalCopiarGrupo] = React.useState(false);
+            const [mostrarModalCarpeta, setMostrarModalCarpeta] = React.useState(false);
             const [tareaSeleccionada, setTareaSeleccionada] = React.useState("");
             const [tareaIndividualSeleccionada, setTareaIndividualSeleccionada] = React.useState({});
-            const [nuevoArtefacto, setNuevoArtefacto] = React.useState({ nombre: "", html: "" });
+            const [nuevoArtefacto, setNuevoArtefacto] = React.useState({ nombre: "", html: "", carpeta_id: null });
+            const [nuevaCarpeta, setNuevaCarpeta] = React.useState({ nombre: "" });
+            const [carpetaEditando, setCarpetaEditando] = React.useState(null);
             const [grupoOrigen, setGrupoOrigen] = React.useState("");
             const [nuevoNombreGrupo, setNuevoNombreGrupo] = React.useState("");
             const [comentariosAbiertos, setComentariosAbiertos] = React.useState({});
             const [textoComentario, setTextoComentario] = React.useState({});
             const [alumnosExpandidos, setAlumnosExpandidos] = React.useState({});
+            const [carpetasAbiertas, setCarpetasAbiertas] = React.useState({});
             
             // Estado para login de alumno
             const [emailLogin, setEmailLogin] = React.useState("");
@@ -195,14 +276,36 @@
             const [apellidosLogin, setApellidosLogin] = React.useState("");
             const [mensajeLogin, setMensajeLogin] = React.useState("");
             
+            // Estado para login de profesora
+            const [mostrarAdminLogin, setMostrarAdminLogin] = React.useState(false);
+            const [adminPassword, setAdminPassword] = React.useState("");
+            const [errorAdmin, setErrorAdmin] = React.useState("");
+            
+            // PING para mantener Supabase activo (cada 5 días)
+            React.useEffect(() => {
+                const mantenerActivo = async () => {
+                    try {
+                        await supabase.from("grupos").select("count", { count: "exact", head: true });
+                        console.log("🔄 Ping a Supabase - proyecto activo");
+                    } catch(e) {
+                        console.log("⚠️ Error en ping:", e.message);
+                    }
+                };
+                
+                mantenerActivo();
+                const intervalo = setInterval(mantenerActivo, 5 * 24 * 60 * 60 * 1000);
+                return () => clearInterval(intervalo);
+            }, []);
+            
             React.useEffect(() => {
                 async function cargarDatos() {
                     try {
                         setError(null);
-                        const [alumnosRes, gruposRes, artefactosRes, tareasGrupoRes, calificacionesRes, comentariosRes] = await Promise.all([
+                        const [alumnosRes, gruposRes, artefactosRes, carpetasRes, tareasGrupoRes, calificacionesRes, comentariosRes] = await Promise.all([
                             supabase.from("alumnos").select("*"),
                             supabase.from("grupos").select("*").eq("activo", true),
                             supabase.from("tareas").select("*").eq("activo", true),
+                            supabase.from("carpetas").select("*").order("nombre"),
                             supabase.from("tareas_por_grupo").select("*"),
                             supabase.from("calificaciones").select("*"),
                             supabase.from("comentarios").select("*").order("created_at", { ascending: true })
@@ -219,6 +322,7 @@
                         setGruposData(gruposRes.data || []);
                         setGrupos(gruposRes.data.map(g => g.nombre) || []);
                         setArtefactos(artefactosRes.data || []);
+                        setCarpetas(carpetasRes.data || []);
                         
                         const tareasGrupoObj = {};
                         gruposRes.data.forEach(g => tareasGrupoObj[g.nombre] = []);
@@ -260,6 +364,10 @@
                 cargarDatos();
             }, []);
             
+            const toggleCarpeta = (id) => {
+                setCarpetasAbiertas(prev => ({ ...prev, [id]: !prev[id] }));
+            };
+            
             const toggleAlumnoExpandido = (id) => {
                 setAlumnosExpandidos(prev => ({ ...prev, [id]: !prev[id] }));
             };
@@ -276,7 +384,6 @@
                     return;
                 }
                 
-                // Verificar si ya existe
                 const { data: existe } = await supabase
                     .from("alumnos")
                     .select("*")
@@ -285,7 +392,6 @@
                 
                 if (existe) {
                     if (existe.aprobado) {
-                        // Alumno ya aprobado - puede entrar
                         setAlumnoActual(existe);
                         setVista("alumno");
                         setMensajeLogin("");
@@ -293,16 +399,14 @@
                         setMensajeLogin("⏳ Ya te has registrado. Espera a que la profesora te apruebe.");
                     }
                 } else {
-                    // Nuevo alumno - registrar
-                    const { data: nuevo, error } = await supabase
+                    const { error } = await supabase
                         .from("alumnos")
                         .insert({
                             nombre: nombreLogin,
                             apellidos: apellidosLogin || "",
                             email: emailLogin,
                             aprobado: false
-                        })
-                        .select();
+                        });
                     
                     if (error) {
                         setMensajeLogin("❌ Error al registrar: " + error.message);
@@ -312,6 +416,121 @@
                         setNombreLogin("");
                         setApellidosLogin("");
                     }
+                }
+            };
+            
+            const verificarAccesoAdmin = () => {
+                if (adminPassword === ADMIN_PASSWORD) {
+                    setVista("gestor");
+                    setMostrarAdminLogin(false);
+                    setAdminPassword("");
+                    setErrorAdmin("");
+                } else {
+                    setErrorAdmin("❌ Contraseña incorrecta");
+                }
+            };
+            
+            // ========== GESTIÓN DE CARPETAS Y ARTEFACTOS ==========
+            
+            const crearCarpeta = async () => {
+                if (!nuevaCarpeta.nombre) {
+                    mostrarToast("❌ Introduce un nombre para la carpeta");
+                    return;
+                }
+                
+                const { data, error } = await supabase
+                    .from("carpetas")
+                    .insert({ nombre: nuevaCarpeta.nombre })
+                    .select();
+                
+                if (error) {
+                    mostrarToast("❌ Error al crear carpeta: " + error.message);
+                } else {
+                    setCarpetas([...carpetas, data[0]]);
+                    setNuevaCarpeta({ nombre: "" });
+                    setMostrarModalCarpeta(false);
+                    mostrarToast(`✅ Carpeta "${nuevaCarpeta.nombre}" creada`);
+                }
+            };
+            
+            const eliminarCarpeta = async (carpetaId, nombre) => {
+                if (confirm(`¿Eliminar la carpeta "${nombre}"? Los artefactos dentro pasarán a "Sin carpeta"`)) {
+                    // Mover artefactos a null (sin carpeta)
+                    await supabase
+                        .from("tareas")
+                        .update({ carpeta_id: null })
+                        .eq("carpeta_id", carpetaId);
+                    
+                    // Eliminar carpeta
+                    const { error } = await supabase
+                        .from("carpetas")
+                        .delete()
+                        .eq("id", carpetaId);
+                    
+                    if (error) {
+                        mostrarToast("❌ Error al eliminar carpeta");
+                    } else {
+                        setCarpetas(carpetas.filter(c => c.id !== carpetaId));
+                        const { data } = await supabase.from("tareas").select("*").eq("activo", true);
+                        setArtefactos(data);
+                        mostrarToast(`🗑️ Carpeta "${nombre}" eliminada`);
+                    }
+                }
+            };
+            
+            const editarCarpeta = async (carpetaId, nombreActual) => {
+                const nuevoNombre = prompt("Nuevo nombre de la carpeta:", nombreActual);
+                if (nuevoNombre && nuevoNombre !== nombreActual) {
+                    const { error } = await supabase
+                        .from("carpetas")
+                        .update({ nombre: nuevoNombre })
+                        .eq("id", carpetaId);
+                    
+                    if (error) {
+                        mostrarToast("❌ Error al renombrar");
+                    } else {
+                        setCarpetas(carpetas.map(c => c.id === carpetaId ? { ...c, nombre: nuevoNombre } : c));
+                        mostrarToast(`✅ Carpeta renombrada a "${nuevoNombre}"`);
+                    }
+                }
+            };
+            
+            const eliminarArtefacto = async (artefactoId, nombre) => {
+                if (confirm(`¿Eliminar el artefacto "${nombre}"? Esta acción no se puede deshacer.`)) {
+                    // Primero eliminar referencias en tareas_por_grupo y tareas_por_alumno
+                    await supabase.from("tareas_por_grupo").delete().eq("tarea_id", artefactoId);
+                    await supabase.from("tareas_por_alumno").delete().eq("tarea_id", artefactoId);
+                    await supabase.from("calificaciones").delete().eq("tarea_id", artefactoId);
+                    await supabase.from("comentarios").delete().eq("tarea_id", artefactoId);
+                    
+                    // Eliminar el artefacto
+                    const { error } = await supabase
+                        .from("tareas")
+                        .delete()
+                        .eq("id", artefactoId);
+                    
+                    if (error) {
+                        mostrarToast("❌ Error al eliminar artefacto");
+                    } else {
+                        setArtefactos(artefactos.filter(a => a.id !== artefactoId));
+                        mostrarToast(`🗑️ "${nombre}" eliminado`);
+                    }
+                }
+            };
+            
+            const moverArtefacto = async (artefactoId, nuevaCarpetaId) => {
+                const { error } = await supabase
+                    .from("tareas")
+                    .update({ carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) })
+                    .eq("id", artefactoId);
+                
+                if (error) {
+                    mostrarToast("❌ Error al mover artefacto");
+                } else {
+                    setArtefactos(artefactos.map(a => 
+                        a.id === artefactoId ? { ...a, carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) } : a
+                    ));
+                    mostrarToast("✅ Artefacto movido");
                 }
             };
             
@@ -387,17 +606,6 @@
                 });
                 if (notas.length === 0) return null;
                 return (notas.reduce((a,b) => a + b, 0) / notas.length).toFixed(1);
-            };
-            
-            const getClaseNota = (nota) => {
-                if (nota === null) return "nota-vacia";
-                if (nota === 10) return "nota-10-bg";
-                if (nota === 9) return "nota-9-bg";
-                if (nota === 8) return "nota-8-bg";
-                if (nota === 7) return "nota-7-bg";
-                if (nota === 6) return "nota-6-bg";
-                if (nota === 5) return "nota-5-bg";
-                return "nota-0-bg";
             };
             
             const asignarTareaAGrupo = async (grupo, tareaId) => {
@@ -503,6 +711,19 @@
             const alumnosSinGrupo = aprobados.filter(a => !a.grupo || !grupos.includes(a.grupo));
             if (alumnosSinGrupo.length > 0) { alumnosPorGrupo["Sin grupo"] = alumnosSinGrupo; }
             
+            // Organizar artefactos por carpeta
+            const artefactosPorCarpeta = {};
+            carpetas.forEach(c => { artefactosPorCarpeta[c.id] = []; });
+            artefactosPorCarpeta["sin_carpeta"] = [];
+            
+            artefactos.forEach(art => {
+                if (art.carpeta_id && artefactosPorCarpeta[art.carpeta_id]) {
+                    artefactosPorCarpeta[art.carpeta_id].push(art);
+                } else {
+                    artefactosPorCarpeta["sin_carpeta"].push(art);
+                }
+            });
+            
             if (cargando) {
                 return <div className="loading"><div className="spinner"></div><p>Cargando datos...</p></div>;
             }
@@ -511,7 +732,7 @@
                 return <div className="loading"><p style={{ color: "red" }}>Error: {error}</p></div>;
             }
             
-            // LOGIN DE ALUMNOS (NUEVO)
+            // LOGIN DE ALUMNOS
             if (vista === "login") {
                 return (
                     <div className="login-box">
@@ -542,8 +763,24 @@
                         
                         {mensajeLogin && <div className="mensaje-pendiente">{mensajeLogin}</div>}
                         
-                        <hr style={{ margin: "20px 0" }} />
-                        <button onClick={() => setVista("gestor")} className="btn-marron">👩‍🏫 Profesora</button>
+                        <div className="admin-link" onClick={() => setMostrarAdminLogin(true)}>
+                            🔒
+                        </div>
+                        
+                        {mostrarAdminLogin && (
+                            <div style={{ marginTop: "20px", padding: "15px", background: "#f0f0f0", borderRadius: "8px" }}>
+                                <input 
+                                    type="password" 
+                                    placeholder="Contraseña profesora" 
+                                    value={adminPassword}
+                                    onChange={(e) => setAdminPassword(e.target.value)}
+                                    style={{ marginBottom: "10px" }}
+                                />
+                                <button onClick={verificarAccesoAdmin} className="btn-marron" style={{ width: "100%" }}>👩‍🏫 Acceder como profesora</button>
+                                {errorAdmin && <div style={{ color: "red", marginTop: "10px", fontSize: "12px" }}>{errorAdmin}</div>}
+                                <button onClick={() => { setMostrarAdminLogin(false); setAdminPassword(""); setErrorAdmin(""); }} style={{ marginTop: "10px", background: "none", color: "#999", fontSize: "12px" }}>Cancelar</button>
+                            </div>
+                        )}
                         
                         <div className="footer" style={{ marginTop: "30px" }}>
                             <div className="footer-texto">mlls</div>
@@ -794,24 +1031,75 @@
                         
                         {seccionGestor === "biblioteca" && (
                             <div>
-                                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px", alignItems: "center" }}>
+                                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
                                     <h3>📚 Biblioteca ({artefactos.length})</h3>
-                                    <button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde">+ Nuevo artefacto</button>
+                                    <div style={{ display: "flex", gap: "10px" }}>
+                                        <button onClick={() => setMostrarModalCarpeta(true)} className="btn-marron">📁 Nueva carpeta</button>
+                                        <button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde">+ Nuevo artefacto</button>
+                                    </div>
                                 </div>
+                                
+                                {/* Modal para nueva carpeta */}
+                                {mostrarModalCarpeta && (
+                                    <div className="modal" onClick={() => setMostrarModalCarpeta(false)}>
+                                        <div className="modal-content" onClick={e => e.stopPropagation()}>
+                                            <h3>📁 Nueva carpeta</h3>
+                                            <input 
+                                                type="text" 
+                                                placeholder="Nombre de la carpeta (ej: Tema 1, Unidad 2...)" 
+                                                value={nuevaCarpeta.nombre}
+                                                onChange={e => setNuevaCarpeta({...nuevaCarpeta, nombre: e.target.value})}
+                                                style={{ width: "100%", padding: "10px", marginBottom: "15px" }}
+                                            />
+                                            <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}>
+                                                <button onClick={() => setMostrarModalCarpeta(false)} className="btn-gris">Cancelar</button>
+                                                <button onClick={crearCarpeta} className="btn-verde">Crear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {/* Modal para nuevo artefacto */}
                                 {mostrarModalArtefacto && (
                                     <div className="modal" onClick={() => setMostrarModalArtefacto(false)}>
                                         <div className="modal-content" onClick={e => e.stopPropagation()}>
                                             <h3>➕ Nuevo artefacto</h3>
-                                            <input type="text" placeholder="Nombre" value={nuevoArtefacto.nombre} onChange={e => setNuevoArtefacto({...nuevoArtefacto, nombre: e.target.value})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }} />
-                                            <textarea rows="8" placeholder="Código HTML" value={nuevoArtefacto.html} onChange={e => setNuevoArtefacto({...nuevoArtefacto, html: e.target.value})} style={{ width: "100%", fontFamily: "monospace", fontSize: "12px", marginBottom: "15px" }} />
+                                            <input 
+                                                type="text" 
+                                                placeholder="Nombre" 
+                                                value={nuevoArtefacto.nombre} 
+                                                onChange={e => setNuevoArtefacto({...nuevoArtefacto, nombre: e.target.value})} 
+                                                style={{ width: "100%", marginBottom: "15px", padding: "10px" }} 
+                                            />
+                                            <select 
+                                                value={nuevoArtefacto.carpeta_id || ""} 
+                                                onChange={e => setNuevoArtefacto({...nuevoArtefacto, carpeta_id: e.target.value || null})}
+                                                style={{ width: "100%", marginBottom: "15px", padding: "10px" }}
+                                            >
+                                                <option value="">-- Sin carpeta --</option>
+                                                {carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}
+                                            </select>
+                                            <textarea 
+                                                rows="8" 
+                                                placeholder="Código HTML" 
+                                                value={nuevoArtefacto.html} 
+                                                onChange={e => setNuevoArtefacto({...nuevoArtefacto, html: e.target.value})} 
+                                                style={{ width: "100%", fontFamily: "monospace", fontSize: "12px", marginBottom: "15px" }} 
+                                            />
                                             <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}>
                                                 <button onClick={() => setMostrarModalArtefacto(false)} className="btn-gris">Cancelar</button>
                                                 <button onClick={async () => {
                                                     if (!nuevoArtefacto.nombre || !nuevoArtefacto.html) { alert("Completa todo"); return; }
-                                                    await supabase.from("tareas").insert({ nombre: nuevoArtefacto.nombre, descripcion: "Artefacto", html: nuevoArtefacto.html, activo: true });
+                                                    await supabase.from("tareas").insert({ 
+                                                        nombre: nuevoArtefacto.nombre, 
+                                                        descripcion: "Artefacto", 
+                                                        html: nuevoArtefacto.html, 
+                                                        activo: true,
+                                                        carpeta_id: nuevoArtefacto.carpeta_id
+                                                    });
                                                     const { data } = await supabase.from("tareas").select("*").eq("activo", true);
                                                     setArtefactos(data);
-                                                    setNuevoArtefacto({ nombre: "", html: "" });
+                                                    setNuevoArtefacto({ nombre: "", html: "", carpeta_id: null });
                                                     setMostrarModalArtefacto(false);
                                                     mostrarToast("✅ Añadido");
                                                 }} className="btn-verde">Añadir</button>
@@ -819,12 +1107,100 @@
                                         </div>
                                     </div>
                                 )}
-                                {artefactos.map(art => (
-                                    <div key={art.id} className="artefacto-item" style={{ background: "white", borderRadius: "12px", marginBottom: "10px", padding: "12px", border: "1px solid #ddd", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                        <div><strong>{art.nombre}</strong><br/><span style={{ fontSize: "12px", color: "#666" }}>{art.descripcion}</span></div>
-                                        <button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul" style={{ padding: "4px 12px", fontSize: "12px" }}>📋 Copiar</button>
+                                
+                                {/* Mostrar carpetas con sus artefactos */}
+                                {/* Carpeta "Sin carpeta" primero */}
+                                {artefactosPorCarpeta["sin_carpeta"].length > 0 && (
+                                    <div className="carpeta">
+                                        <div className="carpeta-header" onClick={() => toggleCarpeta("sin_carpeta")}>
+                                            <div className="carpeta-titulo">
+                                                <span>{carpetasAbiertas["sin_carpeta"] ? "📂" : "📁"}</span>
+                                                <strong>Sin carpeta</strong>
+                                                <span style={{ fontSize: "0.8rem", opacity: 0.8 }}>({artefactosPorCarpeta["sin_carpeta"].length})</span>
+                                            </div>
+                                            <span>{carpetasAbiertas["sin_carpeta"] ? "▼" : "▶"}</span>
+                                        </div>
+                                        {carpetasAbiertas["sin_carpeta"] && (
+                                            <div className="carpeta-contenido">
+                                                {artefactosPorCarpeta["sin_carpeta"].map(art => (
+                                                    <div key={art.id} className="artefacto-card">
+                                                        <div className="artefacto-info">
+                                                            <strong>{art.nombre}</strong>
+                                                            <br/>
+                                                            <span style={{ fontSize: "11px", color: "#666" }}>ID: {art.id}</span>
+                                                        </div>
+                                                        <div className="artefacto-acciones">
+                                                            <select 
+                                                                className="selector-carpeta"
+                                                                value={art.carpeta_id || ""}
+                                                                onChange={(e) => moverArtefacto(art.id, e.target.value)}
+                                                            >
+                                                                <option value="">-- Mover a --</option>
+                                                                {carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}
+                                                            </select>
+                                                            <button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul" style={{ padding: "4px 12px", fontSize: "12px" }}>📋</button>
+                                                            <button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>🗑️</button>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                                
+                                {/* Carpetas normales */}
+                                {carpetas.map(carpeta => (
+                                    <div key={carpeta.id} className="carpeta">
+                                        <div className="carpeta-header" onClick={() => toggleCarpeta(carpeta.id)}>
+                                            <div className="carpeta-titulo">
+                                                <span>{carpetasAbiertas[carpeta.id] ? "📂" : "📁"}</span>
+                                                <strong>{carpeta.nombre}</strong>
+                                                <span style={{ fontSize: "0.8rem", opacity: 0.8 }}>({artefactosPorCarpeta[carpeta.id]?.length || 0})</span>
+                                            </div>
+                                            <div style={{ display: "flex", gap: "5px" }}>
+                                                <button onClick={(e) => { e.stopPropagation(); editarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-azul" style={{ padding: "4px 8px", fontSize: "11px" }}>✏️</button>
+                                                <button onClick={(e) => { e.stopPropagation(); eliminarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-rojo" style={{ padding: "4px 8px", fontSize: "11px" }}>🗑️</button>
+                                                <span>{carpetasAbiertas[carpeta.id] ? "▼" : "▶"}</span>
+                                            </div>
+                                        </div>
+                                        {carpetasAbiertas[carpeta.id] && (
+                                            <div className="carpeta-contenido">
+                                                {artefactosPorCarpeta[carpeta.id]?.length > 0 ? (
+                                                    artefactosPorCarpeta[carpeta.id].map(art => (
+                                                        <div key={art.id} className="artefacto-card">
+                                                            <div className="artefacto-info">
+                                                                <strong>{art.nombre}</strong>
+                                                                <br/>
+                                                                <span style={{ fontSize: "11px", color: "#666" }}>ID: {art.id}</span>
+                                                            </div>
+                                                            <div className="artefacto-acciones">
+                                                                <select 
+                                                                    className="selector-carpeta"
+                                                                    value={art.carpeta_id || ""}
+                                                                    onChange={(e) => moverArtefacto(art.id, e.target.value)}
+                                                                >
+                                                                    <option value="">-- Mover a --</option>
+                                                                    {carpetas.filter(c => c.id !== carpeta.id).map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}
+                                                                </select>
+                                                                <button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul" style={{ padding: "4px 12px", fontSize: "12px" }}>📋</button>
+                                                                <button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>🗑️</button>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                ) : (
+                                                    <div className="carpeta-vacia">📭 Esta carpeta está vacía</div>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
+                                
+                                {carpetas.length === 0 && artefactosPorCarpeta["sin_carpeta"].length === 0 && (
+                                    <div className="card" style={{ textAlign: "center" }}>
+                                        <p>📚 No hay artefactos aún</p>
+                                        <button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde" style={{ marginTop: "10px" }}>+ Crear primer artefacto</button>
+                                    </div>
+                                )}
                             </div>
                         )}
                         
@@ -834,7 +1210,7 @@
                 );
             }
             
-            // VISTA ALUMNO
+            // VISTA ALUMNO (igual que antes)
             if (vista === "alumno" && alumnoActual) {
                 const tareasAlumno = getTareasAlumno(alumnoActual.id, alumnoActual.grupo);
                 const mediaAlumno = getMediaAlumno(alumnoActual.id, tareasAlumno.map(t => t.id.toString()));
