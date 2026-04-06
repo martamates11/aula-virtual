@@ -110,6 +110,43 @@
         .nota-0-bg { background: #c0392b; color: white; }
         .nota-vacia { color: #ccc; }
         .acciones-grupo { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        
+        /* Estilos para el login de alumnos */
+        .login-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            margin: 50px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .login-box h2 {
+            color: #3B2510;
+            margin-bottom: 10px;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .mensaje-pendiente {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -151,6 +188,12 @@
             const [comentariosAbiertos, setComentariosAbiertos] = React.useState({});
             const [textoComentario, setTextoComentario] = React.useState({});
             const [alumnosExpandidos, setAlumnosExpandidos] = React.useState({});
+            
+            // Estado para login de alumno
+            const [emailLogin, setEmailLogin] = React.useState("");
+            const [nombreLogin, setNombreLogin] = React.useState("");
+            const [apellidosLogin, setApellidosLogin] = React.useState("");
+            const [mensajeLogin, setMensajeLogin] = React.useState("");
             
             React.useEffect(() => {
                 async function cargarDatos() {
@@ -226,6 +269,51 @@
             };
             
             const mostrarToast = (msg) => { setToast(msg); setTimeout(() => setToast(null), 2000); };
+            
+            const registrarAlumno = async () => {
+                if (!emailLogin || !nombreLogin) {
+                    setMensajeLogin("❌ Por favor, introduce tu nombre y email");
+                    return;
+                }
+                
+                // Verificar si ya existe
+                const { data: existe } = await supabase
+                    .from("alumnos")
+                    .select("*")
+                    .eq("email", emailLogin)
+                    .single();
+                
+                if (existe) {
+                    if (existe.aprobado) {
+                        // Alumno ya aprobado - puede entrar
+                        setAlumnoActual(existe);
+                        setVista("alumno");
+                        setMensajeLogin("");
+                    } else {
+                        setMensajeLogin("⏳ Ya te has registrado. Espera a que la profesora te apruebe.");
+                    }
+                } else {
+                    // Nuevo alumno - registrar
+                    const { data: nuevo, error } = await supabase
+                        .from("alumnos")
+                        .insert({
+                            nombre: nombreLogin,
+                            apellidos: apellidosLogin || "",
+                            email: emailLogin,
+                            aprobado: false
+                        })
+                        .select();
+                    
+                    if (error) {
+                        setMensajeLogin("❌ Error al registrar: " + error.message);
+                    } else {
+                        setMensajeLogin("✅ ¡Registrado! Espera a que la profesora te apruebe.");
+                        setEmailLogin("");
+                        setNombreLogin("");
+                        setApellidosLogin("");
+                    }
+                }
+            };
             
             const getTareasAlumno = (alumnoId, grupoNombre) => {
                 const tareasGrupo = tareasPorGrupo[grupoNombre] || [];
@@ -423,33 +511,54 @@
                 return <div className="loading"><p style={{ color: "red" }}>Error: {error}</p></div>;
             }
             
-            // LOGIN
+            // LOGIN DE ALUMNOS (NUEVO)
             if (vista === "login") {
-                const alumnosAprobadosLogin = alumnos.filter(a => a.aprobado);
                 return (
-                    <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "center" }}>
-                        <h1 style={{ marginBottom: "30px", color: "#3B2510" }}>📚 AULA v00</h1>
-                        <div style={{ marginTop: "30px" }}>
-                            <button onClick={() => setVista("gestor")} className="btn-marron" style={{ padding: "15px", fontSize: "18px", width: "100%", margin: "10px 0" }}>👩‍🏫 PROFESORA</button>
-                            <h3 style={{ margin: "20px 0 10px", color: "#6B4F35" }}>Alumnos:</h3>
-                            {alumnosAprobadosLogin.map(a => (
-                                <button key={a.id} onClick={() => { setAlumnoActual(a); setVista("alumno"); }} className="btn-verde" style={{ padding: "15px", fontSize: "18px", width: "100%", margin: "10px 0" }}>
-                                    👨‍🎓 {a.nombre} {a.apellidos}
-                                </button>
-                            ))}
-                            {alumnosAprobadosLogin.length === 0 && <p style={{ color: "#999" }}>No hay alumnos aprobados</p>}
+                    <div className="login-box">
+                        <h1>📚 AULA v00</h1>
+                        <h2>👨‍🎓 Acceso Alumnos</h2>
+                        <p style={{ color: "#666", marginBottom: "20px" }}>Introduce tus datos para acceder</p>
+                        
+                        <input 
+                            type="text" 
+                            placeholder="Nombre" 
+                            value={nombreLogin}
+                            onChange={(e) => setNombreLogin(e.target.value)}
+                        />
+                        <input 
+                            type="text" 
+                            placeholder="Apellidos (opcional)" 
+                            value={apellidosLogin}
+                            onChange={(e) => setApellidosLogin(e.target.value)}
+                        />
+                        <input 
+                            type="email" 
+                            placeholder="Email" 
+                            value={emailLogin}
+                            onChange={(e) => setEmailLogin(e.target.value)}
+                        />
+                        
+                        <button onClick={registrarAlumno} className="btn-verde">🚀 Acceder / Registrarse</button>
+                        
+                        {mensajeLogin && <div className="mensaje-pendiente">{mensajeLogin}</div>}
+                        
+                        <hr style={{ margin: "20px 0" }} />
+                        <button onClick={() => setVista("gestor")} className="btn-marron">👩‍🏫 Profesora</button>
+                        
+                        <div className="footer" style={{ marginTop: "30px" }}>
+                            <div className="footer-texto">mlls</div>
                         </div>
                     </div>
                 );
             }
             
-            // GESTOR
+            // GESTOR (PROFESORA)
             if (vista === "gestor") {
                 return (
                     <div>
                         <div className="header">
-                            <div className="header-titulo">👩‍🏫 PROFESORA AULA DIGITAL: Marta López de Letona S.</div>
-                            <button onClick={() => setVista("login")} className="btn-salir">Salir</button>
+                            <div className="header-titulo">👩‍🏫 PROFESORA AULA DIGITAL</div>
+                            <button onClick={() => { setVista("login"); setAlumnoActual(null); }} className="btn-salir">Salir</button>
                         </div>
                         <div className="menu">
                             <button onClick={() => setSeccionGestor("pendientes")} className={seccionGestor === "pendientes" ? "menu-btn active" : "menu-btn"}>⏳ Pendientes ({pendientes.length})</button>
@@ -496,12 +605,7 @@
                                         </div>
                                         <table className="tabla-alumnos">
                                             <thead>
-                                                <tr>
-                                                    <th>Alumno</th>
-                                                    <th>Email</th>
-                                                    <th>Cambiar grupo</th>
-                                                    <th>Acción</th>
-                                                </tr>
+                                                <tr><th>Alumno</th><th>Email</th><th>Cambiar grupo</th><th>Acción</th></tr>
                                             </thead>
                                             <tbody>
                                                 {alumnosPorGrupo[nombreGrupo].map(a => (
@@ -521,7 +625,7 @@
                                                                     setAlumnos(data);
                                                                     mostrarToast(`✅ Movido a ${nuevoGrupo}`);
                                                                 }
-                                                            }} className="btn-cambiar-grupo" style={{ background: "#A0522D", color: "white", padding: "4px 12px", borderRadius: "6px", marginLeft: "8px" }}>Cambiar</button>
+                                                            }} className="btn-marron" style={{ padding: "4px 12px", marginLeft: "8px" }}>Cambiar</button>
                                                         </td>
                                                         <td>
                                                             <button onClick={async () => {
@@ -531,7 +635,7 @@
                                                                     setAlumnos(data);
                                                                     mostrarToast("🗑️ Eliminado");
                                                                 }
-                                                            }} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>Eliminar</button>
+                                                            }} className="btn-rojo" style={{ padding: "4px 12px" }}>Eliminar</button>
                                                         </td>
                                                     </tr>
                                                 ))}
@@ -730,7 +834,7 @@
                 );
             }
             
-            // ALUMNO
+            // VISTA ALUMNO
             if (vista === "alumno" && alumnoActual) {
                 const tareasAlumno = getTareasAlumno(alumnoActual.id, alumnoActual.grupo);
                 const mediaAlumno = getMediaAlumno(alumnoActual.id, tareasAlumno.map(t => t.id.toString()));
@@ -742,7 +846,7 @@
                     <div>
                         <div className="header">
                             <div className="header-titulo">👩‍🎓 {alumnoActual.nombre} {alumnoActual.apellidos} • {alumnoActual.grupo || "Sin grupo"}</div>
-                            <button onClick={() => setVista("login")} className="btn-salir">Salir</button>
+                            <button onClick={() => { setVista("login"); setAlumnoActual(null); }} className="btn-salir">Salir</button>
                         </div>
                         <div className="menu">
                             <button onClick={() => setSeccionAlumno("tareas")} className={seccionAlumno === "tareas" ? "menu-btn active" : "menu-btn"}>📚 Mis Tareas ({tareasAlumno.length})</button>
@@ -877,7 +981,7 @@
                                                 <th style={{ padding: "10px", textAlign: "left" }}>Tarea</th>
                                                 <th style={{ padding: "10px", textAlign: "center" }}>Nota</th>
                                                 <th style={{ padding: "10px", textAlign: "center" }}>Fecha</th>
-                                             </tr>
+                                              </tr>
                                         </thead>
                                         <tbody>
                                             {tareasAlumno.flatMap(t => {
