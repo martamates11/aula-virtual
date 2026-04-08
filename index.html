@@ -9,15 +9,19 @@
         body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f0e8; padding: 20px; }
         button { cursor: pointer; padding: 8px 16px; margin: 5px; border-radius: 8px; border: none; transition: all 0.2s; }
         button:hover { transform: translateY(-2px); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        
         .header { background: #3B2510; padding: 16px 24px; margin-bottom: 20px; border-radius: 12px 12px 0 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .header-titulo { font-size: 1rem; font-weight: 600; color: #F5EDD8; }
         .btn-salir { background: transparent; border: 1px solid rgba(245,237,216,0.4); color: #F5EDD8; padding: 5px 14px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; }
+        
         .menu { background: #fefcf8; padding: 12px 24px; border-bottom: 1px solid #e8dfc8; display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; border-radius: 0 0 12px 12px; }
         .menu-btn { background: transparent; padding: 8px 18px; font-size: 0.85rem; font-weight: 500; color: #6B4F35; border-radius: 20px; transition: all 0.2s; }
         .menu-btn:hover { background: #e8dfc8; color: #3B2510; }
         .menu-btn.active { background: #A0522D; color: white; }
+        
         .footer { margin-top: 30px; padding: 16px 24px 20px 24px; border-top: 1px solid #e8dfc8; text-align: center; }
         .footer-texto { font-size: 8px; color: #bbb; letter-spacing: 2px; text-transform: lowercase; }
+        
         .card { background: white; border-radius: 12px; padding: 20px; margin: 10px 0; border-left: 4px solid #D97A2B; }
         .btn-verde { background: #2E6B3E; color: white; }
         .btn-rojo { background: #8B1A1A; color: white; }
@@ -27,6 +31,7 @@
         .btn-gris { background: #95a5a6; color: white; }
         .btn-morado { background: #9b59b6; color: white; }
         select, input, textarea { padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-family: inherit; }
+        
         .loading { text-align: center; padding: 40px; }
         .spinner { border: 3px solid #f3f3f3; border-top: 3px solid #A0522D; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -34,6 +39,29 @@
         @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
         .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; }
         .modal-content { background: white; padding: 20px; border-radius: 12px; width: 95%; max-width: 95%; max-height: 95vh; height: 95vh; display: flex; flex-direction: column; overflow: auto; }
+        
+        .grupo-tareas { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .tarea-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
+        .alumno-tareas-panel { background: #f9f5f0; border-radius: 12px; margin-top: 20px; overflow: hidden; }
+        .alumno-tareas-header { background: #9b59b6; color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .alumno-tareas-content { padding: 15px; }
+        .tarea-individual-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; margin: 5px 0; background: white; border-radius: 8px; border: 1px solid #eee; }
+        .badge-individual { background: #9b59b6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; }
+        .badge-grupo { background: #2E6B3E; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; }
+        .comentarios-section { margin-top: 12px; padding-top: 8px; border-top: 1px solid #e8dfc8; }
+        .comentarios-header { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 4px 0; }
+        .comentario { background: #f8f5f0; border-radius: 6px; padding: 6px 10px; margin-bottom: 6px; border-left: 2px solid #D97A2B; font-size: 0.75rem; }
+        .comentario-profesor { border-left-color: #2E6B3E; background: #f0f7f0; }
+        .textarea-comentario { width: 100%; padding: 6px 8px; border-radius: 6px; border: 1px solid #ddd; resize: vertical; font-size: 0.75rem; margin-top: 6px; }
+        .btn-comentar { background: #A0522D; color: white; padding: 4px 10px; font-size: 0.7rem; margin-top: 4px; }
+        .media-card { background: linear-gradient(135deg, #3B2510 0%, #5a3a1a 100%); border-radius: 16px; padding: 20px; margin-bottom: 20px; color: white; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .media-valor { font-size: 3rem; font-weight: bold; }
+        .grupo-alumnos, .grupo-historial { background: white; border-radius: 12px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .grupo-header, .historial-header { background: #3B2510; color: white; padding: 12px 20px; }
+        .tabla-alumnos, .historial-tabla { width: 100%; border-collapse: collapse; }
+        .tabla-alumnos th, .tabla-alumnos td, .historial-tabla th, .historial-tabla td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; }
+        .acciones-grupo { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        
         .login-box { background: white; border-radius: 20px; padding: 40px; max-width: 400px; margin: 50px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
         .login-box h1 { color: #3B2510; margin-bottom: 5px; }
         .login-box h2 { color: #6B4F35; margin-bottom: 20px; font-size: 1.2rem; }
@@ -42,15 +70,29 @@
         .mensaje-pendiente { background: #fef3c7; color: #92400e; padding: 12px; border-radius: 8px; margin-top: 15px; font-size: 14px; }
         .admin-link { margin-top: 20px; font-size: 11px; color: #ccc; cursor: pointer; }
         .admin-link:hover { color: #999; }
+        
+        .carpeta { background: #fefcf8; border-radius: 12px; margin-bottom: 20px; overflow: hidden; border: 1px solid #e8dfc8; }
+        .carpeta-header { background: #3B2510; color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .carpeta-header:hover { background: #4a3018; }
+        .carpeta-titulo { display: flex; align-items: center; gap: 10px; }
+        .carpeta-contenido { padding: 15px; }
+        .artefacto-card { background: white; border-radius: 10px; padding: 15px; margin-bottom: 10px; border: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .artefacto-info { flex: 1; }
+        .artefacto-acciones { display: flex; gap: 8px; }
+        .carpeta-vacia { text-align: center; color: #999; padding: 20px; }
+        .selector-carpeta { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.8rem; }
+        
         iframe { width: 100%; height: 100%; min-height: 80vh; border: none; background: #fff; }
     </style>
 </head>
 <body>
     <div id="root"></div>
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
     <script type="text/babel">
         const SUPABASE_URL = "https://jtrntlywxpskdvidulor.supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_h5iDbbdeNO-H3ELQeIw2KQ_N-Ub1FXA";
@@ -68,6 +110,7 @@
             const [grupos, setGrupos] = React.useState([]);
             const [gruposData, setGruposData] = React.useState([]);
             const [artefactos, setArtefactos] = React.useState([]);
+            const [carpetas, setCarpetas] = React.useState([]);
             const [tareasPorGrupo, setTareasPorGrupo] = React.useState({});
             const [tareasPorAlumno, setTareasPorAlumno] = React.useState({});
             const [calificaciones, setCalificaciones] = React.useState({});
@@ -75,18 +118,23 @@
             const [toast, setToast] = React.useState(null);
             const [mostrarModalArtefacto, setMostrarModalArtefacto] = React.useState(false);
             const [mostrarModalCopiarGrupo, setMostrarModalCopiarGrupo] = React.useState(false);
+            const [mostrarModalCarpeta, setMostrarModalCarpeta] = React.useState(false);
             const [tareaSeleccionada, setTareaSeleccionada] = React.useState("");
             const [tareaIndividualSeleccionada, setTareaIndividualSeleccionada] = React.useState({});
-            const [nuevoArtefacto, setNuevoArtefacto] = React.useState({ nombre: "", html: "" });
+            const [nuevoArtefacto, setNuevoArtefacto] = React.useState({ nombre: "", html: "", carpeta_id: null });
+            const [nuevaCarpeta, setNuevaCarpeta] = React.useState({ nombre: "" });
             const [grupoOrigen, setGrupoOrigen] = React.useState("");
             const [nuevoNombreGrupo, setNuevoNombreGrupo] = React.useState("");
             const [comentariosAbiertos, setComentariosAbiertos] = React.useState({});
             const [textoComentario, setTextoComentario] = React.useState({});
             const [alumnosExpandidos, setAlumnosExpandidos] = React.useState({});
+            const [carpetasAbiertas, setCarpetasAbiertas] = React.useState({});
+            
             const [emailLogin, setEmailLogin] = React.useState("");
             const [nombreLogin, setNombreLogin] = React.useState("");
             const [apellidosLogin, setApellidosLogin] = React.useState("");
             const [mensajeLogin, setMensajeLogin] = React.useState("");
+            
             const [mostrarAdminLogin, setMostrarAdminLogin] = React.useState(false);
             const [adminPassword, setAdminPassword] = React.useState("");
             const [errorAdmin, setErrorAdmin] = React.useState("");
@@ -107,20 +155,25 @@
                 async function cargarDatos() {
                     try {
                         setError(null);
-                        const [alumnosRes, gruposRes, artefactosRes, tareasGrupoRes, calificacionesRes, comentariosRes] = await Promise.all([
+                        const [alumnosRes, gruposRes, artefactosRes, carpetasRes, tareasGrupoRes, calificacionesRes, comentariosRes] = await Promise.all([
                             supabase.from("alumnos").select("*"),
                             supabase.from("grupos").select("*").eq("activo", true),
                             supabase.from("tareas").select("*").eq("activo", true),
+                            supabase.from("carpetas").select("*").order("nombre"),
                             supabase.from("tareas_por_grupo").select("*"),
                             supabase.from("calificaciones").select("*"),
                             supabase.from("comentarios").select("*").order("created_at", { ascending: true })
                         ]);
+                        
                         let tareasAlumnoRes = { data: [] };
                         try { tareasAlumnoRes = await supabase.from("tareas_por_alumno").select("*"); } catch (err) { console.warn("Tabla tareas_por_alumno no existe"); }
+                        
                         setAlumnos(alumnosRes.data || []);
                         setGruposData(gruposRes.data || []);
                         setGrupos(gruposRes.data.map(g => g.nombre) || []);
                         setArtefactos(artefactosRes.data || []);
+                        setCarpetas(carpetasRes.data || []);
+                        
                         const tareasGrupoObj = {};
                         gruposRes.data.forEach(g => tareasGrupoObj[g.nombre] = []);
                         (tareasGrupoRes.data || []).forEach(item => {
@@ -128,12 +181,14 @@
                             if (grupo) tareasGrupoObj[grupo.nombre].push(item.tarea_id.toString());
                         });
                         setTareasPorGrupo(tareasGrupoObj);
+                        
                         const tareasAlumnoObj = {};
                         (tareasAlumnoRes.data || []).forEach(item => {
                             if (!tareasAlumnoObj[item.alumno_id]) tareasAlumnoObj[item.alumno_id] = [];
                             tareasAlumnoObj[item.alumno_id].push(item.tarea_id.toString());
                         });
                         setTareasPorAlumno(tareasAlumnoObj);
+                        
                         const califObj = {};
                         (calificacionesRes.data || []).forEach(c => {
                             if (!califObj[c.alumno_id]) califObj[c.alumno_id] = {};
@@ -141,12 +196,14 @@
                             califObj[c.alumno_id][c.tarea_id].push({ nota: c.nota, fecha: c.fecha });
                         });
                         setCalificaciones(califObj);
+                        
                         const comentariosObj = {};
                         (comentariosRes.data || []).forEach(c => {
                             if (!comentariosObj[c.tarea_id]) comentariosObj[c.tarea_id] = [];
                             comentariosObj[c.tarea_id].push(c);
                         });
                         setComentarios(comentariosObj);
+                        
                     } catch (err) {
                         console.error("Error:", err);
                         setError(err.message);
@@ -155,6 +212,7 @@
                 cargarDatos();
             }, []);
             
+            const toggleCarpeta = (id) => { setCarpetasAbiertas(prev => ({ ...prev, [id]: !prev[id] })); };
             const toggleAlumnoExpandido = (id) => { setAlumnosExpandidos(prev => ({ ...prev, [id]: !prev[id] })); };
             const toggleComentarios = (tareaId) => { setComentariosAbiertos(prev => ({ ...prev, [tareaId]: !prev[tareaId] })); };
             const mostrarToast = (msg) => { setToast(msg); setTimeout(() => setToast(null), 2000); };
@@ -175,6 +233,49 @@
             const verificarAccesoAdmin = () => {
                 if (adminPassword === ADMIN_PASSWORD) { setVista("gestor"); setMostrarAdminLogin(false); setAdminPassword(""); setErrorAdmin(""); }
                 else { setErrorAdmin("❌ Contraseña incorrecta"); }
+            };
+            
+            const crearCarpeta = async () => {
+                if (!nuevaCarpeta.nombre) { mostrarToast("❌ Introduce un nombre para la carpeta"); return; }
+                const { data, error } = await supabase.from("carpetas").insert({ nombre: nuevaCarpeta.nombre }).select();
+                if (error) { mostrarToast("❌ Error al crear carpeta: " + error.message); }
+                else { setCarpetas([...carpetas, data[0]]); setNuevaCarpeta({ nombre: "" }); setMostrarModalCarpeta(false); mostrarToast(`✅ Carpeta "${nuevaCarpeta.nombre}" creada`); }
+            };
+            
+            const eliminarCarpeta = async (carpetaId, nombre) => {
+                if (confirm(`¿Eliminar la carpeta "${nombre}"? Los artefactos dentro pasarán a "Sin carpeta"`)) {
+                    await supabase.from("tareas").update({ carpeta_id: null }).eq("carpeta_id", carpetaId);
+                    const { error } = await supabase.from("carpetas").delete().eq("id", carpetaId);
+                    if (error) { mostrarToast("❌ Error al eliminar carpeta"); }
+                    else { setCarpetas(carpetas.filter(c => c.id !== carpetaId)); const { data } = await supabase.from("tareas").select("*").eq("activo", true); setArtefactos(data); mostrarToast(`🗑️ Carpeta "${nombre}" eliminada`); }
+                }
+            };
+            
+            const editarCarpeta = async (carpetaId, nombreActual) => {
+                const nuevoNombre = prompt("Nuevo nombre de la carpeta:", nombreActual);
+                if (nuevoNombre && nuevoNombre !== nombreActual) {
+                    const { error } = await supabase.from("carpetas").update({ nombre: nuevoNombre }).eq("id", carpetaId);
+                    if (error) { mostrarToast("❌ Error al renombrar"); }
+                    else { setCarpetas(carpetas.map(c => c.id === carpetaId ? { ...c, nombre: nuevoNombre } : c)); mostrarToast(`✅ Carpeta renombrada a "${nuevoNombre}"`); }
+                }
+            };
+            
+            const eliminarArtefacto = async (artefactoId, nombre) => {
+                if (confirm(`¿Eliminar el artefacto "${nombre}"? Esta acción no se puede deshacer.`)) {
+                    await supabase.from("tareas_por_grupo").delete().eq("tarea_id", artefactoId);
+                    await supabase.from("tareas_por_alumno").delete().eq("tarea_id", artefactoId);
+                    await supabase.from("calificaciones").delete().eq("tarea_id", artefactoId);
+                    await supabase.from("comentarios").delete().eq("tarea_id", artefactoId);
+                    const { error } = await supabase.from("tareas").delete().eq("id", artefactoId);
+                    if (error) { mostrarToast("❌ Error al eliminar artefacto"); }
+                    else { setArtefactos(artefactos.filter(a => a.id !== artefactoId)); mostrarToast(`🗑️ "${nombre}" eliminado`); }
+                }
+            };
+            
+            const moverArtefacto = async (artefactoId, nuevaCarpetaId) => {
+                const { error } = await supabase.from("tareas").update({ carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) }).eq("id", artefactoId);
+                if (error) { mostrarToast("❌ Error al mover artefacto"); }
+                else { setArtefactos(artefactos.map(a => a.id === artefactoId ? { ...a, carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) } : a)); mostrarToast("✅ Artefacto movido"); }
             };
             
             const getTareasAlumno = (alumnoId, grupoNombre) => {
@@ -306,14 +407,24 @@
             
             const pendientes = alumnos.filter(a => !a.aprobado);
             const aprobados = alumnos.filter(a => a.aprobado);
+            
             const alumnosPorGrupo = {};
             grupos.forEach(grupo => { alumnosPorGrupo[grupo] = aprobados.filter(a => a.grupo === grupo); });
             const alumnosSinGrupo = aprobados.filter(a => !a.grupo || !grupos.includes(a.grupo));
             if (alumnosSinGrupo.length > 0) { alumnosPorGrupo["Sin grupo"] = alumnosSinGrupo; }
             
+            const artefactosPorCarpeta = {};
+            carpetas.forEach(c => { artefactosPorCarpeta[c.id] = []; });
+            artefactosPorCarpeta["sin_carpeta"] = [];
+            artefactos.forEach(art => {
+                if (art.carpeta_id && artefactosPorCarpeta[art.carpeta_id]) { artefactosPorCarpeta[art.carpeta_id].push(art); }
+                else { artefactosPorCarpeta["sin_carpeta"].push(art); }
+            });
+            
             if (cargando) { return <div className="loading"><div className="spinner"></div><p>Cargando datos...</p></div>; }
             if (error) { return <div className="loading"><p style={{ color: "red" }}>Error: {error}</p></div>; }
             
+            // LOGIN
             if (vista === "login") {
                 return (
                     <div className="login-box">
@@ -339,6 +450,7 @@
                 );
             }
             
+            // GESTOR (PROFESORA) - VERSIÓN COMPLETA
             if (vista === "gestor") {
                 return (
                     <div>
@@ -352,21 +464,91 @@
                             <button onClick={() => setSeccionGestor("asignar")} className={seccionGestor === "asignar" ? "menu-btn active" : "menu-btn"}>📋 Asignar ({grupos.length})</button>
                             <button onClick={() => setSeccionGestor("biblioteca")} className={seccionGestor === "biblioteca" ? "menu-btn active" : "menu-btn"}>📚 Biblioteca ({artefactos.length})</button>
                         </div>
+                        
                         {seccionGestor === "pendientes" && pendientes.map(a => (
-                            <div key={a.id} className="card"><div><strong>{a.nombre} {a.apellidos}</strong><br/>{a.email}</div>
-                            <div><select id={`grupo-${a.id}`}>{grupos.map(g => <option key={g}>{g}</option>)}</select>
-                            <button onClick={async () => { await supabase.from("alumnos").update({ aprobado: true, grupo: document.getElementById(`grupo-${a.id}`).value }).eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast(`✅ Alumno aprobado`); }} className="btn-verde">Aprobar</button>
-                            <button onClick={async () => { if (confirm("¿Eliminar?")) { await supabase.from("alumnos").delete().eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast("🗑️ Eliminado"); } }} className="btn-rojo">Rechazar</button></div></div>
+                            <div key={a.id} className="card">
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+                                    <div><strong>{a.nombre} {a.apellidos}</strong><br/>{a.email}</div>
+                                    <div>
+                                        <select id={`grupo-${a.id}`}>{grupos.map(g => <option key={g}>{g}</option>)}</select>
+                                        <button onClick={async () => { await supabase.from("alumnos").update({ aprobado: true, grupo: document.getElementById(`grupo-${a.id}`).value }).eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast(`✅ Alumno aprobado`); }} className="btn-verde">Aprobar</button>
+                                        <button onClick={async () => { if (confirm("¿Eliminar?")) { await supabase.from("alumnos").delete().eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast("🗑️ Eliminado"); } }} className="btn-rojo">Rechazar</button>
+                                    </div>
+                                </div>
+                            </div>
                         ))}
-                        {seccionGestor === "alumnos" && <div>Lista de alumnos (completo en versión anterior)</div>}
-                        {seccionGestor === "asignar" && <div>Asignar tareas (completo en versión anterior)</div>}
-                        {seccionGestor === "biblioteca" && <div>Biblioteca (completo en versión anterior)</div>}
+                        
+                        {seccionGestor === "alumnos" && (
+                            <div>
+                                <h3 style={{ marginBottom: "15px" }}>📋 Alumnos por grupo</h3>
+                                {Object.keys(alumnosPorGrupo).map(nombreGrupo => (
+                                    <div key={nombreGrupo} className="grupo-alumnos">
+                                        <div className="grupo-header"><span>📁 {nombreGrupo}</span><span>{alumnosPorGrupo[nombreGrupo].length} alumnos</span></div>
+                                        <table className="tabla-alumnos"><thead><tr><th>Alumno</th><th>Email</th><th>Cambiar grupo</th><th>Acción</th></tr></thead>
+                                        <tbody>{alumnosPorGrupo[nombreGrupo].map(a => (<tr key={a.id}><td><strong>{a.nombre} {a.apellidos}</strong></td><td>{a.email}</td>
+                                        <td><select id={`select-${a.id}`} defaultValue={a.grupo || "Sin grupo"}>{grupos.map(g => <option key={g} value={g}>{g}</option>)}<option value="Sin grupo">Sin grupo</option></select>
+                                        <button onClick={async () => { const nuevoGrupo = document.getElementById(`select-${a.id}`).value; if (nuevoGrupo !== (a.grupo || "Sin grupo")) { await supabase.from("alumnos").update({ grupo: nuevoGrupo === "Sin grupo" ? null : nuevoGrupo }).eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast(`✅ Movido a ${nuevoGrupo}`); } }} className="btn-marron" style={{ padding: "4px 12px", marginLeft: "8px" }}>Cambiar</button></td>
+                                        <td><button onClick={async () => { if (confirm("¿Eliminar?")) { await supabase.from("alumnos").delete().eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast("🗑️ Eliminado"); } }} className="btn-rojo" style={{ padding: "4px 12px" }}>Eliminar</button></td></tr>))}</tbody></table>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                        
+                        {seccionGestor === "asignar" && (
+                            <div>
+                                <div className="acciones-grupo">
+                                    <button onClick={async () => { const nombre = prompt("Nombre del nuevo grupo:"); if (nombre && !grupos.includes(nombre)) { await supabase.from("grupos").insert({ nombre }); const { data } = await supabase.from("grupos").select("*").eq("activo", true); setGruposData(data); setGrupos(data.map(g => g.nombre)); mostrarToast(`✅ Grupo "${nombre}" creado`); } }} className="btn-marron">+ Nuevo grupo</button>
+                                    <button onClick={() => setMostrarModalCopiarGrupo(true)} className="btn-naranja">📋 Copiar grupo</button>
+                                </div>
+                                
+                                {mostrarModalCopiarGrupo && (<div className="modal" onClick={() => setMostrarModalCopiarGrupo(false)}><div className="modal-content" style={{ height: 'auto', maxHeight: '80vh' }} onClick={e => e.stopPropagation()}><h3>📋 Copiar grupo</h3><p style={{ marginBottom: "15px", color: "#666" }}>Copia todas las tareas de un grupo existente a uno nuevo</p>
+                                <div><label>Grupo origen:</label><select value={grupoOrigen} onChange={e => setGrupoOrigen(e.target.value)} style={{ width: "100%", padding: "10px" }}><option value="">-- Seleccionar grupo --</option>{grupos.map(g => <option key={g} value={g}>{g}</option>)}</select></div>
+                                <div><label>Nombre del nuevo grupo:</label><input type="text" value={nuevoNombreGrupo} onChange={e => setNuevoNombreGrupo(e.target.value)} placeholder="Ej: Grupo B - 2024" style={{ width: "100%", padding: "10px" }} /></div>
+                                <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end", marginTop: "15px" }}><button onClick={() => { setMostrarModalCopiarGrupo(false); setGrupoOrigen(""); setNuevoNombreGrupo(""); }} className="btn-gris">Cancelar</button><button onClick={copiarGrupo} className="btn-verde">Copiar grupo</button></div></div></div>)}
+                                
+                                {grupos.map(grupo => {
+                                    const tareasAsignadas = (tareasPorGrupo[grupo] || []).map(id => artefactos.find(a => a && a.id == id)).filter(a => a);
+                                    const tareasDisponibles = artefactos.filter(a => !(tareasPorGrupo[grupo] || []).includes(a.id.toString()));
+                                    return (<div key={grupo} className="grupo-tareas"><div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}><h3>📁 Grupo: {grupo}</h3>
+                                    <button onClick={async () => { if (confirm(`¿Eliminar grupo "${grupo}"?`)) { const { data: grupoData } = await supabase.from("grupos").select("id").eq("nombre", grupo).single(); if (grupoData) { await supabase.from("tareas_por_grupo").delete().eq("grupo_id", grupoData.id); await supabase.from("grupos").delete().eq("id", grupoData.id); const { data: nuevos } = await supabase.from("grupos").select("*").eq("activo", true); setGruposData(nuevos); setGrupos(nuevos.map(g => g.nombre)); mostrarToast(`🗑️ Grupo "${grupo}" eliminado`); } } }} className="btn-rojo">Eliminar grupo</button></div>
+                                    <div style={{ marginBottom: "15px", display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}><select value={tareaSeleccionada} onChange={e => setTareaSeleccionada(e.target.value)} style={{ flex: 1, minWidth: "200px" }}><option value="">-- Asignar tarea a TODO el grupo --</option>{tareasDisponibles.map(t => <option key={t.id} value={t.id}>{t.nombre}</option>)}</select><button onClick={() => asignarTareaAGrupo(grupo, tareaSeleccionada)} className="btn-verde">➕ Asignar a grupo</button></div>
+                                    <h4>✓ Tareas del grupo ({tareasAsignadas.length})</h4>{tareasAsignadas.map(t => (<div key={t.id} className="tarea-item"><span><strong>{t.nombre}</strong></span><button onClick={() => quitarTareaDeGrupo(grupo, t.id)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>Quitar del grupo</button></div>))}
+                                    <div className="alumno-tareas-panel"><div className="alumno-tareas-header" onClick={() => toggleAlumnoExpandido(grupo)}><span>👤 Tareas individuales por alumno</span><span>{alumnosExpandidos[grupo] ? "▼" : "▶"}</span></div>
+                                    {alumnosExpandidos[grupo] && (<div className="alumno-tareas-content">{(alumnosPorGrupo[grupo] || []).map(alumno => { const tareasAlumno = getTareasAlumno(alumno.id, grupo); const tareasDisponiblesIndividual = artefactos.filter(a => !tareasAlumno.some(ta => ta && ta.id === a.id)); return (<div key={alumno.id} style={{ marginBottom: "20px", borderBottom: "1px solid #eee", paddingBottom: "15px" }}><div><strong>👨‍🎓 {alumno.nombre} {alumno.apellidos}</strong><span className="badge-individual">Tareas: {tareasAlumno.length}</span></div>
+                                    <div style={{ display: "flex", gap: "10px", marginBottom: "10px", flexWrap: "wrap" }}><select value={tareaIndividualSeleccionada[alumno.id] || ""} onChange={e => setTareaIndividualSeleccionada({...tareaIndividualSeleccionada, [alumno.id]: e.target.value})} style={{ flex: 1, minWidth: "180px", padding: "6px" }}><option value="">-- Asignar tarea individual --</option>{tareasDisponiblesIndividual.map(t => <option key={t.id} value={t.id}>{t.nombre}</option>)}</select><button onClick={() => asignarTareaIndividual(alumno.id, tareaIndividualSeleccionada[alumno.id])} className="btn-morado" style={{ padding: "6px 12px" }}>➕ Asignar</button></div>
+                                    {tareasAlumno.length > 0 && (<div><div>📋 Tareas asignadas:</div>{tareasAlumno.map(t => { const esIndividual = esTareaIndividual(alumno.id, t.id); return (<div key={t.id} className="tarea-individual-item"><span><strong>{t.nombre}</strong>{esIndividual && <span className="badge-individual">📌 Individual</span>}{!esIndividual && <span className="badge-grupo">👥 Grupo</span>}</span>{esIndividual && (<button onClick={() => quitarTareaIndividual(alumno.id, t.id)} className="btn-rojo" style={{ padding: "2px 8px", fontSize: "0.7rem" }}>Quitar</button>)}</div>);})}</div>)}</div>);})}</div>)}</div></div>);
+                                })}
+                            </div>
+                        )}
+                        
+                        {seccionGestor === "biblioteca" && (
+                            <div>
+                                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+                                    <h3>📚 Biblioteca ({artefactos.length})</h3>
+                                    <div style={{ display: "flex", gap: "10px" }}><button onClick={() => setMostrarModalCarpeta(true)} className="btn-marron">📁 Nueva carpeta</button><button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde">+ Nuevo artefacto</button></div>
+                                </div>
+                                
+                                {mostrarModalCarpeta && (<div className="modal" onClick={() => setMostrarModalCarpeta(false)}><div className="modal-content" style={{ height: 'auto', maxHeight: '80vh' }} onClick={e => e.stopPropagation()}><h3>📁 Nueva carpeta</h3><input type="text" placeholder="Nombre de la carpeta" value={nuevaCarpeta.nombre} onChange={e => setNuevaCarpeta({...nuevaCarpeta, nombre: e.target.value})} style={{ width: "100%", padding: "10px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalCarpeta(false)} className="btn-gris">Cancelar</button><button onClick={crearCarpeta} className="btn-verde">Crear</button></div></div></div>)}
+                                
+                                {mostrarModalArtefacto && (<div className="modal" onClick={() => setMostrarModalArtefacto(false)}><div className="modal-content" style={{ height: 'auto', maxHeight: '80vh' }} onClick={e => e.stopPropagation()}><h3>➕ Nuevo artefacto</h3><input type="text" placeholder="Nombre" value={nuevoArtefacto.nombre} onChange={e => setNuevoArtefacto({...nuevoArtefacto, nombre: e.target.value})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }} /><select value={nuevoArtefacto.carpeta_id || ""} onChange={e => setNuevoArtefacto({...nuevoArtefacto, carpeta_id: e.target.value || null})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }}><option value="">-- Sin carpeta --</option>{carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><textarea rows="8" placeholder="Código HTML" value={nuevoArtefacto.html} onChange={e => setNuevoArtefacto({...nuevoArtefacto, html: e.target.value})} style={{ width: "100%", fontFamily: "monospace", fontSize: "12px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalArtefacto(false)} className="btn-gris">Cancelar</button><button onClick={async () => { if (!nuevoArtefacto.nombre || !nuevoArtefacto.html) { alert("Completa todo"); return; } await supabase.from("tareas").insert({ nombre: nuevoArtefacto.nombre, descripcion: "Artefacto", html: nuevoArtefacto.html, activo: true, carpeta_id: nuevoArtefacto.carpeta_id }); const { data } = await supabase.from("tareas").select("*").eq("activo", true); setArtefactos(data); setNuevoArtefacto({ nombre: "", html: "", carpeta_id: null }); setMostrarModalArtefacto(false); mostrarToast("✅ Añadido"); }} className="btn-verde">Añadir</button></div></div></div>)}
+                                
+                                {artefactosPorCarpeta["sin_carpeta"].length > 0 && (<div className="carpeta"><div className="carpeta-header" onClick={() => toggleCarpeta("sin_carpeta")}><div><span>{carpetasAbiertas["sin_carpeta"] ? "📂" : "📁"}</span><strong>Sin carpeta</strong><span>({artefactosPorCarpeta["sin_carpeta"].length})</span></div><span>{carpetasAbiertas["sin_carpeta"] ? "▼" : "▶"}</span></div>
+                                {carpetasAbiertas["sin_carpeta"] && (<div className="carpeta-contenido">{artefactosPorCarpeta["sin_carpeta"].map(art => (<div key={art.id} className="artefacto-card"><div><strong>{art.nombre}</strong><br/><span>ID: {art.id}</span></div><div><select className="selector-carpeta" value={art.carpeta_id || ""} onChange={(e) => moverArtefacto(art.id, e.target.value)}><option value="">-- Mover a --</option>{carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul">📋</button><button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo">🗑️</button></div></div>))}</div>)}</div>)}
+                                
+                                {carpetas.map(carpeta => (<div key={carpeta.id} className="carpeta"><div className="carpeta-header" onClick={() => toggleCarpeta(carpeta.id)}><div><span>{carpetasAbiertas[carpeta.id] ? "📂" : "📁"}</span><strong>{carpeta.nombre}</strong><span>({artefactosPorCarpeta[carpeta.id]?.length || 0})</span></div><div><button onClick={(e) => { e.stopPropagation(); editarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-azul" style={{ padding: "4px 8px", fontSize: "11px" }}>✏️</button><button onClick={(e) => { e.stopPropagation(); eliminarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-rojo" style={{ padding: "4px 8px", fontSize: "11px" }}>🗑️</button><span>{carpetasAbiertas[carpeta.id] ? "▼" : "▶"}</span></div></div>
+                                {carpetasAbiertas[carpeta.id] && (<div className="carpeta-contenido">{artefactosPorCarpeta[carpeta.id]?.length > 0 ? (artefactosPorCarpeta[carpeta.id].map(art => (<div key={art.id} className="artefacto-card"><div><strong>{art.nombre}</strong><br/><span>ID: {art.id}</span></div><div><select className="selector-carpeta" value={art.carpeta_id || ""} onChange={(e) => moverArtefacto(art.id, e.target.value)}><option value="">-- Mover a --</option>{carpetas.filter(c => c.id !== carpeta.id).map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul">📋</button><button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo">🗑️</button></div></div>))) : (<div className="carpeta-vacia">📭 Esta carpeta está vacía</div>)}</div>)}</div>))}
+                                
+                                {carpetas.length === 0 && artefactosPorCarpeta["sin_carpeta"].length === 0 && (<div className="card" style={{ textAlign: "center" }}><p>📚 No hay artefactos aún</p><button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde">+ Crear primer artefacto</button></div>)}
+                            </div>
+                        )}
+                        
                         <div className="footer"><div className="footer-texto">mlls</div></div>
                         {toast && <div className="toast">{toast}</div>}
                     </div>
                 );
             }
             
+            // VISTA ALUMNO
             if (vista === "alumno" && alumnoActual) {
                 const tareasAlumno = getTareasAlumno(alumnoActual.id, alumnoActual.grupo);
                 const mediaAlumno = getMediaAlumno(alumnoActual.id, tareasAlumno.map(t => t.id.toString()));
@@ -384,46 +566,205 @@
                             <button onClick={() => setSeccionAlumno("tareas")} className={seccionAlumno === "tareas" ? "menu-btn active" : "menu-btn"}>📚 Mis Tareas ({tareasAlumno.length})</button>
                             <button onClick={() => setSeccionAlumno("historial")} className={seccionAlumno === "historial" ? "menu-btn active" : "menu-btn"}>📊 Mi Historial</button>
                         </div>
+                        
                         {seccionAlumno === "tareas" && (
-                            <div>{tareasAlumno.length === 0 ? <div className="card">No hay tareas asignadas</div> : tareasAlumno.map(t => {
-                                const nota = getMejorNota(alumnoActual.id, t.id);
-                                const comentariosTarea = comentarios[t.id] || [];
-                                const estaAbierto = comentariosAbiertos[t.id] || false;
-                                const esIndividual = esTareaIndividual(alumnoActual.id, t.id);
-                                return (<div key={t.id} className="card"><div><h3>{t.nombre}</h3>{esIndividual && <span className="badge-individual">📌 Individual</span>}<p>{t.descripcion}</p>{nota !== null && <p><strong>Nota: {nota}/10</strong></p>}</div>
-                                <button onClick={() => {
-                                    const modal = document.createElement('div'); modal.className = 'modal';
-                                    const modalContent = document.createElement('div'); modalContent.className = 'modal-content'; modalContent.style.maxWidth = '95%'; modalContent.style.width = '95%'; modalContent.style.maxHeight = '95vh'; modalContent.style.height = '95vh'; modalContent.style.overflow = 'auto'; modalContent.style.padding = '20px'; modalContent.style.display = 'flex'; modalContent.style.flexDirection = 'column';
-                                    const header = document.createElement('div'); header.style.display = 'flex'; header.style.justifyContent = 'space-between'; header.style.alignItems = 'center'; header.style.marginBottom = '15px'; header.style.flexShrink = '0'; header.innerHTML = `<h2 style="margin:0">${t.nombre}</h2><button class="btn-cerrar" style="background:transparent;font-size:28px;cursor:pointer;border:none;padding:0 10px;">✕</button>`;
-                                    const taskContainer = document.createElement('div'); taskContainer.style.background = '#fff'; taskContainer.style.borderRadius = '8px'; taskContainer.style.border = '1px solid #e8dfc8'; taskContainer.style.margin = '10px 0'; taskContainer.style.overflow = 'auto'; taskContainer.style.flex = '1'; taskContainer.style.minHeight = '0';
-                                    const iframe = document.createElement('iframe'); iframe.style.width = '100%'; iframe.style.height = '100%'; iframe.style.minHeight = '80vh'; iframe.style.border = 'none'; iframe.style.background = '#fff'; iframe.srcdoc = t.html || '<p style="padding:20px;text-align:center">No hay contenido disponible</p>';
-                                    taskContainer.appendChild(iframe);
-                                    const closeBtn = document.createElement('button'); closeBtn.className = 'btn-gris'; closeBtn.textContent = 'Cerrar'; closeBtn.style.marginTop = '10px'; closeBtn.style.cursor = 'pointer'; closeBtn.style.padding = '10px 24px'; closeBtn.style.fontSize = '14px'; closeBtn.style.flexShrink = '0';
-                                    modalContent.appendChild(header); modalContent.appendChild(taskContainer); modalContent.appendChild(closeBtn); modal.appendChild(modalContent); document.body.appendChild(modal);
-                                    const closeModal = () => modal.remove();
-                                    modal.querySelector('.btn-cerrar')?.addEventListener('click', closeModal);
-                                    closeBtn.addEventListener('click', closeModal);
-                                    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-                                    iframe.onload = () => { try { const iframeDoc = iframe.contentDocument || iframe.contentWindow.document; const altura = iframeDoc.body.scrollHeight; iframe.style.height = Math.max(altura + 50, 500) + 'px'; } catch(e) {} };
-                                }} className="btn-marron">▶ Realizar</button>
-                                <div className="comentarios-section"><div className="comentarios-header" onClick={() => toggleComentarios(t.id)}><span>{estaAbierto ? "▼" : "▶"}</span><h4>💬 {comentariosTarea.length} comentario{comentariosTarea.length !== 1 ? 's' : ''}</h4></div>
-                                {estaAbierto && (<><div>{comentariosTarea.map(comentario => (<div key={comentario.id} className="comentario"><strong>{comentario.autor}</strong><div>{comentario.texto}</div></div>))}</div>
-                                <textarea value={textoComentario[t.id] || ""} onChange={e => setTextoComentario({...textoComentario, [t.id]: e.target.value})} placeholder="Escribe un comentario..." className="textarea-comentario" rows="1" />
-                                <button onClick={() => { const texto = textoComentario[t.id]; if (texto && texto.trim()) { (async () => { const { data } = await supabase.from("comentarios").insert({ tarea_id: t.id, autor: `${alumnoActual.nombre} ${alumnoActual.apellidos}`, autor_tipo: "alumno", autor_id: alumnoActual.id, texto: texto, created_at: new Date().toISOString() }).select(); if (data) { setComentarios({...comentarios, [t.id]: [...(comentarios[t.id] || []), data[0]]}); setTextoComentario({...textoComentario, [t.id]: ""}); mostrarToast("💬 Comentario enviado"); } })(); } }} className="btn-comentar">💬 Comentar</button></>)}</div></div>);
-                            })}</div>
+                            <div>
+                                {tareasAlumno.length === 0 ? (
+                                    <div className="card">No hay tareas asignadas</div>
+                                ) : (
+                                    tareasAlumno.map(t => {
+                                        const nota = getMejorNota(alumnoActual.id, t.id);
+                                        const comentariosTarea = comentarios[t.id] || [];
+                                        const estaAbierto = comentariosAbiertos[t.id] || false;
+                                        const esIndividual = esTareaIndividual(alumnoActual.id, t.id);
+                                        
+                                        return (
+                                            <div key={t.id} className="card" style={{ borderLeft: nota !== null ? `4px solid ${nota >= 5 ? "#2E6B3E" : "#c0392b"}` : "4px solid #D97A2B" }}>
+                                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "10px" }}>
+                                                    <div style={{ flex: 1 }}>
+                                                        <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+                                                            <h3 style={{ fontSize: "1rem" }}>{t.nombre}</h3>
+                                                            {esIndividual && <span className="badge-individual" style={{ fontSize: "0.65rem" }}>📌 Individual</span>}
+                                                        </div>
+                                                        <p style={{ color: "#666", fontSize: "0.8rem" }}>{t.descripcion}</p>
+                                                        {nota !== null && <p><strong>Nota: {nota}/10</strong></p>}
+                                                    </div>
+                                                    
+                                                    <button onClick={() => {
+                                                        const modal = document.createElement('div');
+                                                        modal.className = 'modal';
+                                                        
+                                                        const modalContent = document.createElement('div');
+                                                        modalContent.className = 'modal-content';
+                                                        modalContent.style.maxWidth = '95%';
+                                                        modalContent.style.width = '95%';
+                                                        modalContent.style.maxHeight = '95vh';
+                                                        modalContent.style.height = '95vh';
+                                                        modalContent.style.overflow = 'auto';
+                                                        modalContent.style.padding = '20px';
+                                                        modalContent.style.display = 'flex';
+                                                        modalContent.style.flexDirection = 'column';
+                                                        
+                                                        const header = document.createElement('div');
+                                                        header.style.display = 'flex';
+                                                        header.style.justifyContent = 'space-between';
+                                                        header.style.alignItems = 'center';
+                                                        header.style.marginBottom = '15px';
+                                                        header.style.flexShrink = '0';
+                                                        header.innerHTML = `<h2 style="margin:0">${t.nombre}</h2><button class="btn-cerrar" style="background:transparent;font-size:28px;cursor:pointer;border:none;padding:0 10px;">✕</button>`;
+                                                        
+                                                        const taskContainer = document.createElement('div');
+                                                        taskContainer.style.background = '#fff';
+                                                        taskContainer.style.borderRadius = '8px';
+                                                        taskContainer.style.border = '1px solid #e8dfc8';
+                                                        taskContainer.style.margin = '10px 0';
+                                                        taskContainer.style.overflow = 'auto';
+                                                        taskContainer.style.flex = '1';
+                                                        taskContainer.style.minHeight = '0';
+                                                        
+                                                        const iframe = document.createElement('iframe');
+                                                        iframe.style.width = '100%';
+                                                        iframe.style.height = '100%';
+                                                        iframe.style.minHeight = '80vh';
+                                                        iframe.style.border = 'none';
+                                                        iframe.style.background = '#fff';
+                                                        iframe.srcdoc = t.html || '<p style="padding:20px;text-align:center">No hay contenido disponible</p>';
+                                                        
+                                                        taskContainer.appendChild(iframe);
+                                                        
+                                                        const closeBtn = document.createElement('button');
+                                                        closeBtn.className = 'btn-gris';
+                                                        closeBtn.textContent = 'Cerrar';
+                                                        closeBtn.style.marginTop = '10px';
+                                                        closeBtn.style.cursor = 'pointer';
+                                                        closeBtn.style.padding = '10px 24px';
+                                                        closeBtn.style.fontSize = '14px';
+                                                        closeBtn.style.flexShrink = '0';
+                                                        
+                                                        modalContent.appendChild(header);
+                                                        modalContent.appendChild(taskContainer);
+                                                        modalContent.appendChild(closeBtn);
+                                                        modal.appendChild(modalContent);
+                                                        document.body.appendChild(modal);
+                                                        
+                                                        const closeModal = () => modal.remove();
+                                                        modal.querySelector('.btn-cerrar')?.addEventListener('click', closeModal);
+                                                        closeBtn.addEventListener('click', closeModal);
+                                                        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+                                                        
+                                                        iframe.onload = () => {
+                                                            try {
+                                                                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                                                                const altura = iframeDoc.body.scrollHeight;
+                                                                iframe.style.height = Math.max(altura + 50, 500) + 'px';
+                                                            } catch(e) {}
+                                                        };
+                                                    }} className="btn-marron" style={{ padding: "6px 16px" }}>▶ Realizar</button>
+                                                </div>
+                                                
+                                                <div className="comentarios-section">
+                                                    <div className="comentarios-header" onClick={() => toggleComentarios(t.id)}>
+                                                        <span>{estaAbierto ? "▼" : "▶"}</span>
+                                                        <h4>💬 {comentariosTarea.length} comentario{comentariosTarea.length !== 1 ? 's' : ''}</h4>
+                                                    </div>
+                                                    
+                                                    {estaAbierto && (
+                                                        <>
+                                                            <div style={{ maxHeight: "200px", overflowY: "auto", marginBottom: "8px" }}>
+                                                                {comentariosTarea.length === 0 ? (
+                                                                    <div style={{ fontSize: "0.7rem", color: "#999", padding: "8px 0" }}>No hay comentarios</div>
+                                                                ) : (
+                                                                    comentariosTarea.map(comentario => (
+                                                                        <div key={comentario.id} className={`comentario ${comentario.autor_tipo === "profesor" ? "comentario-profesor" : ""}`}>
+                                                                            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem" }}>
+                                                                                <strong>{comentario.autor}</strong>
+                                                                                <span style={{ color: "#999" }}>{new Date(comentario.created_at).toLocaleDateString()}</span>
+                                                                            </div>
+                                                                            <div>{comentario.texto}</div>
+                                                                        </div>
+                                                                    ))
+                                                                )}
+                                                            </div>
+                                                            <textarea
+                                                                value={textoComentario[t.id] || ""}
+                                                                onChange={e => setTextoComentario({...textoComentario, [t.id]: e.target.value})}
+                                                                placeholder="Escribe un comentario..."
+                                                                className="textarea-comentario"
+                                                                rows="1"
+                                                            />
+                                                            <button onClick={() => {
+                                                                const texto = textoComentario[t.id];
+                                                                if (texto && texto.trim()) {
+                                                                    (async () => {
+                                                                        const { data } = await supabase.from("comentarios").insert({
+                                                                            tarea_id: t.id,
+                                                                            autor: `${alumnoActual.nombre} ${alumnoActual.apellidos}`,
+                                                                            autor_tipo: "alumno",
+                                                                            autor_id: alumnoActual.id,
+                                                                            texto: texto,
+                                                                            created_at: new Date().toISOString()
+                                                                        }).select();
+                                                                        if (data) {
+                                                                            setComentarios({...comentarios, [t.id]: [...(comentarios[t.id] || []), data[0]]});
+                                                                            setTextoComentario({...textoComentario, [t.id]: ""});
+                                                                            mostrarToast("💬 Comentario enviado");
+                                                                        }
+                                                                    })();
+                                                                }
+                                                            }} className="btn-comentar">💬 Comentar</button>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+                                    })
+                                )}
+                            </div>
                         )}
+                        
                         {seccionAlumno === "historial" && (
-                            <div><div className="media-card"><div><h3>📊 NOTA MEDIA</h3><div className="media-valor">{mediaAlumno ? `${mediaAlumno}/10` : 'Sin notas'}</div><div>{mensajeMedia}</div>{mediaAlumno && (<div style={{ width: "200px", height: "8px", background: "rgba(255,255,255,0.3)", borderRadius: "10px", marginTop: "10px" }}><div style={{ width: `${porcentajeMedia}%`, height: "100%", background: mediaAlumno >= 7 ? "#2E6B3E" : mediaAlumno >= 5 ? "#f5a623" : "#c0392b", borderRadius: "10px" }}></div></div>)}</div><div style={{ fontSize: "3rem" }}>{emojiMedia}</div></div>
-                            <div className="card"><h3>📋 Calificaciones</h3><table style={{ width: "100%" }}><thead><tr><th>Tarea</th><th>Nota</th><th>Fecha</th></tr></thead>
-                            <tbody>{tareasAlumno.flatMap(t => { const califs = calificaciones[alumnoActual.id]?.[t.id] || []; if (califs.length === 0) { return [<tr key={t.id}><td>{t.nombre}</td><td colSpan="2">Sin calificar</td></tr>]; } return califs.map((c, i) => (<tr key={`${t.id}-${i}`}><td>{t.nombre}</td><td>{c.nota}/10</td><td>{new Date(c.fecha).toLocaleDateString()}</td></tr>)); })}</tbody></table></div></div>
+                            <div>
+                                <div className="media-card">
+                                    <div>
+                                        <h3>📊 NOTA MEDIA</h3>
+                                        <div className="media-valor">{mediaAlumno ? `${mediaAlumno}/10` : 'Sin notas'}</div>
+                                        <div>{mensajeMedia}</div>
+                                        {mediaAlumno && (
+                                            <div style={{ width: "200px", height: "8px", background: "rgba(255,255,255,0.3)", borderRadius: "10px", marginTop: "10px" }}>
+                                                <div style={{ width: `${porcentajeMedia}%`, height: "100%", background: mediaAlumno >= 7 ? "#2E6B3E" : mediaAlumno >= 5 ? "#f5a623" : "#c0392b", borderRadius: "10px" }}></div>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div style={{ fontSize: "3rem" }}>{emojiMedia}</div>
+                                </div>
+                                
+                                <div className="card">
+                                    <h3>📋 Calificaciones</h3>
+                                    <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "15px" }}>
+                                        <thead><tr style={{ background: "#3B2510", color: "white" }}><th style={{ padding: "10px", textAlign: "left" }}>Tarea</th><th style={{ padding: "10px", textAlign: "center" }}>Nota</th><th style={{ padding: "10px", textAlign: "center" }}>Fecha</th></tr></thead>
+                                        <tbody>
+                                            {tareasAlumno.flatMap(t => {
+                                                const califs = calificaciones[alumnoActual.id]?.[t.id] || [];
+                                                if (califs.length === 0) {
+                                                    return [<tr key={t.id} style={{ borderBottom: "1px solid #ddd" }}><td style={{ padding: "10px" }}>{t.nombre}</td><td colSpan="2" style={{ textAlign: "center", color: "#999" }}>Sin calificar</td></tr>];
+                                                }
+                                                return califs.map((c, i) => (<tr key={`${t.id}-${i}`} style={{ borderBottom: "1px solid #ddd" }}><td style={{ padding: "10px" }}>{t.nombre}</td><td style={{ padding: "10px", textAlign: "center", fontWeight: "bold", color: c.nota >= 5 ? "#2E6B3E" : "#c0392b" }}>{c.nota}/10</td><td style={{ padding: "10px", textAlign: "center", fontSize: "0.7rem" }}>{new Date(c.fecha).toLocaleDateString()}</td></tr>));
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         )}
+                        
                         <div className="footer"><div className="footer-texto">mlls</div></div>
                         {toast && <div className="toast">{toast}</div>}
                     </div>
                 );
             }
+            
             return null;
         }
+        
         ReactDOM.render(<App />, document.getElementById("root"));
     </script>
 </body>
