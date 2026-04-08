@@ -78,7 +78,7 @@
         .toast { position: fixed; bottom: 20px; right: 20px; background: #2E6B3E; color: white; padding: 12px 24px; border-radius: 8px; animation: fadeOut 2s ease-in-out; z-index: 2000; }
         @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
         .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-        .modal-content { background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 600px; max-height: 85vh; overflow-y: auto; }
+        .modal-content { background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 95%; max-height: 90vh; overflow-y: auto; }
         
         .grupo-tareas { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         .tarea-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
@@ -111,7 +111,6 @@
         .nota-vacia { color: #ccc; }
         .acciones-grupo { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         
-        /* Estilos para el login de alumnos */
         .login-box {
             background: white;
             border-radius: 20px;
@@ -121,105 +120,24 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
         }
-        .login-box h1 {
-            color: #3B2510;
-            margin-bottom: 5px;
-        }
-        .login-box h2 {
-            color: #6B4F35;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        .login-box button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            font-size: 16px;
-        }
-        .mensaje-pendiente {
-            background: #fef3c7;
-            color: #92400e;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-size: 14px;
-        }
-        .admin-link {
-            margin-top: 20px;
-            font-size: 11px;
-            color: #ccc;
-            cursor: pointer;
-        }
-        .admin-link:hover {
-            color: #999;
-        }
+        .login-box h1 { color: #3B2510; margin-bottom: 5px; }
+        .login-box h2 { color: #6B4F35; margin-bottom: 20px; font-size: 1.2rem; }
+        .login-box input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        .login-box button { width: 100%; padding: 12px; margin-top: 10px; font-size: 16px; }
+        .mensaje-pendiente { background: #fef3c7; color: #92400e; padding: 12px; border-radius: 8px; margin-top: 15px; font-size: 14px; }
+        .admin-link { margin-top: 20px; font-size: 11px; color: #ccc; cursor: pointer; }
+        .admin-link:hover { color: #999; }
         
-        /* Estilos para la biblioteca con carpetas */
-        .carpeta {
-            background: #fefcf8;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            border: 1px solid #e8dfc8;
-        }
-        .carpeta-header {
-            background: #3B2510;
-            color: white;
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
-        .carpeta-header:hover {
-            background: #4a3018;
-        }
-        .carpeta-titulo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .carpeta-contenido {
-            padding: 15px;
-        }
-        .artefacto-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 10px;
-            border: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .artefacto-info {
-            flex: 1;
-        }
-        .artefacto-acciones {
-            display: flex;
-            gap: 8px;
-        }
-        .carpeta-vacia {
-            text-align: center;
-            color: #999;
-            padding: 20px;
-        }
-        .selector-carpeta {
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 0.8rem;
-        }
+        .carpeta { background: #fefcf8; border-radius: 12px; margin-bottom: 20px; overflow: hidden; border: 1px solid #e8dfc8; }
+        .carpeta-header { background: #3B2510; color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .carpeta-header:hover { background: #4a3018; }
+        .carpeta-titulo { display: flex; align-items: center; gap: 10px; }
+        .carpeta-contenido { padding: 15px; }
+        .artefacto-card { background: white; border-radius: 10px; padding: 15px; margin-bottom: 10px; border: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .artefacto-info { flex: 1; }
+        .artefacto-acciones { display: flex; gap: 8px; }
+        .carpeta-vacia { text-align: center; color: #999; padding: 20px; }
+        .selector-carpeta { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -235,7 +153,6 @@
         const SUPABASE_ANON_KEY = "sb_publishable_h5iDbbdeNO-H3ELQeIw2KQ_N-Ub1FXA";
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
-        // CONTRASEÑA PARA ACCESO DE PROFESORA
         const ADMIN_PASSWORD = "marta2024";
         
         function App() {
@@ -262,7 +179,6 @@
             const [tareaIndividualSeleccionada, setTareaIndividualSeleccionada] = React.useState({});
             const [nuevoArtefacto, setNuevoArtefacto] = React.useState({ nombre: "", html: "", carpeta_id: null });
             const [nuevaCarpeta, setNuevaCarpeta] = React.useState({ nombre: "" });
-            const [carpetaEditando, setCarpetaEditando] = React.useState(null);
             const [grupoOrigen, setGrupoOrigen] = React.useState("");
             const [nuevoNombreGrupo, setNuevoNombreGrupo] = React.useState("");
             const [comentariosAbiertos, setComentariosAbiertos] = React.useState({});
@@ -270,18 +186,15 @@
             const [alumnosExpandidos, setAlumnosExpandidos] = React.useState({});
             const [carpetasAbiertas, setCarpetasAbiertas] = React.useState({});
             
-            // Estado para login de alumno
             const [emailLogin, setEmailLogin] = React.useState("");
             const [nombreLogin, setNombreLogin] = React.useState("");
             const [apellidosLogin, setApellidosLogin] = React.useState("");
             const [mensajeLogin, setMensajeLogin] = React.useState("");
             
-            // Estado para login de profesora
             const [mostrarAdminLogin, setMostrarAdminLogin] = React.useState(false);
             const [adminPassword, setAdminPassword] = React.useState("");
             const [errorAdmin, setErrorAdmin] = React.useState("");
             
-            // PING para mantener Supabase activo (cada 5 días)
             React.useEffect(() => {
                 const mantenerActivo = async () => {
                     try {
@@ -291,7 +204,6 @@
                         console.log("⚠️ Error en ping:", e.message);
                     }
                 };
-                
                 mantenerActivo();
                 const intervalo = setInterval(mantenerActivo, 5 * 24 * 60 * 60 * 1000);
                 return () => clearInterval(intervalo);
@@ -430,8 +342,6 @@
                 }
             };
             
-            // ========== GESTIÓN DE CARPETAS Y ARTEFACTOS ==========
-            
             const crearCarpeta = async () => {
                 if (!nuevaCarpeta.nombre) {
                     mostrarToast("❌ Introduce un nombre para la carpeta");
@@ -455,18 +365,8 @@
             
             const eliminarCarpeta = async (carpetaId, nombre) => {
                 if (confirm(`¿Eliminar la carpeta "${nombre}"? Los artefactos dentro pasarán a "Sin carpeta"`)) {
-                    // Mover artefactos a null (sin carpeta)
-                    await supabase
-                        .from("tareas")
-                        .update({ carpeta_id: null })
-                        .eq("carpeta_id", carpetaId);
-                    
-                    // Eliminar carpeta
-                    const { error } = await supabase
-                        .from("carpetas")
-                        .delete()
-                        .eq("id", carpetaId);
-                    
+                    await supabase.from("tareas").update({ carpeta_id: null }).eq("carpeta_id", carpetaId);
+                    const { error } = await supabase.from("carpetas").delete().eq("id", carpetaId);
                     if (error) {
                         mostrarToast("❌ Error al eliminar carpeta");
                     } else {
@@ -481,11 +381,7 @@
             const editarCarpeta = async (carpetaId, nombreActual) => {
                 const nuevoNombre = prompt("Nuevo nombre de la carpeta:", nombreActual);
                 if (nuevoNombre && nuevoNombre !== nombreActual) {
-                    const { error } = await supabase
-                        .from("carpetas")
-                        .update({ nombre: nuevoNombre })
-                        .eq("id", carpetaId);
-                    
+                    const { error } = await supabase.from("carpetas").update({ nombre: nuevoNombre }).eq("id", carpetaId);
                     if (error) {
                         mostrarToast("❌ Error al renombrar");
                     } else {
@@ -497,18 +393,11 @@
             
             const eliminarArtefacto = async (artefactoId, nombre) => {
                 if (confirm(`¿Eliminar el artefacto "${nombre}"? Esta acción no se puede deshacer.`)) {
-                    // Primero eliminar referencias en tareas_por_grupo y tareas_por_alumno
                     await supabase.from("tareas_por_grupo").delete().eq("tarea_id", artefactoId);
                     await supabase.from("tareas_por_alumno").delete().eq("tarea_id", artefactoId);
                     await supabase.from("calificaciones").delete().eq("tarea_id", artefactoId);
                     await supabase.from("comentarios").delete().eq("tarea_id", artefactoId);
-                    
-                    // Eliminar el artefacto
-                    const { error } = await supabase
-                        .from("tareas")
-                        .delete()
-                        .eq("id", artefactoId);
-                    
+                    const { error } = await supabase.from("tareas").delete().eq("id", artefactoId);
                     if (error) {
                         mostrarToast("❌ Error al eliminar artefacto");
                     } else {
@@ -519,17 +408,11 @@
             };
             
             const moverArtefacto = async (artefactoId, nuevaCarpetaId) => {
-                const { error } = await supabase
-                    .from("tareas")
-                    .update({ carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) })
-                    .eq("id", artefactoId);
-                
+                const { error } = await supabase.from("tareas").update({ carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) }).eq("id", artefactoId);
                 if (error) {
                     mostrarToast("❌ Error al mover artefacto");
                 } else {
-                    setArtefactos(artefactos.map(a => 
-                        a.id === artefactoId ? { ...a, carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) } : a
-                    ));
+                    setArtefactos(artefactos.map(a => a.id === artefactoId ? { ...a, carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) } : a));
                     mostrarToast("✅ Artefacto movido");
                 }
             };
@@ -548,10 +431,7 @@
             const asignarTareaIndividual = async (alumnoId, tareaId) => {
                 if (!tareaId) return;
                 try {
-                    const { error } = await supabase
-                        .from("tareas_por_alumno")
-                        .insert({ alumno_id: alumnoId, tarea_id: parseInt(tareaId) });
-                    
+                    const { error } = await supabase.from("tareas_por_alumno").insert({ alumno_id: alumnoId, tarea_id: parseInt(tareaId) });
                     if (!error) {
                         const { data } = await supabase.from("tareas_por_alumno").select("*");
                         const tareasAlumnoObj = {};
@@ -571,12 +451,7 @@
             const quitarTareaIndividual = async (alumnoId, tareaId) => {
                 if (confirm("¿Quitar esta tarea individualmente de este alumno?")) {
                     try {
-                        const { error } = await supabase
-                            .from("tareas_por_alumno")
-                            .delete()
-                            .eq("alumno_id", alumnoId)
-                            .eq("tarea_id", parseInt(tareaId));
-                        
+                        const { error } = await supabase.from("tareas_por_alumno").delete().eq("alumno_id", alumnoId).eq("tarea_id", parseInt(tareaId));
                         if (!error) {
                             const { data } = await supabase.from("tareas_por_alumno").select("*");
                             const tareasAlumnoObj = {};
@@ -663,20 +538,13 @@
                         return;
                     }
                     
-                    const { data: nuevoGrupoData, error: errorCrear } = await supabase
-                        .from("grupos")
-                        .insert({ nombre: nuevoNombreGrupo, activo: true })
-                        .select();
-                    
+                    const { data: nuevoGrupoData, error: errorCrear } = await supabase.from("grupos").insert({ nombre: nuevoNombreGrupo, activo: true }).select();
                     if (errorCrear) throw errorCrear;
                     const nuevoGrupoId = nuevoGrupoData[0].id;
                     
                     const tareasOrigen = tareasPorGrupo[grupoOrigen] || [];
                     if (tareasOrigen.length > 0) {
-                        const nuevasAsignaciones = tareasOrigen.map(tareaId => ({
-                            grupo_id: nuevoGrupoId,
-                            tarea_id: parseInt(tareaId)
-                        }));
+                        const nuevasAsignaciones = tareasOrigen.map(tareaId => ({ grupo_id: nuevoGrupoId, tarea_id: parseInt(tareaId) }));
                         await supabase.from("tareas_por_grupo").insert(nuevasAsignaciones);
                     }
                     
@@ -711,7 +579,6 @@
             const alumnosSinGrupo = aprobados.filter(a => !a.grupo || !grupos.includes(a.grupo));
             if (alumnosSinGrupo.length > 0) { alumnosPorGrupo["Sin grupo"] = alumnosSinGrupo; }
             
-            // Organizar artefactos por carpeta
             const artefactosPorCarpeta = {};
             carpetas.forEach(c => { artefactosPorCarpeta[c.id] = []; });
             artefactosPorCarpeta["sin_carpeta"] = [];
@@ -740,51 +607,26 @@
                         <h2>👨‍🎓 Acceso Alumnos</h2>
                         <p style={{ color: "#666", marginBottom: "20px" }}>Introduce tus datos para acceder</p>
                         
-                        <input 
-                            type="text" 
-                            placeholder="Nombre" 
-                            value={nombreLogin}
-                            onChange={(e) => setNombreLogin(e.target.value)}
-                        />
-                        <input 
-                            type="text" 
-                            placeholder="Apellidos (opcional)" 
-                            value={apellidosLogin}
-                            onChange={(e) => setApellidosLogin(e.target.value)}
-                        />
-                        <input 
-                            type="email" 
-                            placeholder="Email" 
-                            value={emailLogin}
-                            onChange={(e) => setEmailLogin(e.target.value)}
-                        />
+                        <input type="text" placeholder="Nombre" value={nombreLogin} onChange={(e) => setNombreLogin(e.target.value)} />
+                        <input type="text" placeholder="Apellidos (opcional)" value={apellidosLogin} onChange={(e) => setApellidosLogin(e.target.value)} />
+                        <input type="email" placeholder="Email" value={emailLogin} onChange={(e) => setEmailLogin(e.target.value)} />
                         
                         <button onClick={registrarAlumno} className="btn-verde">🚀 Acceder / Registrarse</button>
                         
                         {mensajeLogin && <div className="mensaje-pendiente">{mensajeLogin}</div>}
                         
-                        <div className="admin-link" onClick={() => setMostrarAdminLogin(true)}>
-                            🔒
-                        </div>
+                        <div className="admin-link" onClick={() => setMostrarAdminLogin(true)}>🔒</div>
                         
                         {mostrarAdminLogin && (
                             <div style={{ marginTop: "20px", padding: "15px", background: "#f0f0f0", borderRadius: "8px" }}>
-                                <input 
-                                    type="password" 
-                                    placeholder="Contraseña profesora" 
-                                    value={adminPassword}
-                                    onChange={(e) => setAdminPassword(e.target.value)}
-                                    style={{ marginBottom: "10px" }}
-                                />
+                                <input type="password" placeholder="Contraseña profesora" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} style={{ marginBottom: "10px" }} />
                                 <button onClick={verificarAccesoAdmin} className="btn-marron" style={{ width: "100%" }}>👩‍🏫 Acceder como profesora</button>
                                 {errorAdmin && <div style={{ color: "red", marginTop: "10px", fontSize: "12px" }}>{errorAdmin}</div>}
                                 <button onClick={() => { setMostrarAdminLogin(false); setAdminPassword(""); setErrorAdmin(""); }} style={{ marginTop: "10px", background: "none", color: "#999", fontSize: "12px" }}>Cancelar</button>
                             </div>
                         )}
                         
-                        <div className="footer" style={{ marginTop: "30px" }}>
-                            <div className="footer-texto">mlls</div>
-                        </div>
+                        <div className="footer" style={{ marginTop: "30px" }}><div className="footer-texto">mlls</div></div>
                     </div>
                 );
             }
@@ -809,23 +651,9 @@
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
                                     <div><strong>{a.nombre} {a.apellidos}</strong><br/>{a.email}</div>
                                     <div>
-                                        <select id={`grupo-${a.id}`}>
-                                            {grupos.map(g => <option key={g}>{g}</option>)}
-                                        </select>
-                                        <button onClick={async () => {
-                                            await supabase.from("alumnos").update({ aprobado: true, grupo: document.getElementById(`grupo-${a.id}`).value }).eq("id", a.id);
-                                            const { data } = await supabase.from("alumnos").select("*");
-                                            setAlumnos(data);
-                                            mostrarToast(`✅ Alumno aprobado`);
-                                        }} className="btn-verde">Aprobar</button>
-                                        <button onClick={async () => {
-                                            if (confirm("¿Eliminar?")) {
-                                                await supabase.from("alumnos").delete().eq("id", a.id);
-                                                const { data } = await supabase.from("alumnos").select("*");
-                                                setAlumnos(data);
-                                                mostrarToast("🗑️ Eliminado");
-                                            }
-                                        }} className="btn-rojo">Rechazar</button>
+                                        <select id={`grupo-${a.id}`}>{grupos.map(g => <option key={g}>{g}</option>)}</select>
+                                        <button onClick={async () => { await supabase.from("alumnos").update({ aprobado: true, grupo: document.getElementById(`grupo-${a.id}`).value }).eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast(`✅ Alumno aprobado`); }} className="btn-verde">Aprobar</button>
+                                        <button onClick={async () => { if (confirm("¿Eliminar?")) { await supabase.from("alumnos").delete().eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast("🗑️ Eliminado"); } }} className="btn-rojo">Rechazar</button>
                                     </div>
                                 </div>
                             </div>
@@ -836,48 +664,12 @@
                                 <h3 style={{ marginBottom: "15px" }}>📋 Alumnos por grupo</h3>
                                 {Object.keys(alumnosPorGrupo).map(nombreGrupo => (
                                     <div key={nombreGrupo} className="grupo-alumnos">
-                                        <div className="grupo-header">
-                                            <span>📁 {nombreGrupo}</span>
-                                            <span>{alumnosPorGrupo[nombreGrupo].length} alumnos</span>
-                                        </div>
-                                        <table className="tabla-alumnos">
-                                            <thead>
-                                                <tr><th>Alumno</th><th>Email</th><th>Cambiar grupo</th><th>Acción</th></tr>
-                                            </thead>
-                                            <tbody>
-                                                {alumnosPorGrupo[nombreGrupo].map(a => (
-                                                    <tr key={a.id}>
-                                                        <td><strong>{a.nombre} {a.apellidos}</strong></td>
-                                                        <td>{a.email}</td>
-                                                        <td>
-                                                            <select id={`select-${a.id}`} defaultValue={a.grupo || "Sin grupo"}>
-                                                                {grupos.map(g => <option key={g} value={g}>{g}</option>)}
-                                                                <option value="Sin grupo">Sin grupo</option>
-                                                            </select>
-                                                            <button onClick={async () => {
-                                                                const nuevoGrupo = document.getElementById(`select-${a.id}`).value;
-                                                                if (nuevoGrupo !== (a.grupo || "Sin grupo")) {
-                                                                    await supabase.from("alumnos").update({ grupo: nuevoGrupo === "Sin grupo" ? null : nuevoGrupo }).eq("id", a.id);
-                                                                    const { data } = await supabase.from("alumnos").select("*");
-                                                                    setAlumnos(data);
-                                                                    mostrarToast(`✅ Movido a ${nuevoGrupo}`);
-                                                                }
-                                                            }} className="btn-marron" style={{ padding: "4px 12px", marginLeft: "8px" }}>Cambiar</button>
-                                                        </td>
-                                                        <td>
-                                                            <button onClick={async () => {
-                                                                if (confirm("¿Eliminar?")) {
-                                                                    await supabase.from("alumnos").delete().eq("id", a.id);
-                                                                    const { data } = await supabase.from("alumnos").select("*");
-                                                                    setAlumnos(data);
-                                                                    mostrarToast("🗑️ Eliminado");
-                                                                }
-                                                            }} className="btn-rojo" style={{ padding: "4px 12px" }}>Eliminar</button>
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
+                                        <div className="grupo-header"><span>📁 {nombreGrupo}</span><span>{alumnosPorGrupo[nombreGrupo].length} alumnos</span></div>
+                                        <table className="tabla-alumnos"><thead><tr><th>Alumno</th><th>Email</th><th>Cambiar grupo</th><th>Acción</th></tr></thead>
+                                        <tbody>{alumnosPorGrupo[nombreGrupo].map(a => (<tr key={a.id}><td><strong>{a.nombre} {a.apellidos}</strong></td><td>{a.email}</td>
+                                        <td><select id={`select-${a.id}`} defaultValue={a.grupo || "Sin grupo"}>{grupos.map(g => <option key={g} value={g}>{g}</option>)}<option value="Sin grupo">Sin grupo</option></select>
+                                        <button onClick={async () => { const nuevoGrupo = document.getElementById(`select-${a.id}`).value; if (nuevoGrupo !== (a.grupo || "Sin grupo")) { await supabase.from("alumnos").update({ grupo: nuevoGrupo === "Sin grupo" ? null : nuevoGrupo }).eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast(`✅ Movido a ${nuevoGrupo}`); } }} className="btn-marron" style={{ padding: "4px 12px", marginLeft: "8px" }}>Cambiar</button></td>
+                                        <td><button onClick={async () => { if (confirm("¿Eliminar?")) { await supabase.from("alumnos").delete().eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast("🗑️ Eliminado"); } }} className="btn-rojo" style={{ padding: "4px 12px" }}>Eliminar</button></td></tr>))}</tbody></table>
                                     </div>
                                 ))}
                             </div>
@@ -886,145 +678,26 @@
                         {seccionGestor === "asignar" && (
                             <div>
                                 <div className="acciones-grupo">
-                                    <button onClick={async () => {
-                                        const nombre = prompt("Nombre del nuevo grupo:");
-                                        if (nombre && !grupos.includes(nombre)) {
-                                            await supabase.from("grupos").insert({ nombre });
-                                            const { data } = await supabase.from("grupos").select("*").eq("activo", true);
-                                            setGruposData(data);
-                                            setGrupos(data.map(g => g.nombre));
-                                            mostrarToast(`✅ Grupo "${nombre}" creado`);
-                                        }
-                                    }} className="btn-marron">+ Nuevo grupo</button>
+                                    <button onClick={async () => { const nombre = prompt("Nombre del nuevo grupo:"); if (nombre && !grupos.includes(nombre)) { await supabase.from("grupos").insert({ nombre }); const { data } = await supabase.from("grupos").select("*").eq("activo", true); setGruposData(data); setGrupos(data.map(g => g.nombre)); mostrarToast(`✅ Grupo "${nombre}" creado`); } }} className="btn-marron">+ Nuevo grupo</button>
                                     <button onClick={() => setMostrarModalCopiarGrupo(true)} className="btn-naranja">📋 Copiar grupo</button>
                                 </div>
                                 
-                                {mostrarModalCopiarGrupo && (
-                                    <div className="modal" onClick={() => setMostrarModalCopiarGrupo(false)}>
-                                        <div className="modal-content" onClick={e => e.stopPropagation()}>
-                                            <h3>📋 Copiar grupo</h3>
-                                            <p style={{ marginBottom: "15px", color: "#666" }}>Copia todas las tareas de un grupo existente a uno nuevo</p>
-                                            <div style={{ marginBottom: "15px" }}>
-                                                <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Grupo origen:</label>
-                                                <select value={grupoOrigen} onChange={e => setGrupoOrigen(e.target.value)} style={{ width: "100%", padding: "10px" }}>
-                                                    <option value="">-- Seleccionar grupo --</option>
-                                                    {grupos.map(g => <option key={g} value={g}>{g}</option>)}
-                                                </select>
-                                            </div>
-                                            <div style={{ marginBottom: "20px" }}>
-                                                <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Nombre del nuevo grupo:</label>
-                                                <input type="text" value={nuevoNombreGrupo} onChange={e => setNuevoNombreGrupo(e.target.value)} placeholder="Ej: Grupo B - 2024" style={{ width: "100%", padding: "10px" }} />
-                                            </div>
-                                            <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}>
-                                                <button onClick={() => { setMostrarModalCopiarGrupo(false); setGrupoOrigen(""); setNuevoNombreGrupo(""); }} className="btn-gris">Cancelar</button>
-                                                <button onClick={copiarGrupo} className="btn-verde">Copiar grupo</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
+                                {mostrarModalCopiarGrupo && (<div className="modal" onClick={() => setMostrarModalCopiarGrupo(false)}><div className="modal-content" onClick={e => e.stopPropagation()}><h3>📋 Copiar grupo</h3><p style={{ marginBottom: "15px", color: "#666" }}>Copia todas las tareas de un grupo existente a uno nuevo</p>
+                                <div style={{ marginBottom: "15px" }}><label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Grupo origen:</label><select value={grupoOrigen} onChange={e => setGrupoOrigen(e.target.value)} style={{ width: "100%", padding: "10px" }}><option value="">-- Seleccionar grupo --</option>{grupos.map(g => <option key={g} value={g}>{g}</option>)}</select></div>
+                                <div style={{ marginBottom: "20px" }}><label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Nombre del nuevo grupo:</label><input type="text" value={nuevoNombreGrupo} onChange={e => setNuevoNombreGrupo(e.target.value)} placeholder="Ej: Grupo B - 2024" style={{ width: "100%", padding: "10px" }} /></div>
+                                <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => { setMostrarModalCopiarGrupo(false); setGrupoOrigen(""); setNuevoNombreGrupo(""); }} className="btn-gris">Cancelar</button><button onClick={copiarGrupo} className="btn-verde">Copiar grupo</button></div></div></div>)}
                                 
                                 {grupos.map(grupo => {
                                     const tareasAsignadas = (tareasPorGrupo[grupo] || []).map(id => artefactos.find(a => a && a.id == id)).filter(a => a);
                                     const tareasDisponibles = artefactos.filter(a => !(tareasPorGrupo[grupo] || []).includes(a.id.toString()));
-                                    return (
-                                        <div key={grupo} className="grupo-tareas">
-                                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
-                                                <h3>📁 Grupo: {grupo}</h3>
-                                                <button onClick={async () => {
-                                                    if (confirm(`¿Eliminar grupo "${grupo}"?`)) {
-                                                        const { data: grupoData } = await supabase.from("grupos").select("id").eq("nombre", grupo).single();
-                                                        if (grupoData) {
-                                                            await supabase.from("tareas_por_grupo").delete().eq("grupo_id", grupoData.id);
-                                                            await supabase.from("grupos").delete().eq("id", grupoData.id);
-                                                            const { data: nuevos } = await supabase.from("grupos").select("*").eq("activo", true);
-                                                            setGruposData(nuevos);
-                                                            setGrupos(nuevos.map(g => g.nombre));
-                                                            mostrarToast(`🗑️ Grupo "${grupo}" eliminado`);
-                                                        }
-                                                    }
-                                                }} className="btn-rojo">Eliminar grupo</button>
-                                            </div>
-                                            
-                                            <div style={{ marginBottom: "15px", display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
-                                                <select value={tareaSeleccionada} onChange={e => setTareaSeleccionada(e.target.value)} style={{ flex: 1, minWidth: "200px" }}>
-                                                    <option value="">-- Asignar tarea a TODO el grupo --</option>
-                                                    {tareasDisponibles.map(t => <option key={t.id} value={t.id}>{t.nombre}</option>)}
-                                                </select>
-                                                <button onClick={() => asignarTareaAGrupo(grupo, tareaSeleccionada)} className="btn-verde">➕ Asignar a grupo</button>
-                                            </div>
-                                            
-                                            <h4>✓ Tareas del grupo ({tareasAsignadas.length})</h4>
-                                            {tareasAsignadas.map(t => (
-                                                <div key={t.id} className="tarea-item">
-                                                    <span><strong>{t.nombre}</strong></span>
-                                                    <button onClick={() => quitarTareaDeGrupo(grupo, t.id)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>Quitar del grupo</button>
-                                                </div>
-                                            ))}
-                                            
-                                            <div className="alumno-tareas-panel">
-                                                <div className="alumno-tareas-header" onClick={() => toggleAlumnoExpandido(grupo)}>
-                                                    <span>👤 Tareas individuales por alumno</span>
-                                                    <span>{alumnosExpandidos[grupo] ? "▼" : "▶"}</span>
-                                                </div>
-                                                {alumnosExpandidos[grupo] && (
-                                                    <div className="alumno-tareas-content">
-                                                        {(alumnosPorGrupo[grupo] || []).map(alumno => {
-                                                            const tareasAlumno = getTareasAlumno(alumno.id, grupo);
-                                                            const tareasDisponiblesIndividual = artefactos.filter(a => !tareasAlumno.some(ta => ta && ta.id === a.id));
-                                                            return (
-                                                                <div key={alumno.id} style={{ marginBottom: "20px", borderBottom: "1px solid #eee", paddingBottom: "15px" }}>
-                                                                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
-                                                                        <strong>👨‍🎓 {alumno.nombre} {alumno.apellidos}</strong>
-                                                                        <span className="badge-individual">Tareas: {tareasAlumno.length}</span>
-                                                                    </div>
-                                                                    
-                                                                    <div style={{ display: "flex", gap: "10px", marginBottom: "10px", flexWrap: "wrap" }}>
-                                                                        <select 
-                                                                            value={tareaIndividualSeleccionada[alumno.id] || ""} 
-                                                                            onChange={e => setTareaIndividualSeleccionada({...tareaIndividualSeleccionada, [alumno.id]: e.target.value})}
-                                                                            style={{ flex: 1, minWidth: "180px", padding: "6px" }}
-                                                                        >
-                                                                            <option value="">-- Asignar tarea individual --</option>
-                                                                            {tareasDisponiblesIndividual.map(t => <option key={t.id} value={t.id}>{t.nombre}</option>)}
-                                                                        </select>
-                                                                        <button onClick={() => asignarTareaIndividual(alumno.id, tareaIndividualSeleccionada[alumno.id])} className="btn-morado" style={{ padding: "6px 12px" }}>
-                                                                            ➕ Asignar
-                                                                        </button>
-                                                                    </div>
-                                                                    
-                                                                    {tareasAlumno.length > 0 && (
-                                                                        <div>
-                                                                            <div style={{ fontSize: "0.75rem", color: "#666", marginBottom: "5px" }}>📋 Tareas asignadas:</div>
-                                                                            {tareasAlumno.map(t => {
-                                                                                const esIndividual = esTareaIndividual(alumno.id, t.id);
-                                                                                return (
-                                                                                    <div key={t.id} className="tarea-individual-item">
-                                                                                        <span>
-                                                                                            <strong>{t.nombre}</strong>
-                                                                                            {esIndividual && <span className="badge-individual" style={{ marginLeft: "8px" }}>📌 Individual</span>}
-                                                                                            {!esIndividual && <span className="badge-grupo" style={{ marginLeft: "8px" }}>👥 Grupo</span>}
-                                                                                        </span>
-                                                                                        {esIndividual && (
-                                                                                            <button onClick={() => quitarTareaIndividual(alumno.id, t.id)} className="btn-rojo" style={{ padding: "2px 8px", fontSize: "0.7rem" }}>
-                                                                                                Quitar
-                                                                                            </button>
-                                                                                        )}
-                                                                                    </div>
-                                                                                );
-                                                                            })}
-                                                                        </div>
-                                                                    )}
-                                                                </div>
-                                                            );
-                                                        })}
-                                                        {(!alumnosPorGrupo[grupo] || alumnosPorGrupo[grupo].length === 0) && (
-                                                            <div style={{ textAlign: "center", color: "#999", padding: "20px" }}>No hay alumnos en este grupo</div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    );
+                                    return (<div key={grupo} className="grupo-tareas"><div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}><h3>📁 Grupo: {grupo}</h3>
+                                    <button onClick={async () => { if (confirm(`¿Eliminar grupo "${grupo}"?`)) { const { data: grupoData } = await supabase.from("grupos").select("id").eq("nombre", grupo).single(); if (grupoData) { await supabase.from("tareas_por_grupo").delete().eq("grupo_id", grupoData.id); await supabase.from("grupos").delete().eq("id", grupoData.id); const { data: nuevos } = await supabase.from("grupos").select("*").eq("activo", true); setGruposData(nuevos); setGrupos(nuevos.map(g => g.nombre)); mostrarToast(`🗑️ Grupo "${grupo}" eliminado`); } } }} className="btn-rojo">Eliminar grupo</button></div>
+                                    <div style={{ marginBottom: "15px", display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}><select value={tareaSeleccionada} onChange={e => setTareaSeleccionada(e.target.value)} style={{ flex: 1, minWidth: "200px" }}><option value="">-- Asignar tarea a TODO el grupo --</option>{tareasDisponibles.map(t => <option key={t.id} value={t.id}>{t.nombre}</option>)}</select><button onClick={() => asignarTareaAGrupo(grupo, tareaSeleccionada)} className="btn-verde">➕ Asignar a grupo</button></div>
+                                    <h4>✓ Tareas del grupo ({tareasAsignadas.length})</h4>{tareasAsignadas.map(t => (<div key={t.id} className="tarea-item"><span><strong>{t.nombre}</strong></span><button onClick={() => quitarTareaDeGrupo(grupo, t.id)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>Quitar del grupo</button></div>))}
+                                    <div className="alumno-tareas-panel"><div className="alumno-tareas-header" onClick={() => toggleAlumnoExpandido(grupo)}><span>👤 Tareas individuales por alumno</span><span>{alumnosExpandidos[grupo] ? "▼" : "▶"}</span></div>
+                                    {alumnosExpandidos[grupo] && (<div className="alumno-tareas-content">{(alumnosPorGrupo[grupo] || []).map(alumno => { const tareasAlumno = getTareasAlumno(alumno.id, grupo); const tareasDisponiblesIndividual = artefactos.filter(a => !tareasAlumno.some(ta => ta && ta.id === a.id)); return (<div key={alumno.id} style={{ marginBottom: "20px", borderBottom: "1px solid #eee", paddingBottom: "15px" }}><div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}><strong>👨‍🎓 {alumno.nombre} {alumno.apellidos}</strong><span className="badge-individual">Tareas: {tareasAlumno.length}</span></div>
+                                    <div style={{ display: "flex", gap: "10px", marginBottom: "10px", flexWrap: "wrap" }}><select value={tareaIndividualSeleccionada[alumno.id] || ""} onChange={e => setTareaIndividualSeleccionada({...tareaIndividualSeleccionada, [alumno.id]: e.target.value})} style={{ flex: 1, minWidth: "180px", padding: "6px" }}><option value="">-- Asignar tarea individual --</option>{tareasDisponiblesIndividual.map(t => <option key={t.id} value={t.id}>{t.nombre}</option>)}</select><button onClick={() => asignarTareaIndividual(alumno.id, tareaIndividualSeleccionada[alumno.id])} className="btn-morado" style={{ padding: "6px 12px" }}>➕ Asignar</button></div>
+                                    {tareasAlumno.length > 0 && (<div><div style={{ fontSize: "0.75rem", color: "#666", marginBottom: "5px" }}>📋 Tareas asignadas:</div>{tareasAlumno.map(t => { const esIndividual = esTareaIndividual(alumno.id, t.id); return (<div key={t.id} className="tarea-individual-item"><span><strong>{t.nombre}</strong>{esIndividual && <span className="badge-individual" style={{ marginLeft: "8px" }}>📌 Individual</span>}{!esIndividual && <span className="badge-grupo" style={{ marginLeft: "8px" }}>👥 Grupo</span>}</span>{esIndividual && (<button onClick={() => quitarTareaIndividual(alumno.id, t.id)} className="btn-rojo" style={{ padding: "2px 8px", fontSize: "0.7rem" }}>Quitar</button>)}</div>);})}</div>)}</div>);})}</div>)}</div></div>);
                                 })}
                             </div>
                         )}
@@ -1033,174 +706,20 @@
                             <div>
                                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
                                     <h3>📚 Biblioteca ({artefactos.length})</h3>
-                                    <div style={{ display: "flex", gap: "10px" }}>
-                                        <button onClick={() => setMostrarModalCarpeta(true)} className="btn-marron">📁 Nueva carpeta</button>
-                                        <button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde">+ Nuevo artefacto</button>
-                                    </div>
+                                    <div style={{ display: "flex", gap: "10px" }}><button onClick={() => setMostrarModalCarpeta(true)} className="btn-marron">📁 Nueva carpeta</button><button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde">+ Nuevo artefacto</button></div>
                                 </div>
                                 
-                                {/* Modal para nueva carpeta */}
-                                {mostrarModalCarpeta && (
-                                    <div className="modal" onClick={() => setMostrarModalCarpeta(false)}>
-                                        <div className="modal-content" onClick={e => e.stopPropagation()}>
-                                            <h3>📁 Nueva carpeta</h3>
-                                            <input 
-                                                type="text" 
-                                                placeholder="Nombre de la carpeta (ej: Tema 1, Unidad 2...)" 
-                                                value={nuevaCarpeta.nombre}
-                                                onChange={e => setNuevaCarpeta({...nuevaCarpeta, nombre: e.target.value})}
-                                                style={{ width: "100%", padding: "10px", marginBottom: "15px" }}
-                                            />
-                                            <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}>
-                                                <button onClick={() => setMostrarModalCarpeta(false)} className="btn-gris">Cancelar</button>
-                                                <button onClick={crearCarpeta} className="btn-verde">Crear</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
+                                {mostrarModalCarpeta && (<div className="modal" onClick={() => setMostrarModalCarpeta(false)}><div className="modal-content" onClick={e => e.stopPropagation()}><h3>📁 Nueva carpeta</h3><input type="text" placeholder="Nombre de la carpeta (ej: Tema 1, Unidad 2...)" value={nuevaCarpeta.nombre} onChange={e => setNuevaCarpeta({...nuevaCarpeta, nombre: e.target.value})} style={{ width: "100%", padding: "10px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalCarpeta(false)} className="btn-gris">Cancelar</button><button onClick={crearCarpeta} className="btn-verde">Crear</button></div></div></div>)}
                                 
-                                {/* Modal para nuevo artefacto */}
-                                {mostrarModalArtefacto && (
-                                    <div className="modal" onClick={() => setMostrarModalArtefacto(false)}>
-                                        <div className="modal-content" onClick={e => e.stopPropagation()}>
-                                            <h3>➕ Nuevo artefacto</h3>
-                                            <input 
-                                                type="text" 
-                                                placeholder="Nombre" 
-                                                value={nuevoArtefacto.nombre} 
-                                                onChange={e => setNuevoArtefacto({...nuevoArtefacto, nombre: e.target.value})} 
-                                                style={{ width: "100%", marginBottom: "15px", padding: "10px" }} 
-                                            />
-                                            <select 
-                                                value={nuevoArtefacto.carpeta_id || ""} 
-                                                onChange={e => setNuevoArtefacto({...nuevoArtefacto, carpeta_id: e.target.value || null})}
-                                                style={{ width: "100%", marginBottom: "15px", padding: "10px" }}
-                                            >
-                                                <option value="">-- Sin carpeta --</option>
-                                                {carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}
-                                            </select>
-                                            <textarea 
-                                                rows="8" 
-                                                placeholder="Código HTML" 
-                                                value={nuevoArtefacto.html} 
-                                                onChange={e => setNuevoArtefacto({...nuevoArtefacto, html: e.target.value})} 
-                                                style={{ width: "100%", fontFamily: "monospace", fontSize: "12px", marginBottom: "15px" }} 
-                                            />
-                                            <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}>
-                                                <button onClick={() => setMostrarModalArtefacto(false)} className="btn-gris">Cancelar</button>
-                                                <button onClick={async () => {
-                                                    if (!nuevoArtefacto.nombre || !nuevoArtefacto.html) { alert("Completa todo"); return; }
-                                                    await supabase.from("tareas").insert({ 
-                                                        nombre: nuevoArtefacto.nombre, 
-                                                        descripcion: "Artefacto", 
-                                                        html: nuevoArtefacto.html, 
-                                                        activo: true,
-                                                        carpeta_id: nuevoArtefacto.carpeta_id
-                                                    });
-                                                    const { data } = await supabase.from("tareas").select("*").eq("activo", true);
-                                                    setArtefactos(data);
-                                                    setNuevoArtefacto({ nombre: "", html: "", carpeta_id: null });
-                                                    setMostrarModalArtefacto(false);
-                                                    mostrarToast("✅ Añadido");
-                                                }} className="btn-verde">Añadir</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
+                                {mostrarModalArtefacto && (<div className="modal" onClick={() => setMostrarModalArtefacto(false)}><div className="modal-content" onClick={e => e.stopPropagation()}><h3>➕ Nuevo artefacto</h3><input type="text" placeholder="Nombre" value={nuevoArtefacto.nombre} onChange={e => setNuevoArtefacto({...nuevoArtefacto, nombre: e.target.value})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }} /><select value={nuevoArtefacto.carpeta_id || ""} onChange={e => setNuevoArtefacto({...nuevoArtefacto, carpeta_id: e.target.value || null})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }}><option value="">-- Sin carpeta --</option>{carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><textarea rows="8" placeholder="Código HTML" value={nuevoArtefacto.html} onChange={e => setNuevoArtefacto({...nuevoArtefacto, html: e.target.value})} style={{ width: "100%", fontFamily: "monospace", fontSize: "12px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalArtefacto(false)} className="btn-gris">Cancelar</button><button onClick={async () => { if (!nuevoArtefacto.nombre || !nuevoArtefacto.html) { alert("Completa todo"); return; } await supabase.from("tareas").insert({ nombre: nuevoArtefacto.nombre, descripcion: "Artefacto", html: nuevoArtefacto.html, activo: true, carpeta_id: nuevoArtefacto.carpeta_id }); const { data } = await supabase.from("tareas").select("*").eq("activo", true); setArtefactos(data); setNuevoArtefacto({ nombre: "", html: "", carpeta_id: null }); setMostrarModalArtefacto(false); mostrarToast("✅ Añadido"); }} className="btn-verde">Añadir</button></div></div></div>)}
                                 
-                                {/* Mostrar carpetas con sus artefactos */}
-                                {/* Carpeta "Sin carpeta" primero */}
-                                {artefactosPorCarpeta["sin_carpeta"].length > 0 && (
-                                    <div className="carpeta">
-                                        <div className="carpeta-header" onClick={() => toggleCarpeta("sin_carpeta")}>
-                                            <div className="carpeta-titulo">
-                                                <span>{carpetasAbiertas["sin_carpeta"] ? "📂" : "📁"}</span>
-                                                <strong>Sin carpeta</strong>
-                                                <span style={{ fontSize: "0.8rem", opacity: 0.8 }}>({artefactosPorCarpeta["sin_carpeta"].length})</span>
-                                            </div>
-                                            <span>{carpetasAbiertas["sin_carpeta"] ? "▼" : "▶"}</span>
-                                        </div>
-                                        {carpetasAbiertas["sin_carpeta"] && (
-                                            <div className="carpeta-contenido">
-                                                {artefactosPorCarpeta["sin_carpeta"].map(art => (
-                                                    <div key={art.id} className="artefacto-card">
-                                                        <div className="artefacto-info">
-                                                            <strong>{art.nombre}</strong>
-                                                            <br/>
-                                                            <span style={{ fontSize: "11px", color: "#666" }}>ID: {art.id}</span>
-                                                        </div>
-                                                        <div className="artefacto-acciones">
-                                                            <select 
-                                                                className="selector-carpeta"
-                                                                value={art.carpeta_id || ""}
-                                                                onChange={(e) => moverArtefacto(art.id, e.target.value)}
-                                                            >
-                                                                <option value="">-- Mover a --</option>
-                                                                {carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}
-                                                            </select>
-                                                            <button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul" style={{ padding: "4px 12px", fontSize: "12px" }}>📋</button>
-                                                            <button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>🗑️</button>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
+                                {artefactosPorCarpeta["sin_carpeta"].length > 0 && (<div className="carpeta"><div className="carpeta-header" onClick={() => toggleCarpeta("sin_carpeta")}><div className="carpeta-titulo"><span>{carpetasAbiertas["sin_carpeta"] ? "📂" : "📁"}</span><strong>Sin carpeta</strong><span style={{ fontSize: "0.8rem", opacity: 0.8 }}>({artefactosPorCarpeta["sin_carpeta"].length})</span></div><span>{carpetasAbiertas["sin_carpeta"] ? "▼" : "▶"}</span></div>
+                                {carpetasAbiertas["sin_carpeta"] && (<div className="carpeta-contenido">{artefactosPorCarpeta["sin_carpeta"].map(art => (<div key={art.id} className="artefacto-card"><div className="artefacto-info"><strong>{art.nombre}</strong><br/><span style={{ fontSize: "11px", color: "#666" }}>ID: {art.id}</span></div><div className="artefacto-acciones"><select className="selector-carpeta" value={art.carpeta_id || ""} onChange={(e) => moverArtefacto(art.id, e.target.value)}><option value="">-- Mover a --</option>{carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul" style={{ padding: "4px 12px", fontSize: "12px" }}>📋</button><button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>🗑️</button></div></div>))}</div>)}</div>)}
                                 
-                                {/* Carpetas normales */}
-                                {carpetas.map(carpeta => (
-                                    <div key={carpeta.id} className="carpeta">
-                                        <div className="carpeta-header" onClick={() => toggleCarpeta(carpeta.id)}>
-                                            <div className="carpeta-titulo">
-                                                <span>{carpetasAbiertas[carpeta.id] ? "📂" : "📁"}</span>
-                                                <strong>{carpeta.nombre}</strong>
-                                                <span style={{ fontSize: "0.8rem", opacity: 0.8 }}>({artefactosPorCarpeta[carpeta.id]?.length || 0})</span>
-                                            </div>
-                                            <div style={{ display: "flex", gap: "5px" }}>
-                                                <button onClick={(e) => { e.stopPropagation(); editarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-azul" style={{ padding: "4px 8px", fontSize: "11px" }}>✏️</button>
-                                                <button onClick={(e) => { e.stopPropagation(); eliminarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-rojo" style={{ padding: "4px 8px", fontSize: "11px" }}>🗑️</button>
-                                                <span>{carpetasAbiertas[carpeta.id] ? "▼" : "▶"}</span>
-                                            </div>
-                                        </div>
-                                        {carpetasAbiertas[carpeta.id] && (
-                                            <div className="carpeta-contenido">
-                                                {artefactosPorCarpeta[carpeta.id]?.length > 0 ? (
-                                                    artefactosPorCarpeta[carpeta.id].map(art => (
-                                                        <div key={art.id} className="artefacto-card">
-                                                            <div className="artefacto-info">
-                                                                <strong>{art.nombre}</strong>
-                                                                <br/>
-                                                                <span style={{ fontSize: "11px", color: "#666" }}>ID: {art.id}</span>
-                                                            </div>
-                                                            <div className="artefacto-acciones">
-                                                                <select 
-                                                                    className="selector-carpeta"
-                                                                    value={art.carpeta_id || ""}
-                                                                    onChange={(e) => moverArtefacto(art.id, e.target.value)}
-                                                                >
-                                                                    <option value="">-- Mover a --</option>
-                                                                    {carpetas.filter(c => c.id !== carpeta.id).map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}
-                                                                </select>
-                                                                <button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul" style={{ padding: "4px 12px", fontSize: "12px" }}>📋</button>
-                                                                <button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>🗑️</button>
-                                                            </div>
-                                                        </div>
-                                                    ))
-                                                ) : (
-                                                    <div className="carpeta-vacia">📭 Esta carpeta está vacía</div>
-                                                )}
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
+                                {carpetas.map(carpeta => (<div key={carpeta.id} className="carpeta"><div className="carpeta-header" onClick={() => toggleCarpeta(carpeta.id)}><div className="carpeta-titulo"><span>{carpetasAbiertas[carpeta.id] ? "📂" : "📁"}</span><strong>{carpeta.nombre}</strong><span style={{ fontSize: "0.8rem", opacity: 0.8 }}>({artefactosPorCarpeta[carpeta.id]?.length || 0})</span></div><div style={{ display: "flex", gap: "5px" }}><button onClick={(e) => { e.stopPropagation(); editarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-azul" style={{ padding: "4px 8px", fontSize: "11px" }}>✏️</button><button onClick={(e) => { e.stopPropagation(); eliminarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-rojo" style={{ padding: "4px 8px", fontSize: "11px" }}>🗑️</button><span>{carpetasAbiertas[carpeta.id] ? "▼" : "▶"}</span></div></div>
+                                {carpetasAbiertas[carpeta.id] && (<div className="carpeta-contenido">{artefactosPorCarpeta[carpeta.id]?.length > 0 ? (artefactosPorCarpeta[carpeta.id].map(art => (<div key={art.id} className="artefacto-card"><div className="artefacto-info"><strong>{art.nombre}</strong><br/><span style={{ fontSize: "11px", color: "#666" }}>ID: {art.id}</span></div><div className="artefacto-acciones"><select className="selector-carpeta" value={art.carpeta_id || ""} onChange={(e) => moverArtefacto(art.id, e.target.value)}><option value="">-- Mover a --</option>{carpetas.filter(c => c.id !== carpeta.id).map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul" style={{ padding: "4px 12px", fontSize: "12px" }}>📋</button><button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>🗑️</button></div></div>))) : (<div className="carpeta-vacia">📭 Esta carpeta está vacía</div>)}</div>)}</div>))}
                                 
-                                {carpetas.length === 0 && artefactosPorCarpeta["sin_carpeta"].length === 0 && (
-                                    <div className="card" style={{ textAlign: "center" }}>
-                                        <p>📚 No hay artefactos aún</p>
-                                        <button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde" style={{ marginTop: "10px" }}>+ Crear primer artefacto</button>
-                                    </div>
-                                )}
+                                {carpetas.length === 0 && artefactosPorCarpeta["sin_carpeta"].length === 0 && (<div className="card" style={{ textAlign: "center" }}><p>📚 No hay artefactos aún</p><button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde" style={{ marginTop: "10px" }}>+ Crear primer artefacto</button></div>)}
                             </div>
                         )}
                         
@@ -1210,7 +729,7 @@
                 );
             }
             
-            // VISTA ALUMNO (igual que antes)
+            // VISTA ALUMNO (CON EL MODAL CORREGIDO)
             if (vista === "alumno" && alumnoActual) {
                 const tareasAlumno = getTareasAlumno(alumnoActual.id, alumnoActual.grupo);
                 const mediaAlumno = getMediaAlumno(alumnoActual.id, tareasAlumno.map(t => t.id.toString()));
@@ -1251,25 +770,59 @@
                                                         <p style={{ color: "#666", fontSize: "0.8rem" }}>{t.descripcion}</p>
                                                         {nota !== null && <p><strong>Nota: {nota}/10</strong></p>}
                                                     </div>
+                                                    
+                                                    {/* BOTÓN REALIZAR CORREGIDO - USA IFRAME */}
                                                     <button onClick={() => {
                                                         const modal = document.createElement('div');
                                                         modal.className = 'modal';
-                                                        modal.innerHTML = `
-                                                            <div class="modal-content" style="max-width: 800px;">
-                                                                <div style="display:flex;justify-content:space-between;margin-bottom:15px">
-                                                                    <h2>${t.nombre}</h2>
-                                                                    <button class="btn-cerrar" style="background:transparent;font-size:24px;cursor:pointer">✕</button>
-                                                                </div>
-                                                                <p>${t.descripcion}</p>
-                                                                <div style="background:#fff;padding:20px;border-radius:8px;border:1px solid #e8dfc8;margin:15px 0">${t.html || ''}</div>
-                                                                <button class="btn-gris cerrar-btn">Cerrar</button>
-                                                            </div>
-                                                        `;
+                                                        
+                                                        const modalContent = document.createElement('div');
+                                                        modalContent.className = 'modal-content';
+                                                        modalContent.style.maxWidth = '95%';
+                                                        modalContent.style.width = 'auto';
+                                                        modalContent.style.maxHeight = '90vh';
+                                                        modalContent.style.overflow = 'auto';
+                                                        
+                                                        const header = document.createElement('div');
+                                                        header.style.display = 'flex';
+                                                        header.style.justifyContent = 'space-between';
+                                                        header.style.marginBottom = '15px';
+                                                        header.innerHTML = `<h2>${t.nombre}</h2><button class="btn-cerrar" style="background:transparent;font-size:24px;cursor:pointer;border:none;">✕</button>`;
+                                                        
+                                                        const taskContainer = document.createElement('div');
+                                                        taskContainer.style.background = '#fff';
+                                                        taskContainer.style.borderRadius = '8px';
+                                                        taskContainer.style.border = '1px solid #e8dfc8';
+                                                        taskContainer.style.margin = '15px 0';
+                                                        taskContainer.style.overflow = 'auto';
+                                                        taskContainer.style.maxHeight = '70vh';
+                                                        
+                                                        const iframe = document.createElement('iframe');
+                                                        iframe.style.width = '100%';
+                                                        iframe.style.height = '600px';
+                                                        iframe.style.border = 'none';
+                                                        iframe.style.background = '#fff';
+                                                        iframe.srcdoc = t.html || '<p style="padding:20px;text-align:center">No hay contenido disponible</p>';
+                                                        
+                                                        taskContainer.appendChild(iframe);
+                                                        
+                                                        const closeBtn = document.createElement('button');
+                                                        closeBtn.className = 'btn-gris';
+                                                        closeBtn.textContent = 'Cerrar';
+                                                        closeBtn.style.marginTop = '10px';
+                                                        closeBtn.style.cursor = 'pointer';
+                                                        closeBtn.style.padding = '8px 16px';
+                                                        
+                                                        modalContent.appendChild(header);
+                                                        modalContent.appendChild(taskContainer);
+                                                        modalContent.appendChild(closeBtn);
+                                                        modal.appendChild(modalContent);
                                                         document.body.appendChild(modal);
-                                                        const close = () => modal.remove();
-                                                        modal.querySelector('.btn-cerrar')?.addEventListener('click', close);
-                                                        modal.querySelector('.cerrar-btn')?.addEventListener('click', close);
-                                                        modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+                                                        
+                                                        const closeModal = () => modal.remove();
+                                                        modal.querySelector('.btn-cerrar')?.addEventListener('click', closeModal);
+                                                        closeBtn.addEventListener('click', closeModal);
+                                                        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
                                                     }} className="btn-marron" style={{ padding: "6px 16px" }}>▶ Realizar</button>
                                                 </div>
                                                 
@@ -1352,31 +905,14 @@
                                 <div className="card">
                                     <h3>📋 Calificaciones</h3>
                                     <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "15px" }}>
-                                        <thead>
-                                            <tr style={{ background: "#3B2510", color: "white" }}>
-                                                <th style={{ padding: "10px", textAlign: "left" }}>Tarea</th>
-                                                <th style={{ padding: "10px", textAlign: "center" }}>Nota</th>
-                                                <th style={{ padding: "10px", textAlign: "center" }}>Fecha</th>
-                                              </tr>
-                                        </thead>
+                                        <thead><tr style={{ background: "#3B2510", color: "white" }}><th style={{ padding: "10px", textAlign: "left" }}>Tarea</th><th style={{ padding: "10px", textAlign: "center" }}>Nota</th><th style={{ padding: "10px", textAlign: "center" }}>Fecha</th></tr></thead>
                                         <tbody>
                                             {tareasAlumno.flatMap(t => {
                                                 const califs = calificaciones[alumnoActual.id]?.[t.id] || [];
                                                 if (califs.length === 0) {
-                                                    return [(
-                                                        <tr key={t.id} style={{ borderBottom: "1px solid #ddd" }}>
-                                                            <td style={{ padding: "10px" }}>{t.nombre}</td>
-                                                            <td colSpan="2" style={{ textAlign: "center", color: "#999" }}>Sin calificar</td>
-                                                        </tr>
-                                                    )];
+                                                    return [<tr key={t.id} style={{ borderBottom: "1px solid #ddd" }}><td style={{ padding: "10px" }}>{t.nombre}</td><td colSpan="2" style={{ textAlign: "center", color: "#999" }}>Sin calificar</td></tr>];
                                                 }
-                                                return califs.map((c, i) => (
-                                                    <tr key={`${t.id}-${i}`} style={{ borderBottom: "1px solid #ddd" }}>
-                                                        <td style={{ padding: "10px" }}>{t.nombre}</td>
-                                                        <td style={{ padding: "10px", textAlign: "center", fontWeight: "bold", color: c.nota >= 5 ? "#2E6B3E" : "#c0392b" }}>{c.nota}/10</td>
-                                                        <td style={{ padding: "10px", textAlign: "center", fontSize: "0.7rem" }}>{new Date(c.fecha).toLocaleDateString()}</td>
-                                                    </tr>
-                                                ));
+                                                return califs.map((c, i) => (<tr key={`${t.id}-${i}`} style={{ borderBottom: "1px solid #ddd" }}><td style={{ padding: "10px" }}>{t.nombre}</td><td style={{ padding: "10px", textAlign: "center", fontWeight: "bold", color: c.nota >= 5 ? "#2E6B3E" : "#c0392b" }}>{c.nota}/10</td><td style={{ padding: "10px", textAlign: "center", fontSize: "0.7rem" }}>{new Date(c.fecha).toLocaleDateString()}</td></tr>));
                                             })}
                                         </tbody>
                                     </table>
