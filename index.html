@@ -58,8 +58,20 @@
         .media-valor { font-size: 3rem; font-weight: bold; }
         .grupo-alumnos, .grupo-historial { background: white; border-radius: 12px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         .grupo-header, .historial-header { background: #3B2510; color: white; padding: 12px 20px; }
-        .tabla-alumnos, .historial-tabla { width: 100%; border-collapse: collapse; }
-        .tabla-alumnos th, .tabla-alumnos td, .historial-tabla th, .historial-tabla td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; }
+        .tabla-alumnos, .historial-tabla, .tabla-resultados { width: 100%; border-collapse: collapse; }
+        .tabla-alumnos th, .tabla-alumnos td, .historial-tabla th, .historial-tabla td, .tabla-resultados th, .tabla-resultados td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; }
+        .tabla-resultados th { background: #3B2510; color: white; position: sticky; top: 0; }
+        .tabla-resultados td { text-align: center; }
+        .tabla-resultados td:first-child { text-align: left; font-weight: bold; }
+        .nota-cell { font-weight: bold; border-radius: 6px; display: inline-block; padding: 4px 10px; min-width: 50px; }
+        .nota-10-bg { background: #1a7a1a; color: white; }
+        .nota-9-bg { background: #6dbf6d; color: white; }
+        .nota-8-bg { background: #1a4f8a; color: white; }
+        .nota-7-bg { background: #5b9bd5; color: white; }
+        .nota-6-bg { background: #c05c00; color: white; }
+        .nota-5-bg { background: #f5a623; color: black; }
+        .nota-0-bg { background: #c0392b; color: white; }
+        .nota-vacia { color: #ccc; }
         .acciones-grupo { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         
         .login-box { background: white; border-radius: 20px; padding: 40px; max-width: 400px; margin: 50px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
@@ -83,6 +95,11 @@
         .selector-carpeta { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.8rem; }
         
         iframe { width: 100%; height: 100%; min-height: 80vh; border: none; background: #fff; }
+        
+        .selector-grupo { padding: 10px 15px; font-size: 14px; border-radius: 8px; margin-right: 15px; }
+        .resultados-container { overflow-x: auto; margin-top: 20px; }
+        .media-fila { background: #f0f0f0; font-weight: bold; }
+        .media-columna { background: #e8dfc8; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -129,6 +146,7 @@
             const [textoComentario, setTextoComentario] = React.useState({});
             const [alumnosExpandidos, setAlumnosExpandidos] = React.useState({});
             const [carpetasAbiertas, setCarpetasAbiertas] = React.useState({});
+            const [grupoSeleccionadoResultados, setGrupoSeleccionadoResultados] = React.useState("");
             
             const [emailLogin, setEmailLogin] = React.useState("");
             const [nombreLogin, setNombreLogin] = React.useState("");
@@ -421,6 +439,31 @@
                 else { artefactosPorCarpeta["sin_carpeta"].push(art); }
             });
             
+            // Obtener todas las tareas asignadas a un grupo
+            const getTareasDelGrupo = (grupoNombre) => {
+                if (!grupoNombre || grupoNombre === "Sin grupo") return [];
+                const tareasGrupo = tareasPorGrupo[grupoNombre] || [];
+                const tareasIds = [...new Set(tareasGrupo)];
+                return tareasIds.map(id => artefactos.find(a => a && a.id == id)).filter(a => a);
+            };
+            
+            // Función para obtener la nota de un alumno en una tarea específica
+            const getNotaAlumnoTarea = (alumnoId, tareaId) => {
+                if (!calificaciones[alumnoId] || !calificaciones[alumnoId][tareaId]) return null;
+                return Math.max(...calificaciones[alumnoId][tareaId].map(c => c.nota));
+            };
+            
+            const getClaseNota = (nota) => {
+                if (nota === null) return "nota-vacia";
+                if (nota === 10) return "nota-10-bg";
+                if (nota === 9) return "nota-9-bg";
+                if (nota === 8) return "nota-8-bg";
+                if (nota === 7) return "nota-7-bg";
+                if (nota === 6) return "nota-6-bg";
+                if (nota === 5) return "nota-5-bg";
+                return "nota-0-bg";
+            };
+            
             if (cargando) { return <div className="loading"><div className="spinner"></div><p>Cargando datos...</p></div>; }
             if (error) { return <div className="loading"><p style={{ color: "red" }}>Error: {error}</p></div>; }
             
@@ -450,7 +493,7 @@
                 );
             }
             
-            // GESTOR (PROFESORA) - VERSIÓN COMPLETA
+            // GESTOR (PROFESORA) - CON NUEVA PESTAÑA RESULTADOS
             if (vista === "gestor") {
                 return (
                     <div>
@@ -463,6 +506,7 @@
                             <button onClick={() => setSeccionGestor("alumnos")} className={seccionGestor === "alumnos" ? "menu-btn active" : "menu-btn"}>👥 Alumnos ({aprobados.length})</button>
                             <button onClick={() => setSeccionGestor("asignar")} className={seccionGestor === "asignar" ? "menu-btn active" : "menu-btn"}>📋 Asignar ({grupos.length})</button>
                             <button onClick={() => setSeccionGestor("biblioteca")} className={seccionGestor === "biblioteca" ? "menu-btn active" : "menu-btn"}>📚 Biblioteca ({artefactos.length})</button>
+                            <button onClick={() => setSeccionGestor("resultados")} className={seccionGestor === "resultados" ? "menu-btn active" : "menu-btn"}>📊 Resultados</button>
                         </div>
                         
                         {seccionGestor === "pendientes" && pendientes.map(a => (
@@ -542,13 +586,142 @@
                             </div>
                         )}
                         
+                        {/* NUEVA PESTAÑA: RESULTADOS */}
+                        {seccionGestor === "resultados" && (
+                            <div>
+                                <div style={{ marginBottom: "20px", display: "flex", alignItems: "center", gap: "15px", flexWrap: "wrap" }}>
+                                    <h3>📊 Resultados por Grupo</h3>
+                                    <select 
+                                        className="selector-grupo"
+                                        value={grupoSeleccionadoResultados}
+                                        onChange={(e) => setGrupoSeleccionadoResultados(e.target.value)}
+                                        style={{ padding: "10px", fontSize: "14px", borderRadius: "8px" }}
+                                    >
+                                        <option value="">-- Seleccionar grupo --</option>
+                                        {grupos.map(g => <option key={g} value={g}>{g}</option>)}
+                                    </select>
+                                </div>
+                                
+                                {grupoSeleccionadoResultados && (
+                                    (() => {
+                                        const alumnosGrupo = alumnosPorGrupo[grupoSeleccionadoResultados] || [];
+                                        const tareasGrupo = getTareasDelGrupo(grupoSeleccionadoResultados);
+                                        
+                                        if (alumnosGrupo.length === 0) {
+                                            return <div className="card">No hay alumnos en este grupo</div>;
+                                        }
+                                        
+                                        if (tareasGrupo.length === 0) {
+                                            return <div className="card">No hay tareas asignadas a este grupo</div>;
+                                        }
+                                        
+                                        // Calcular medias por alumno
+                                        const mediasAlumnos = alumnosGrupo.map(alumno => {
+                                            let suma = 0;
+                                            let count = 0;
+                                            tareasGrupo.forEach(tarea => {
+                                                const nota = getNotaAlumnoTarea(alumno.id, tarea.id);
+                                                if (nota !== null) {
+                                                    suma += nota;
+                                                    count++;
+                                                }
+                                            });
+                                            return count > 0 ? (suma / count).toFixed(1) : "-";
+                                        });
+                                        
+                                        // Calcular medias por tarea
+                                        const mediasTareas = tareasGrupo.map(tarea => {
+                                            let suma = 0;
+                                            let count = 0;
+                                            alumnosGrupo.forEach(alumno => {
+                                                const nota = getNotaAlumnoTarea(alumno.id, tarea.id);
+                                                if (nota !== null) {
+                                                    suma += nota;
+                                                    count++;
+                                                }
+                                            });
+                                            return count > 0 ? (suma / count).toFixed(1) : "-";
+                                        });
+                                        
+                                        return (
+                                            <div className="resultados-container">
+                                                <table className="tabla-resultados" style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
+                                                    <thead>
+                                                        <tr>
+                                                            <th style={{ position: "sticky", left: 0, background: "#3B2510", zIndex: 1 }}>Alumno / Tarea</th>
+                                                            {tareasGrupo.map(tarea => (
+                                                                <th key={tarea.id} style={{ minWidth: "80px" }}>{tarea.nombre}</th>
+                                                            ))}
+                                                            <th style={{ background: "#2E6B3E" }}>📊 Media</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {alumnosGrupo.map((alumno, idx) => (
+                                                            <tr key={alumno.id}>
+                                                                <td style={{ position: "sticky", left: 0, background: "white", fontWeight: "bold", borderRight: "1px solid #ddd" }}>
+                                                                    {alumno.nombre} {alumno.apellidos}
+                                                                </td>
+                                                                {tareasGrupo.map(tarea => {
+                                                                    const nota = getNotaAlumnoTarea(alumno.id, tarea.id);
+                                                                    return (
+                                                                        <td key={tarea.id} style={{ textAlign: "center" }}>
+                                                                            {nota !== null ? (
+                                                                                <span className={`nota-cell ${getClaseNota(nota)}`}>{nota}</span>
+                                                                            ) : (
+                                                                                <span className="nota-vacia">-</span>
+                                                                            )}
+                                                                        </td>
+                                                                    );
+                                                                })}
+                                                                <td style={{ textAlign: "center", background: "#f0f0f0", fontWeight: "bold" }}>
+                                                                    {mediasAlumnos[idx] !== "-" ? (
+                                                                        <span className={`nota-cell ${getClaseNota(parseFloat(mediasAlumnos[idx]))}`}>{mediasAlumnos[idx]}</span>
+                                                                    ) : (
+                                                                        <span className="nota-vacia">-</span>
+                                                                    )}
+                                                                </td>
+                                                            </tr>
+                                                        ))}
+                                                        {/* Fila de medias por tarea */}
+                                                        <tr style={{ background: "#e8dfc8", borderTop: "2px solid #3B2510" }}>
+                                                            <td style={{ position: "sticky", left: 0, background: "#e8dfc8", fontWeight: "bold" }}>
+                                                                📊 Media tarea
+                                                            </td>
+                                                            {mediasTareas.map((media, idx) => (
+                                                                <td key={idx} style={{ textAlign: "center", fontWeight: "bold" }}>
+                                                                    {media !== "-" ? (
+                                                                        <span className={`nota-cell ${getClaseNota(parseFloat(media))}`}>{media}</span>
+                                                                    ) : (
+                                                                        <span className="nota-vacia">-</span>
+                                                                    )}
+                                                                </td>
+                                                            ))}
+                                                            <td style={{ textAlign: "center", background: "#2E6B3E", color: "white", fontWeight: "bold" }}>
+                                                                General
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        );
+                                    })()
+                                )}
+                                
+                                {!grupoSeleccionadoResultados && (
+                                    <div className="card" style={{ textAlign: "center" }}>
+                                        <p>📊 Selecciona un grupo para ver las notas de los alumnos</p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                        
                         <div className="footer"><div className="footer-texto">mlls</div></div>
                         {toast && <div className="toast">{toast}</div>}
                     </div>
                 );
             }
             
-            // VISTA ALUMNO
+            // VISTA ALUMNO (CON NOTAS EN HISTORIAL)
             if (vista === "alumno" && alumnoActual) {
                 const tareasAlumno = getTareasAlumno(alumnoActual.id, alumnoActual.grupo);
                 const mediaAlumno = getMediaAlumno(alumnoActual.id, tareasAlumno.map(t => t.id.toString()));
