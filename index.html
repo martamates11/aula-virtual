@@ -63,6 +63,7 @@
         .tabla-resultados th { background: #3B2510; color: white; position: sticky; top: 0; }
         .tabla-resultados td { text-align: center; }
         .tabla-resultados td:first-child { text-align: left; font-weight: bold; }
+        .tabla-resultados td:nth-child(2) { text-align: center; }
         .nota-cell { font-weight: bold; border-radius: 6px; display: inline-block; padding: 4px 10px; min-width: 50px; }
         .nota-10-bg { background: #1a7a1a; color: white; }
         .nota-9-bg { background: #6dbf6d; color: white; }
@@ -439,7 +440,6 @@
                 else { artefactosPorCarpeta["sin_carpeta"].push(art); }
             });
             
-            // Obtener todas las tareas asignadas a un grupo
             const getTareasDelGrupo = (grupoNombre) => {
                 if (!grupoNombre || grupoNombre === "Sin grupo") return [];
                 const tareasGrupo = tareasPorGrupo[grupoNombre] || [];
@@ -447,7 +447,6 @@
                 return tareasIds.map(id => artefactos.find(a => a && a.id == id)).filter(a => a);
             };
             
-            // Función para obtener la nota de un alumno en una tarea específica
             const getNotaAlumnoTarea = (alumnoId, tareaId) => {
                 if (!calificaciones[alumnoId] || !calificaciones[alumnoId][tareaId]) return null;
                 return Math.max(...calificaciones[alumnoId][tareaId].map(c => c.nota));
@@ -493,7 +492,7 @@
                 );
             }
             
-            // GESTOR (PROFESORA) - CON NUEVA PESTAÑA RESULTADOS
+            // GESTOR (PROFESORA)
             if (vista === "gestor") {
                 return (
                     <div>
@@ -586,7 +585,7 @@
                             </div>
                         )}
                         
-                        {/* NUEVA PESTAÑA: RESULTADOS */}
+                        {/* PESTAÑA RESULTADOS - CON MEDIA COMO SEGUNDA COLUMNA */}
                         {seccionGestor === "resultados" && (
                             <div>
                                 <div style={{ marginBottom: "20px", display: "flex", alignItems: "center", gap: "15px", flexWrap: "wrap" }}>
@@ -648,11 +647,11 @@
                                                 <table className="tabla-resultados" style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
                                                     <thead>
                                                         <tr>
-                                                            <th style={{ position: "sticky", left: 0, background: "#3B2510", zIndex: 1 }}>Alumno / Tarea</th>
+                                                            <th style={{ position: "sticky", left: 0, background: "#3B2510", zIndex: 1 }}>Alumno</th>
+                                                            <th style={{ background: "#2E6B3E", minWidth: "80px" }}>📊 Media</th>
                                                             {tareasGrupo.map(tarea => (
                                                                 <th key={tarea.id} style={{ minWidth: "80px" }}>{tarea.nombre}</th>
                                                             ))}
-                                                            <th style={{ background: "#2E6B3E" }}>📊 Media</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -660,6 +659,13 @@
                                                             <tr key={alumno.id}>
                                                                 <td style={{ position: "sticky", left: 0, background: "white", fontWeight: "bold", borderRight: "1px solid #ddd" }}>
                                                                     {alumno.nombre} {alumno.apellidos}
+                                                                </td>
+                                                                <td style={{ textAlign: "center", background: "#f0f0f0", fontWeight: "bold" }}>
+                                                                    {mediasAlumnos[idx] !== "-" ? (
+                                                                        <span className={`nota-cell ${getClaseNota(parseFloat(mediasAlumnos[idx]))}`}>{mediasAlumnos[idx]}</span>
+                                                                    ) : (
+                                                                        <span className="nota-vacia">-</span>
+                                                                    )}
                                                                 </td>
                                                                 {tareasGrupo.map(tarea => {
                                                                     const nota = getNotaAlumnoTarea(alumno.id, tarea.id);
@@ -673,19 +679,15 @@
                                                                         </td>
                                                                     );
                                                                 })}
-                                                                <td style={{ textAlign: "center", background: "#f0f0f0", fontWeight: "bold" }}>
-                                                                    {mediasAlumnos[idx] !== "-" ? (
-                                                                        <span className={`nota-cell ${getClaseNota(parseFloat(mediasAlumnos[idx]))}`}>{mediasAlumnos[idx]}</span>
-                                                                    ) : (
-                                                                        <span className="nota-vacia">-</span>
-                                                                    )}
-                                                                </td>
                                                             </tr>
                                                         ))}
                                                         {/* Fila de medias por tarea */}
                                                         <tr style={{ background: "#e8dfc8", borderTop: "2px solid #3B2510" }}>
                                                             <td style={{ position: "sticky", left: 0, background: "#e8dfc8", fontWeight: "bold" }}>
                                                                 📊 Media tarea
+                                                            </td>
+                                                            <td style={{ textAlign: "center", background: "#2E6B3E", color: "white", fontWeight: "bold" }}>
+                                                                General
                                                             </td>
                                                             {mediasTareas.map((media, idx) => (
                                                                 <td key={idx} style={{ textAlign: "center", fontWeight: "bold" }}>
@@ -696,9 +698,6 @@
                                                                     )}
                                                                 </td>
                                                             ))}
-                                                            <td style={{ textAlign: "center", background: "#2E6B3E", color: "white", fontWeight: "bold" }}>
-                                                                General
-                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -721,7 +720,7 @@
                 );
             }
             
-            // VISTA ALUMNO (CON NOTAS EN HISTORIAL)
+            // VISTA ALUMNO
             if (vista === "alumno" && alumnoActual) {
                 const tareasAlumno = getTareasAlumno(alumnoActual.id, alumnoActual.grupo);
                 const mediaAlumno = getMediaAlumno(alumnoActual.id, tareasAlumno.map(t => t.id.toString()));
