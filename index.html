@@ -77,8 +77,8 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .toast { position: fixed; bottom: 20px; right: 20px; background: #2E6B3E; color: white; padding: 12px 24px; border-radius: 8px; animation: fadeOut 2s ease-in-out; z-index: 2000; }
         @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
-        .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-        .modal-content { background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 95%; max-height: 90vh; overflow-y: auto; }
+        .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: white; padding: 20px; border-radius: 12px; width: 95%; max-width: 95%; max-height: 95vh; height: 95vh; display: flex; flex-direction: column; overflow: auto; }
         
         .grupo-tareas { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         .tarea-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
@@ -138,6 +138,14 @@
         .artefacto-acciones { display: flex; gap: 8px; }
         .carpeta-vacia { text-align: center; color: #999; padding: 20px; }
         .selector-carpeta { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.8rem; }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 80vh;
+            border: none;
+            background: #fff;
+        }
     </style>
 </head>
 <body>
@@ -669,7 +677,7 @@
                                         <tbody>{alumnosPorGrupo[nombreGrupo].map(a => (<tr key={a.id}><td><strong>{a.nombre} {a.apellidos}</strong></td><td>{a.email}</td>
                                         <td><select id={`select-${a.id}`} defaultValue={a.grupo || "Sin grupo"}>{grupos.map(g => <option key={g} value={g}>{g}</option>)}<option value="Sin grupo">Sin grupo</option></select>
                                         <button onClick={async () => { const nuevoGrupo = document.getElementById(`select-${a.id}`).value; if (nuevoGrupo !== (a.grupo || "Sin grupo")) { await supabase.from("alumnos").update({ grupo: nuevoGrupo === "Sin grupo" ? null : nuevoGrupo }).eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast(`✅ Movido a ${nuevoGrupo}`); } }} className="btn-marron" style={{ padding: "4px 12px", marginLeft: "8px" }}>Cambiar</button></td>
-                                        <td><button onClick={async () => { if (confirm("¿Eliminar?")) { await supabase.from("alumnos").delete().eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast("🗑️ Eliminado"); } }} className="btn-rojo" style={{ padding: "4px 12px" }}>Eliminar</button></td></tr>))}</tbody></table>
+                                        <td><button onClick={async () => { if (confirm("¿Eliminar?")) { await supabase.from("alumnos").delete().eq("id", a.id); const { data } = await supabase.from("alumnos").select("*"); setAlumnos(data); mostrarToast("🗑️ Eliminado"); } }} className="btn-rojo" style={{ padding: "4px 12px" }}>Eliminar</button></td></tr>))}</tbody></td>
                                     </div>
                                 ))}
                             </div>
@@ -682,7 +690,7 @@
                                     <button onClick={() => setMostrarModalCopiarGrupo(true)} className="btn-naranja">📋 Copiar grupo</button>
                                 </div>
                                 
-                                {mostrarModalCopiarGrupo && (<div className="modal" onClick={() => setMostrarModalCopiarGrupo(false)}><div className="modal-content" onClick={e => e.stopPropagation()}><h3>📋 Copiar grupo</h3><p style={{ marginBottom: "15px", color: "#666" }}>Copia todas las tareas de un grupo existente a uno nuevo</p>
+                                {mostrarModalCopiarGrupo && (<div className="modal" onClick={() => setMostrarModalCopiarGrupo(false)}><div className="modal-content" onClick={e => e.stopPropagation()} style={{ height: 'auto', maxHeight: '80vh' }}><h3>📋 Copiar grupo</h3><p style={{ marginBottom: "15px", color: "#666" }}>Copia todas las tareas de un grupo existente a uno nuevo</p>
                                 <div style={{ marginBottom: "15px" }}><label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Grupo origen:</label><select value={grupoOrigen} onChange={e => setGrupoOrigen(e.target.value)} style={{ width: "100%", padding: "10px" }}><option value="">-- Seleccionar grupo --</option>{grupos.map(g => <option key={g} value={g}>{g}</option>)}</select></div>
                                 <div style={{ marginBottom: "20px" }}><label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Nombre del nuevo grupo:</label><input type="text" value={nuevoNombreGrupo} onChange={e => setNuevoNombreGrupo(e.target.value)} placeholder="Ej: Grupo B - 2024" style={{ width: "100%", padding: "10px" }} /></div>
                                 <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => { setMostrarModalCopiarGrupo(false); setGrupoOrigen(""); setNuevoNombreGrupo(""); }} className="btn-gris">Cancelar</button><button onClick={copiarGrupo} className="btn-verde">Copiar grupo</button></div></div></div>)}
@@ -709,9 +717,9 @@
                                     <div style={{ display: "flex", gap: "10px" }}><button onClick={() => setMostrarModalCarpeta(true)} className="btn-marron">📁 Nueva carpeta</button><button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde">+ Nuevo artefacto</button></div>
                                 </div>
                                 
-                                {mostrarModalCarpeta && (<div className="modal" onClick={() => setMostrarModalCarpeta(false)}><div className="modal-content" onClick={e => e.stopPropagation()}><h3>📁 Nueva carpeta</h3><input type="text" placeholder="Nombre de la carpeta (ej: Tema 1, Unidad 2...)" value={nuevaCarpeta.nombre} onChange={e => setNuevaCarpeta({...nuevaCarpeta, nombre: e.target.value})} style={{ width: "100%", padding: "10px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalCarpeta(false)} className="btn-gris">Cancelar</button><button onClick={crearCarpeta} className="btn-verde">Crear</button></div></div></div>)}
+                                {mostrarModalCarpeta && (<div className="modal" onClick={() => setMostrarModalCarpeta(false)}><div className="modal-content" onClick={e => e.stopPropagation()} style={{ height: 'auto', maxHeight: '80vh' }}><h3>📁 Nueva carpeta</h3><input type="text" placeholder="Nombre de la carpeta (ej: Tema 1, Unidad 2...)" value={nuevaCarpeta.nombre} onChange={e => setNuevaCarpeta({...nuevaCarpeta, nombre: e.target.value})} style={{ width: "100%", padding: "10px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalCarpeta(false)} className="btn-gris">Cancelar</button><button onClick={crearCarpeta} className="btn-verde">Crear</button></div></div></div>)}
                                 
-                                {mostrarModalArtefacto && (<div className="modal" onClick={() => setMostrarModalArtefacto(false)}><div className="modal-content" onClick={e => e.stopPropagation()}><h3>➕ Nuevo artefacto</h3><input type="text" placeholder="Nombre" value={nuevoArtefacto.nombre} onChange={e => setNuevoArtefacto({...nuevoArtefacto, nombre: e.target.value})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }} /><select value={nuevoArtefacto.carpeta_id || ""} onChange={e => setNuevoArtefacto({...nuevoArtefacto, carpeta_id: e.target.value || null})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }}><option value="">-- Sin carpeta --</option>{carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><textarea rows="8" placeholder="Código HTML" value={nuevoArtefacto.html} onChange={e => setNuevoArtefacto({...nuevoArtefacto, html: e.target.value})} style={{ width: "100%", fontFamily: "monospace", fontSize: "12px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalArtefacto(false)} className="btn-gris">Cancelar</button><button onClick={async () => { if (!nuevoArtefacto.nombre || !nuevoArtefacto.html) { alert("Completa todo"); return; } await supabase.from("tareas").insert({ nombre: nuevoArtefacto.nombre, descripcion: "Artefacto", html: nuevoArtefacto.html, activo: true, carpeta_id: nuevoArtefacto.carpeta_id }); const { data } = await supabase.from("tareas").select("*").eq("activo", true); setArtefactos(data); setNuevoArtefacto({ nombre: "", html: "", carpeta_id: null }); setMostrarModalArtefacto(false); mostrarToast("✅ Añadido"); }} className="btn-verde">Añadir</button></div></div></div>)}
+                                {mostrarModalArtefacto && (<div className="modal" onClick={() => setMostrarModalArtefacto(false)}><div className="modal-content" onClick={e => e.stopPropagation()} style={{ height: 'auto', maxHeight: '80vh' }}><h3>➕ Nuevo artefacto</h3><input type="text" placeholder="Nombre" value={nuevoArtefacto.nombre} onChange={e => setNuevoArtefacto({...nuevoArtefacto, nombre: e.target.value})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }} /><select value={nuevoArtefacto.carpeta_id || ""} onChange={e => setNuevoArtefacto({...nuevoArtefacto, carpeta_id: e.target.value || null})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }}><option value="">-- Sin carpeta --</option>{carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><textarea rows="8" placeholder="Código HTML" value={nuevoArtefacto.html} onChange={e => setNuevoArtefacto({...nuevoArtefacto, html: e.target.value})} style={{ width: "100%", fontFamily: "monospace", fontSize: "12px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalArtefacto(false)} className="btn-gris">Cancelar</button><button onClick={async () => { if (!nuevoArtefacto.nombre || !nuevoArtefacto.html) { alert("Completa todo"); return; } await supabase.from("tareas").insert({ nombre: nuevoArtefacto.nombre, descripcion: "Artefacto", html: nuevoArtefacto.html, activo: true, carpeta_id: nuevoArtefacto.carpeta_id }); const { data } = await supabase.from("tareas").select("*").eq("activo", true); setArtefactos(data); setNuevoArtefacto({ nombre: "", html: "", carpeta_id: null }); setMostrarModalArtefacto(false); mostrarToast("✅ Añadido"); }} className="btn-verde">Añadir</button></div></div></div>)}
                                 
                                 {artefactosPorCarpeta["sin_carpeta"].length > 0 && (<div className="carpeta"><div className="carpeta-header" onClick={() => toggleCarpeta("sin_carpeta")}><div className="carpeta-titulo"><span>{carpetasAbiertas["sin_carpeta"] ? "📂" : "📁"}</span><strong>Sin carpeta</strong><span style={{ fontSize: "0.8rem", opacity: 0.8 }}>({artefactosPorCarpeta["sin_carpeta"].length})</span></div><span>{carpetasAbiertas["sin_carpeta"] ? "▼" : "▶"}</span></div>
                                 {carpetasAbiertas["sin_carpeta"] && (<div className="carpeta-contenido">{artefactosPorCarpeta["sin_carpeta"].map(art => (<div key={art.id} className="artefacto-card"><div className="artefacto-info"><strong>{art.nombre}</strong><br/><span style={{ fontSize: "11px", color: "#666" }}>ID: {art.id}</span></div><div className="artefacto-acciones"><select className="selector-carpeta" value={art.carpeta_id || ""} onChange={(e) => moverArtefacto(art.id, e.target.value)}><option value="">-- Mover a --</option>{carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul" style={{ padding: "4px 12px", fontSize: "12px" }}>📋</button><button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo" style={{ padding: "4px 12px", fontSize: "12px" }}>🗑️</button></div></div>))}</div>)}</div>)}
@@ -729,7 +737,7 @@
                 );
             }
             
-            // VISTA ALUMNO (CON EL MODAL CORREGIDO)
+            // VISTA ALUMNO (CON VENTANA GRANDE)
             if (vista === "alumno" && alumnoActual) {
                 const tareasAlumno = getTareasAlumno(alumnoActual.id, alumnoActual.grupo);
                 const mediaAlumno = getMediaAlumno(alumnoActual.id, tareasAlumno.map(t => t.id.toString()));
@@ -771,7 +779,7 @@
                                                         {nota !== null && <p><strong>Nota: {nota}/10</strong></p>}
                                                     </div>
                                                     
-                                                    {/* BOTÓN REALIZAR CORREGIDO - USA IFRAME */}
+                                                    {/* BOTÓN REALIZAR - VENTANA GRANDE */}
                                                     <button onClick={() => {
                                                         const modal = document.createElement('div');
                                                         modal.className = 'modal';
@@ -779,27 +787,35 @@
                                                         const modalContent = document.createElement('div');
                                                         modalContent.className = 'modal-content';
                                                         modalContent.style.maxWidth = '95%';
-                                                        modalContent.style.width = 'auto';
-                                                        modalContent.style.maxHeight = '90vh';
+                                                        modalContent.style.width = '95%';
+                                                        modalContent.style.maxHeight = '95vh';
+                                                        modalContent.style.height = '95vh';
                                                         modalContent.style.overflow = 'auto';
+                                                        modalContent.style.padding = '20px';
+                                                        modalContent.style.display = 'flex';
+                                                        modalContent.style.flexDirection = 'column';
                                                         
                                                         const header = document.createElement('div');
                                                         header.style.display = 'flex';
                                                         header.style.justifyContent = 'space-between';
+                                                        header.style.alignItems = 'center';
                                                         header.style.marginBottom = '15px';
-                                                        header.innerHTML = `<h2>${t.nombre}</h2><button class="btn-cerrar" style="background:transparent;font-size:24px;cursor:pointer;border:none;">✕</button>`;
+                                                        header.style.flexShrink = '0';
+                                                        header.innerHTML = `<h2 style="margin:0">${t.nombre}</h2><button class="btn-cerrar" style="background:transparent;font-size:28px;cursor:pointer;border:none;padding:0 10px;">✕</button>`;
                                                         
                                                         const taskContainer = document.createElement('div');
                                                         taskContainer.style.background = '#fff';
                                                         taskContainer.style.borderRadius = '8px';
                                                         taskContainer.style.border = '1px solid #e8dfc8';
-                                                        taskContainer.style.margin = '15px 0';
+                                                        taskContainer.style.margin = '10px 0';
                                                         taskContainer.style.overflow = 'auto';
-                                                        taskContainer.style.maxHeight = '70vh';
+                                                        taskContainer.style.flex = '1';
+                                                        taskContainer.style.minHeight = '0';
                                                         
                                                         const iframe = document.createElement('iframe');
                                                         iframe.style.width = '100%';
-                                                        iframe.style.height = '600px';
+                                                        iframe.style.height = '100%';
+                                                        iframe.style.minHeight = '80vh';
                                                         iframe.style.border = 'none';
                                                         iframe.style.background = '#fff';
                                                         iframe.srcdoc = t.html || '<p style="padding:20px;text-align:center">No hay contenido disponible</p>';
@@ -811,7 +827,9 @@
                                                         closeBtn.textContent = 'Cerrar';
                                                         closeBtn.style.marginTop = '10px';
                                                         closeBtn.style.cursor = 'pointer';
-                                                        closeBtn.style.padding = '8px 16px';
+                                                        closeBtn.style.padding = '10px 24px';
+                                                        closeBtn.style.fontSize = '14px';
+                                                        closeBtn.style.flexShrink = '0';
                                                         
                                                         modalContent.appendChild(header);
                                                         modalContent.appendChild(taskContainer);
@@ -823,6 +841,15 @@
                                                         modal.querySelector('.btn-cerrar')?.addEventListener('click', closeModal);
                                                         closeBtn.addEventListener('click', closeModal);
                                                         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+                                                        
+                                                        // Ajustar altura del iframe después de cargar
+                                                        iframe.onload = () => {
+                                                            try {
+                                                                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                                                                const altura = iframeDoc.body.scrollHeight;
+                                                                iframe.style.height = Math.max(altura + 50, 500) + 'px';
+                                                            } catch(e) {}
+                                                        };
                                                     }} className="btn-marron" style={{ padding: "6px 16px" }}>▶ Realizar</button>
                                                 </div>
                                                 
