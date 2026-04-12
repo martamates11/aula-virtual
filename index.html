@@ -9,19 +9,19 @@
         body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f0e8; padding: 20px; }
         button { cursor: pointer; padding: 8px 16px; margin: 5px; border-radius: 8px; border: none; transition: all 0.2s; }
         button:hover { transform: translateY(-2px); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-        
+
         .header { background: #3B2510; padding: 16px 24px; margin-bottom: 20px; border-radius: 12px 12px 0 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .header-titulo { font-size: 1rem; font-weight: 600; color: #F5EDD8; }
         .btn-salir { background: transparent; border: 1px solid rgba(245,237,216,0.4); color: #F5EDD8; padding: 5px 14px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; }
-        
+
         .menu { background: #fefcf8; padding: 12px 24px; border-bottom: 1px solid #e8dfc8; display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; border-radius: 0 0 12px 12px; }
         .menu-btn { background: transparent; padding: 8px 18px; font-size: 0.85rem; font-weight: 500; color: #6B4F35; border-radius: 20px; transition: all 0.2s; }
         .menu-btn:hover { background: #e8dfc8; color: #3B2510; }
         .menu-btn.active { background: #A0522D; color: white; }
-        
+
         .footer { margin-top: 30px; padding: 16px 24px 20px 24px; border-top: 1px solid #e8dfc8; text-align: center; }
         .footer-texto { font-size: 8px; color: #bbb; letter-spacing: 2px; text-transform: lowercase; }
-        
+
         .card { background: white; border-radius: 12px; padding: 20px; margin: 10px 0; border-left: 4px solid #D97A2B; }
         .btn-verde { background: #2E6B3E; color: white; }
         .btn-rojo { background: #8B1A1A; color: white; }
@@ -31,7 +31,7 @@
         .btn-gris { background: #95a5a6; color: white; }
         .btn-morado { background: #9b59b6; color: white; }
         select, input, textarea { padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-family: inherit; }
-        
+
         .loading { text-align: center; padding: 40px; }
         .spinner { border: 3px solid #f3f3f3; border-top: 3px solid #A0522D; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -39,7 +39,7 @@
         @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
         .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; }
         .modal-content { background: white; padding: 20px; border-radius: 12px; width: 95%; max-width: 95%; max-height: 95vh; height: 95vh; display: flex; flex-direction: column; overflow: auto; }
-        
+
         .grupo-tareas { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         .tarea-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
         .alumno-tareas-panel { background: #f9f5f0; border-radius: 12px; margin-top: 20px; overflow: hidden; }
@@ -74,7 +74,7 @@
         .nota-0-bg { background: #c0392b; color: white; }
         .nota-vacia { color: #ccc; }
         .acciones-grupo { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        
+
         .login-box { background: white; border-radius: 20px; padding: 40px; max-width: 400px; margin: 50px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
         .login-box h1 { color: #3B2510; margin-bottom: 5px; }
         .login-box h2 { color: #6B4F35; margin-bottom: 20px; font-size: 1.2rem; }
@@ -83,7 +83,7 @@
         .mensaje-pendiente { background: #fef3c7; color: #92400e; padding: 12px; border-radius: 8px; margin-top: 15px; font-size: 14px; }
         .admin-link { margin-top: 20px; font-size: 11px; color: #ccc; cursor: pointer; }
         .admin-link:hover { color: #999; }
-        
+
         .carpeta { background: #fefcf8; border-radius: 12px; margin-bottom: 20px; overflow: hidden; border: 1px solid #e8dfc8; }
         .carpeta-header { background: #3B2510; color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
         .carpeta-header:hover { background: #4a3018; }
@@ -94,9 +94,9 @@
         .artefacto-acciones { display: flex; gap: 8px; }
         .carpeta-vacia { text-align: center; color: #999; padding: 20px; }
         .selector-carpeta { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.8rem; }
-        
+
         iframe { width: 100%; height: 100%; min-height: 80vh; border: none; background: #fff; }
-        
+
         .selector-grupo { padding: 10px 15px; font-size: 14px; border-radius: 8px; margin-right: 15px; }
         .resultados-container { overflow-x: auto; margin-top: 20px; }
         .media-fila { background: #f0f0f0; font-weight: bold; }
@@ -105,18 +105,18 @@
 </head>
 <body>
     <div id="root"></div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
+
     <script type="text/babel">
-        const SUPABASE_URL = "https://idqncmajeibswykyjacq.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlkcW5jbWFqZWlic3d5a3lqYWNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4OTQzNTEsImV4cCI6MjA5MTQ3MDM1MX0.rst7NCSzhBM8VH-NpGuOgSq-AUtOuneHe4EsIGcq_qw";
+        const SUPABASE_URL = "https://jtrntlywxpskdvidulor.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_h5iDbbdeNO-H3ELQeIw2KQ_N-Ub1FXA";
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         const ADMIN_PASSWORD = "marta2024";
-        
+
         function App() {
             const [cargando, setCargando] = React.useState(true);
             const [error, setError] = React.useState(null);
@@ -148,16 +148,16 @@
             const [alumnosExpandidos, setAlumnosExpandidos] = React.useState({});
             const [carpetasAbiertas, setCarpetasAbiertas] = React.useState({});
             const [grupoSeleccionadoResultados, setGrupoSeleccionadoResultados] = React.useState("");
-            
+
             const [emailLogin, setEmailLogin] = React.useState("");
             const [nombreLogin, setNombreLogin] = React.useState("");
             const [apellidosLogin, setApellidosLogin] = React.useState("");
             const [mensajeLogin, setMensajeLogin] = React.useState("");
-            
+
             const [mostrarAdminLogin, setMostrarAdminLogin] = React.useState(false);
             const [adminPassword, setAdminPassword] = React.useState("");
             const [errorAdmin, setErrorAdmin] = React.useState("");
-            
+
             React.useEffect(() => {
                 const mantenerActivo = async () => {
                     try {
@@ -169,7 +169,7 @@
                 const intervalo = setInterval(mantenerActivo, 5 * 24 * 60 * 60 * 1000);
                 return () => clearInterval(intervalo);
             }, []);
-            
+
             React.useEffect(() => {
                 async function cargarDatos() {
                     try {
@@ -183,16 +183,16 @@
                             supabase.from("calificaciones").select("*"),
                             supabase.from("comentarios").select("*").order("created_at", { ascending: true })
                         ]);
-                        
+
                         let tareasAlumnoRes = { data: [] };
                         try { tareasAlumnoRes = await supabase.from("tareas_por_alumno").select("*"); } catch (err) { console.warn("Tabla tareas_por_alumno no existe"); }
-                        
+
                         setAlumnos(alumnosRes.data || []);
                         setGruposData(gruposRes.data || []);
                         setGrupos(gruposRes.data.map(g => g.nombre) || []);
                         setArtefactos(artefactosRes.data || []);
                         setCarpetas(carpetasRes.data || []);
-                        
+
                         const tareasGrupoObj = {};
                         gruposRes.data.forEach(g => tareasGrupoObj[g.nombre] = []);
                         (tareasGrupoRes.data || []).forEach(item => {
@@ -200,14 +200,14 @@
                             if (grupo) tareasGrupoObj[grupo.nombre].push(item.tarea_id.toString());
                         });
                         setTareasPorGrupo(tareasGrupoObj);
-                        
+
                         const tareasAlumnoObj = {};
                         (tareasAlumnoRes.data || []).forEach(item => {
                             if (!tareasAlumnoObj[item.alumno_id]) tareasAlumnoObj[item.alumno_id] = [];
                             tareasAlumnoObj[item.alumno_id].push(item.tarea_id.toString());
                         });
                         setTareasPorAlumno(tareasAlumnoObj);
-                        
+
                         const califObj = {};
                         (calificacionesRes.data || []).forEach(c => {
                             if (!califObj[c.alumno_id]) califObj[c.alumno_id] = {};
@@ -215,14 +215,14 @@
                             califObj[c.alumno_id][c.tarea_id].push({ nota: c.nota, fecha: c.fecha });
                         });
                         setCalificaciones(califObj);
-                        
+
                         const comentariosObj = {};
                         (comentariosRes.data || []).forEach(c => {
                             if (!comentariosObj[c.tarea_id]) comentariosObj[c.tarea_id] = [];
                             comentariosObj[c.tarea_id].push(c);
                         });
                         setComentarios(comentariosObj);
-                        
+
                     } catch (err) {
                         console.error("Error:", err);
                         setError(err.message);
@@ -230,12 +230,12 @@
                 }
                 cargarDatos();
             }, []);
-            
+
             const toggleCarpeta = (id) => { setCarpetasAbiertas(prev => ({ ...prev, [id]: !prev[id] })); };
             const toggleAlumnoExpandido = (id) => { setAlumnosExpandidos(prev => ({ ...prev, [id]: !prev[id] })); };
             const toggleComentarios = (tareaId) => { setComentariosAbiertos(prev => ({ ...prev, [tareaId]: !prev[tareaId] })); };
             const mostrarToast = (msg) => { setToast(msg); setTimeout(() => setToast(null), 2000); };
-            
+
             const registrarAlumno = async () => {
                 if (!emailLogin || !nombreLogin) { setMensajeLogin("❌ Por favor, introduce tu nombre y email"); return; }
                 const { data: existe } = await supabase.from("alumnos").select("*").eq("email", emailLogin).single();
@@ -248,19 +248,19 @@
                     else { setMensajeLogin("✅ ¡Registrado! Espera a que la profesora te apruebe."); setEmailLogin(""); setNombreLogin(""); setApellidosLogin(""); }
                 }
             };
-            
+
             const verificarAccesoAdmin = () => {
                 if (adminPassword === ADMIN_PASSWORD) { setVista("gestor"); setMostrarAdminLogin(false); setAdminPassword(""); setErrorAdmin(""); }
                 else { setErrorAdmin("❌ Contraseña incorrecta"); }
             };
-            
+
             const crearCarpeta = async () => {
                 if (!nuevaCarpeta.nombre) { mostrarToast("❌ Introduce un nombre para la carpeta"); return; }
                 const { data, error } = await supabase.from("carpetas").insert({ nombre: nuevaCarpeta.nombre }).select();
                 if (error) { mostrarToast("❌ Error al crear carpeta: " + error.message); }
                 else { setCarpetas([...carpetas, data[0]]); setNuevaCarpeta({ nombre: "" }); setMostrarModalCarpeta(false); mostrarToast(`✅ Carpeta "${nuevaCarpeta.nombre}" creada`); }
             };
-            
+
             const eliminarCarpeta = async (carpetaId, nombre) => {
                 if (confirm(`¿Eliminar la carpeta "${nombre}"? Los artefactos dentro pasarán a "Sin carpeta"`)) {
                     await supabase.from("tareas").update({ carpeta_id: null }).eq("carpeta_id", carpetaId);
@@ -269,7 +269,7 @@
                     else { setCarpetas(carpetas.filter(c => c.id !== carpetaId)); const { data } = await supabase.from("tareas").select("*").eq("activo", true); setArtefactos(data); mostrarToast(`🗑️ Carpeta "${nombre}" eliminada`); }
                 }
             };
-            
+
             const editarCarpeta = async (carpetaId, nombreActual) => {
                 const nuevoNombre = prompt("Nuevo nombre de la carpeta:", nombreActual);
                 if (nuevoNombre && nuevoNombre !== nombreActual) {
@@ -278,7 +278,7 @@
                     else { setCarpetas(carpetas.map(c => c.id === carpetaId ? { ...c, nombre: nuevoNombre } : c)); mostrarToast(`✅ Carpeta renombrada a "${nuevoNombre}"`); }
                 }
             };
-            
+
             const eliminarArtefacto = async (artefactoId, nombre) => {
                 if (confirm(`¿Eliminar el artefacto "${nombre}"? Esta acción no se puede deshacer.`)) {
                     await supabase.from("tareas_por_grupo").delete().eq("tarea_id", artefactoId);
@@ -290,22 +290,22 @@
                     else { setArtefactos(artefactos.filter(a => a.id !== artefactoId)); mostrarToast(`🗑️ "${nombre}" eliminado`); }
                 }
             };
-            
+
             const moverArtefacto = async (artefactoId, nuevaCarpetaId) => {
                 const { error } = await supabase.from("tareas").update({ carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) }).eq("id", artefactoId);
                 if (error) { mostrarToast("❌ Error al mover artefacto"); }
                 else { setArtefactos(artefactos.map(a => a.id === artefactoId ? { ...a, carpeta_id: nuevaCarpetaId === "" ? null : parseInt(nuevaCarpetaId) } : a)); mostrarToast("✅ Artefacto movido"); }
             };
-            
+
             const getTareasAlumno = (alumnoId, grupoNombre) => {
                 const tareasGrupo = tareasPorGrupo[grupoNombre] || [];
                 const tareasIndividuales = tareasPorAlumno[alumnoId] || [];
                 const todasTareas = [...new Set([...tareasGrupo, ...tareasIndividuales])];
                 return todasTareas.map(id => artefactos.find(a => a && a.id == id)).filter(a => a);
             };
-            
+
             const esTareaIndividual = (alumnoId, tareaId) => { return (tareasPorAlumno[alumnoId] || []).includes(tareaId.toString()); };
-            
+
             const asignarTareaIndividual = async (alumnoId, tareaId) => {
                 if (!tareaId) return;
                 try {
@@ -323,7 +323,7 @@
                     }
                 } catch (err) { mostrarToast("❌ Error: " + err.message); }
             };
-            
+
             const quitarTareaIndividual = async (alumnoId, tareaId) => {
                 if (confirm("¿Quitar esta tarea individualmente de este alumno?")) {
                     try {
@@ -341,12 +341,12 @@
                     } catch (err) { mostrarToast("❌ Error: " + err.message); }
                 }
             };
-            
+
             const getMejorNota = (alumnoId, tareaId) => {
                 if (!calificaciones[alumnoId] || !calificaciones[alumnoId][tareaId]) return null;
                 return Math.max(...calificaciones[alumnoId][tareaId].map(c => c.nota));
             };
-            
+
             const getMediaAlumno = (alumnoId, tareasList) => {
                 const notas = [];
                 tareasList.forEach(tareaId => {
@@ -356,7 +356,7 @@
                 if (notas.length === 0) return null;
                 return (notas.reduce((a,b) => a + b, 0) / notas.length).toFixed(1);
             };
-            
+
             const asignarTareaAGrupo = async (grupo, tareaId) => {
                 if (!tareaId) return;
                 const grupoRes = await supabase.from("grupos").select("id").eq("nombre", grupo).single();
@@ -374,7 +374,7 @@
                     setTareaSeleccionada("");
                 }
             };
-            
+
             const quitarTareaDeGrupo = async (grupo, tareaId) => {
                 const grupoRes = await supabase.from("grupos").select("id").eq("nombre", grupo).single();
                 if (grupoRes.data) {
@@ -390,7 +390,7 @@
                     mostrarToast(`🗑️ Tarea removida del grupo ${grupo}`);
                 }
             };
-            
+
             const copiarGrupo = async () => {
                 if (!grupoOrigen) { mostrarToast("❌ Selecciona un grupo origen"); return; }
                 if (!nuevoNombreGrupo) { mostrarToast("❌ Introduce un nombre para el nuevo grupo"); return; }
@@ -423,15 +423,15 @@
                     setNuevoNombreGrupo("");
                 } catch (error) { console.error("Error al copiar grupo:", error); mostrarToast("❌ Error al copiar el grupo"); }
             };
-            
+
             const pendientes = alumnos.filter(a => !a.aprobado);
             const aprobados = alumnos.filter(a => a.aprobado);
-            
+
             const alumnosPorGrupo = {};
             grupos.forEach(grupo => { alumnosPorGrupo[grupo] = aprobados.filter(a => a.grupo === grupo); });
             const alumnosSinGrupo = aprobados.filter(a => !a.grupo || !grupos.includes(a.grupo));
             if (alumnosSinGrupo.length > 0) { alumnosPorGrupo["Sin grupo"] = alumnosSinGrupo; }
-            
+
             const artefactosPorCarpeta = {};
             carpetas.forEach(c => { artefactosPorCarpeta[c.id] = []; });
             artefactosPorCarpeta["sin_carpeta"] = [];
@@ -439,19 +439,21 @@
                 if (art.carpeta_id && artefactosPorCarpeta[art.carpeta_id]) { artefactosPorCarpeta[art.carpeta_id].push(art); }
                 else { artefactosPorCarpeta["sin_carpeta"].push(art); }
             });
-            
+
+            // Obtener todas las tareas asignadas a un grupo
             const getTareasDelGrupo = (grupoNombre) => {
                 if (!grupoNombre || grupoNombre === "Sin grupo") return [];
                 const tareasGrupo = tareasPorGrupo[grupoNombre] || [];
                 const tareasIds = [...new Set(tareasGrupo)];
                 return tareasIds.map(id => artefactos.find(a => a && a.id == id)).filter(a => a);
             };
-            
+
+            // Función para obtener la nota de un alumno en una tarea específica
             const getNotaAlumnoTarea = (alumnoId, tareaId) => {
                 if (!calificaciones[alumnoId] || !calificaciones[alumnoId][tareaId]) return null;
                 return Math.max(...calificaciones[alumnoId][tareaId].map(c => c.nota));
             };
-            
+
             const getClaseNota = (nota) => {
                 if (nota === null) return "nota-vacia";
                 if (nota === 10) return "nota-10-bg";
@@ -462,10 +464,10 @@
                 if (nota === 5) return "nota-5-bg";
                 return "nota-0-bg";
             };
-            
+
             if (cargando) { return <div className="loading"><div className="spinner"></div><p>Cargando datos...</p></div>; }
             if (error) { return <div className="loading"><p style={{ color: "red" }}>Error: {error}</p></div>; }
-            
+
             // LOGIN
             if (vista === "login") {
                 return (
@@ -491,7 +493,8 @@
                     </div>
                 );
             }
-            
+
+            // GESTOR (PROFESORA) - CON NUEVA PESTAÑA RESULTADOS
             // GESTOR (PROFESORA)
             if (vista === "gestor") {
                 return (
@@ -507,7 +510,7 @@
                             <button onClick={() => setSeccionGestor("biblioteca")} className={seccionGestor === "biblioteca" ? "menu-btn active" : "menu-btn"}>📚 Biblioteca ({artefactos.length})</button>
                             <button onClick={() => setSeccionGestor("resultados")} className={seccionGestor === "resultados" ? "menu-btn active" : "menu-btn"}>📊 Resultados</button>
                         </div>
-                        
+
                         {seccionGestor === "pendientes" && pendientes.map(a => (
                             <div key={a.id} className="card">
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
@@ -520,7 +523,7 @@
                                 </div>
                             </div>
                         ))}
-                        
+
                         {seccionGestor === "alumnos" && (
                             <div>
                                 <h3 style={{ marginBottom: "15px" }}>📋 Alumnos por grupo</h3>
@@ -536,19 +539,19 @@
                                 ))}
                             </div>
                         )}
-                        
+
                         {seccionGestor === "asignar" && (
                             <div>
                                 <div className="acciones-grupo">
                                     <button onClick={async () => { const nombre = prompt("Nombre del nuevo grupo:"); if (nombre && !grupos.includes(nombre)) { await supabase.from("grupos").insert({ nombre }); const { data } = await supabase.from("grupos").select("*").eq("activo", true); setGruposData(data); setGrupos(data.map(g => g.nombre)); mostrarToast(`✅ Grupo "${nombre}" creado`); } }} className="btn-marron">+ Nuevo grupo</button>
                                     <button onClick={() => setMostrarModalCopiarGrupo(true)} className="btn-naranja">📋 Copiar grupo</button>
                                 </div>
-                                
+
                                 {mostrarModalCopiarGrupo && (<div className="modal" onClick={() => setMostrarModalCopiarGrupo(false)}><div className="modal-content" style={{ height: 'auto', maxHeight: '80vh' }} onClick={e => e.stopPropagation()}><h3>📋 Copiar grupo</h3><p style={{ marginBottom: "15px", color: "#666" }}>Copia todas las tareas de un grupo existente a uno nuevo</p>
                                 <div><label>Grupo origen:</label><select value={grupoOrigen} onChange={e => setGrupoOrigen(e.target.value)} style={{ width: "100%", padding: "10px" }}><option value="">-- Seleccionar grupo --</option>{grupos.map(g => <option key={g} value={g}>{g}</option>)}</select></div>
                                 <div><label>Nombre del nuevo grupo:</label><input type="text" value={nuevoNombreGrupo} onChange={e => setNuevoNombreGrupo(e.target.value)} placeholder="Ej: Grupo B - 2024" style={{ width: "100%", padding: "10px" }} /></div>
                                 <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end", marginTop: "15px" }}><button onClick={() => { setMostrarModalCopiarGrupo(false); setGrupoOrigen(""); setNuevoNombreGrupo(""); }} className="btn-gris">Cancelar</button><button onClick={copiarGrupo} className="btn-verde">Copiar grupo</button></div></div></div>)}
-                                
+
                                 {grupos.map(grupo => {
                                     const tareasAsignadas = (tareasPorGrupo[grupo] || []).map(id => artefactos.find(a => a && a.id == id)).filter(a => a);
                                     const tareasDisponibles = artefactos.filter(a => !(tareasPorGrupo[grupo] || []).includes(a.id.toString()));
@@ -563,28 +566,29 @@
                                 })}
                             </div>
                         )}
-                        
+
                         {seccionGestor === "biblioteca" && (
                             <div>
                                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
                                     <h3>📚 Biblioteca ({artefactos.length})</h3>
                                     <div style={{ display: "flex", gap: "10px" }}><button onClick={() => setMostrarModalCarpeta(true)} className="btn-marron">📁 Nueva carpeta</button><button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde">+ Nuevo artefacto</button></div>
                                 </div>
-                                
+
                                 {mostrarModalCarpeta && (<div className="modal" onClick={() => setMostrarModalCarpeta(false)}><div className="modal-content" style={{ height: 'auto', maxHeight: '80vh' }} onClick={e => e.stopPropagation()}><h3>📁 Nueva carpeta</h3><input type="text" placeholder="Nombre de la carpeta" value={nuevaCarpeta.nombre} onChange={e => setNuevaCarpeta({...nuevaCarpeta, nombre: e.target.value})} style={{ width: "100%", padding: "10px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalCarpeta(false)} className="btn-gris">Cancelar</button><button onClick={crearCarpeta} className="btn-verde">Crear</button></div></div></div>)}
-                                
+
                                 {mostrarModalArtefacto && (<div className="modal" onClick={() => setMostrarModalArtefacto(false)}><div className="modal-content" style={{ height: 'auto', maxHeight: '80vh' }} onClick={e => e.stopPropagation()}><h3>➕ Nuevo artefacto</h3><input type="text" placeholder="Nombre" value={nuevoArtefacto.nombre} onChange={e => setNuevoArtefacto({...nuevoArtefacto, nombre: e.target.value})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }} /><select value={nuevoArtefacto.carpeta_id || ""} onChange={e => setNuevoArtefacto({...nuevoArtefacto, carpeta_id: e.target.value || null})} style={{ width: "100%", marginBottom: "15px", padding: "10px" }}><option value="">-- Sin carpeta --</option>{carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><textarea rows="8" placeholder="Código HTML" value={nuevoArtefacto.html} onChange={e => setNuevoArtefacto({...nuevoArtefacto, html: e.target.value})} style={{ width: "100%", fontFamily: "monospace", fontSize: "12px", marginBottom: "15px" }} /><div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}><button onClick={() => setMostrarModalArtefacto(false)} className="btn-gris">Cancelar</button><button onClick={async () => { if (!nuevoArtefacto.nombre || !nuevoArtefacto.html) { alert("Completa todo"); return; } await supabase.from("tareas").insert({ nombre: nuevoArtefacto.nombre, descripcion: "Artefacto", html: nuevoArtefacto.html, activo: true, carpeta_id: nuevoArtefacto.carpeta_id }); const { data } = await supabase.from("tareas").select("*").eq("activo", true); setArtefactos(data); setNuevoArtefacto({ nombre: "", html: "", carpeta_id: null }); setMostrarModalArtefacto(false); mostrarToast("✅ Añadido"); }} className="btn-verde">Añadir</button></div></div></div>)}
-                                
+
                                 {artefactosPorCarpeta["sin_carpeta"].length > 0 && (<div className="carpeta"><div className="carpeta-header" onClick={() => toggleCarpeta("sin_carpeta")}><div><span>{carpetasAbiertas["sin_carpeta"] ? "📂" : "📁"}</span><strong>Sin carpeta</strong><span>({artefactosPorCarpeta["sin_carpeta"].length})</span></div><span>{carpetasAbiertas["sin_carpeta"] ? "▼" : "▶"}</span></div>
                                 {carpetasAbiertas["sin_carpeta"] && (<div className="carpeta-contenido">{artefactosPorCarpeta["sin_carpeta"].map(art => (<div key={art.id} className="artefacto-card"><div><strong>{art.nombre}</strong><br/><span>ID: {art.id}</span></div><div><select className="selector-carpeta" value={art.carpeta_id || ""} onChange={(e) => moverArtefacto(art.id, e.target.value)}><option value="">-- Mover a --</option>{carpetas.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul">📋</button><button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo">🗑️</button></div></div>))}</div>)}</div>)}
-                                
+
                                 {carpetas.map(carpeta => (<div key={carpeta.id} className="carpeta"><div className="carpeta-header" onClick={() => toggleCarpeta(carpeta.id)}><div><span>{carpetasAbiertas[carpeta.id] ? "📂" : "📁"}</span><strong>{carpeta.nombre}</strong><span>({artefactosPorCarpeta[carpeta.id]?.length || 0})</span></div><div><button onClick={(e) => { e.stopPropagation(); editarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-azul" style={{ padding: "4px 8px", fontSize: "11px" }}>✏️</button><button onClick={(e) => { e.stopPropagation(); eliminarCarpeta(carpeta.id, carpeta.nombre); }} className="btn-rojo" style={{ padding: "4px 8px", fontSize: "11px" }}>🗑️</button><span>{carpetasAbiertas[carpeta.id] ? "▼" : "▶"}</span></div></div>
                                 {carpetasAbiertas[carpeta.id] && (<div className="carpeta-contenido">{artefactosPorCarpeta[carpeta.id]?.length > 0 ? (artefactosPorCarpeta[carpeta.id].map(art => (<div key={art.id} className="artefacto-card"><div><strong>{art.nombre}</strong><br/><span>ID: {art.id}</span></div><div><select className="selector-carpeta" value={art.carpeta_id || ""} onChange={(e) => moverArtefacto(art.id, e.target.value)}><option value="">-- Mover a --</option>{carpetas.filter(c => c.id !== carpeta.id).map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}</select><button onClick={() => { navigator.clipboard.writeText(art.html); mostrarToast("📋 Copiado"); }} className="btn-azul">📋</button><button onClick={() => eliminarArtefacto(art.id, art.nombre)} className="btn-rojo">🗑️</button></div></div>))) : (<div className="carpeta-vacia">📭 Esta carpeta está vacía</div>)}</div>)}</div>))}
-                                
+
                                 {carpetas.length === 0 && artefactosPorCarpeta["sin_carpeta"].length === 0 && (<div className="card" style={{ textAlign: "center" }}><p>📚 No hay artefactos aún</p><button onClick={() => setMostrarModalArtefacto(true)} className="btn-verde">+ Crear primer artefacto</button></div>)}
                             </div>
                         )}
-                        
+
+                        {/* NUEVA PESTAÑA: RESULTADOS */}
                         {/* PESTAÑA RESULTADOS - CON MEDIA COMO SEGUNDA COLUMNA */}
                         {seccionGestor === "resultados" && (
                             <div>
@@ -600,20 +604,20 @@
                                         {grupos.map(g => <option key={g} value={g}>{g}</option>)}
                                     </select>
                                 </div>
-                                
+
                                 {grupoSeleccionadoResultados && (
                                     (() => {
                                         const alumnosGrupo = alumnosPorGrupo[grupoSeleccionadoResultados] || [];
                                         const tareasGrupo = getTareasDelGrupo(grupoSeleccionadoResultados);
-                                        
+
                                         if (alumnosGrupo.length === 0) {
                                             return <div className="card">No hay alumnos en este grupo</div>;
                                         }
-                                        
+
                                         if (tareasGrupo.length === 0) {
                                             return <div className="card">No hay tareas asignadas a este grupo</div>;
                                         }
-                                        
+
                                         // Calcular medias por alumno
                                         const mediasAlumnos = alumnosGrupo.map(alumno => {
                                             let suma = 0;
@@ -627,7 +631,7 @@
                                             });
                                             return count > 0 ? (suma / count).toFixed(1) : "-";
                                         });
-                                        
+
                                         // Calcular medias por tarea
                                         const mediasTareas = tareasGrupo.map(tarea => {
                                             let suma = 0;
@@ -641,17 +645,19 @@
                                             });
                                             return count > 0 ? (suma / count).toFixed(1) : "-";
                                         });
-                                        
+
                                         return (
                                             <div className="resultados-container">
                                                 <table className="tabla-resultados" style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
                                                     <thead>
                                                         <tr>
+                                                            <th style={{ position: "sticky", left: 0, background: "#3B2510", zIndex: 1 }}>Alumno / Tarea</th>
                                                             <th style={{ position: "sticky", left: 0, background: "#3B2510", zIndex: 1 }}>Alumno</th>
                                                             <th style={{ background: "#2E6B3E", minWidth: "80px" }}>📊 Media</th>
                                                             {tareasGrupo.map(tarea => (
                                                                 <th key={tarea.id} style={{ minWidth: "80px" }}>{tarea.nombre}</th>
                                                             ))}
+                                                            <th style={{ background: "#2E6B3E" }}>📊 Media</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -679,6 +685,13 @@
                                                                         </td>
                                                                     );
                                                                 })}
+                                                                <td style={{ textAlign: "center", background: "#f0f0f0", fontWeight: "bold" }}>
+                                                                    {mediasAlumnos[idx] !== "-" ? (
+                                                                        <span className={`nota-cell ${getClaseNota(parseFloat(mediasAlumnos[idx]))}`}>{mediasAlumnos[idx]}</span>
+                                                                    ) : (
+                                                                        <span className="nota-vacia">-</span>
+                                                                    )}
+                                                                </td>
                                                             </tr>
                                                         ))}
                                                         {/* Fila de medias por tarea */}
@@ -698,6 +711,9 @@
                                                                     )}
                                                                 </td>
                                                             ))}
+                                                            <td style={{ textAlign: "center", background: "#2E6B3E", color: "white", fontWeight: "bold" }}>
+                                                                General
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -705,7 +721,7 @@
                                         );
                                     })()
                                 )}
-                                
+
                                 {!grupoSeleccionadoResultados && (
                                     <div className="card" style={{ textAlign: "center" }}>
                                         <p>📊 Selecciona un grupo para ver las notas de los alumnos</p>
@@ -713,13 +729,14 @@
                                 )}
                             </div>
                         )}
-                        
+
                         <div className="footer"><div className="footer-texto">mlls</div></div>
                         {toast && <div className="toast">{toast}</div>}
                     </div>
                 );
             }
-            
+
+            // VISTA ALUMNO (CON NOTAS EN HISTORIAL)
             // VISTA ALUMNO
             if (vista === "alumno" && alumnoActual) {
                 const tareasAlumno = getTareasAlumno(alumnoActual.id, alumnoActual.grupo);
@@ -727,7 +744,7 @@
                 const mensajeMedia = mediaAlumno ? (mediaAlumno >= 9 ? "🎉 ¡Excelente!" : mediaAlumno >= 7 ? "👍 Muy bien" : mediaAlumno >= 5 ? "📚 Puedes mejorar" : "💪 Ánimo") : "Sin calificaciones";
                 const emojiMedia = mediaAlumno ? (mediaAlumno >= 9 ? "🏆" : mediaAlumno >= 7 ? "😊" : mediaAlumno >= 5 ? "📖" : "💪") : "📝";
                 const porcentajeMedia = mediaAlumno ? (mediaAlumno / 10) * 100 : 0;
-                
+
                 return (
                     <div>
                         <div className="header">
@@ -738,7 +755,7 @@
                             <button onClick={() => setSeccionAlumno("tareas")} className={seccionAlumno === "tareas" ? "menu-btn active" : "menu-btn"}>📚 Mis Tareas ({tareasAlumno.length})</button>
                             <button onClick={() => setSeccionAlumno("historial")} className={seccionAlumno === "historial" ? "menu-btn active" : "menu-btn"}>📊 Mi Historial</button>
                         </div>
-                        
+
                         {seccionAlumno === "tareas" && (
                             <div>
                                 {tareasAlumno.length === 0 ? (
@@ -749,7 +766,7 @@
                                         const comentariosTarea = comentarios[t.id] || [];
                                         const estaAbierto = comentariosAbiertos[t.id] || false;
                                         const esIndividual = esTareaIndividual(alumnoActual.id, t.id);
-                                        
+
                                         return (
                                             <div key={t.id} className="card" style={{ borderLeft: nota !== null ? `4px solid ${nota >= 5 ? "#2E6B3E" : "#c0392b"}` : "4px solid #D97A2B" }}>
                                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "10px" }}>
@@ -761,11 +778,11 @@
                                                         <p style={{ color: "#666", fontSize: "0.8rem" }}>{t.descripcion}</p>
                                                         {nota !== null && <p><strong>Nota: {nota}/10</strong></p>}
                                                     </div>
-                                                    
+
                                                     <button onClick={() => {
                                                         const modal = document.createElement('div');
                                                         modal.className = 'modal';
-                                                        
+
                                                         const modalContent = document.createElement('div');
                                                         modalContent.className = 'modal-content';
                                                         modalContent.style.maxWidth = '95%';
@@ -776,7 +793,7 @@
                                                         modalContent.style.padding = '20px';
                                                         modalContent.style.display = 'flex';
                                                         modalContent.style.flexDirection = 'column';
-                                                        
+
                                                         const header = document.createElement('div');
                                                         header.style.display = 'flex';
                                                         header.style.justifyContent = 'space-between';
@@ -784,7 +801,7 @@
                                                         header.style.marginBottom = '15px';
                                                         header.style.flexShrink = '0';
                                                         header.innerHTML = `<h2 style="margin:0">${t.nombre}</h2><button class="btn-cerrar" style="background:transparent;font-size:28px;cursor:pointer;border:none;padding:0 10px;">✕</button>`;
-                                                        
+
                                                         const taskContainer = document.createElement('div');
                                                         taskContainer.style.background = '#fff';
                                                         taskContainer.style.borderRadius = '8px';
@@ -793,7 +810,7 @@
                                                         taskContainer.style.overflow = 'auto';
                                                         taskContainer.style.flex = '1';
                                                         taskContainer.style.minHeight = '0';
-                                                        
+
                                                         const iframe = document.createElement('iframe');
                                                         iframe.style.width = '100%';
                                                         iframe.style.height = '100%';
@@ -801,9 +818,9 @@
                                                         iframe.style.border = 'none';
                                                         iframe.style.background = '#fff';
                                                         iframe.srcdoc = t.html || '<p style="padding:20px;text-align:center">No hay contenido disponible</p>';
-                                                        
+
                                                         taskContainer.appendChild(iframe);
-                                                        
+
                                                         const closeBtn = document.createElement('button');
                                                         closeBtn.className = 'btn-gris';
                                                         closeBtn.textContent = 'Cerrar';
@@ -812,18 +829,18 @@
                                                         closeBtn.style.padding = '10px 24px';
                                                         closeBtn.style.fontSize = '14px';
                                                         closeBtn.style.flexShrink = '0';
-                                                        
+
                                                         modalContent.appendChild(header);
                                                         modalContent.appendChild(taskContainer);
                                                         modalContent.appendChild(closeBtn);
                                                         modal.appendChild(modalContent);
                                                         document.body.appendChild(modal);
-                                                        
+
                                                         const closeModal = () => modal.remove();
                                                         modal.querySelector('.btn-cerrar')?.addEventListener('click', closeModal);
                                                         closeBtn.addEventListener('click', closeModal);
                                                         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-                                                        
+
                                                         iframe.onload = () => {
                                                             try {
                                                                 const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -833,13 +850,13 @@
                                                         };
                                                     }} className="btn-marron" style={{ padding: "6px 16px" }}>▶ Realizar</button>
                                                 </div>
-                                                
+
                                                 <div className="comentarios-section">
                                                     <div className="comentarios-header" onClick={() => toggleComentarios(t.id)}>
                                                         <span>{estaAbierto ? "▼" : "▶"}</span>
                                                         <h4>💬 {comentariosTarea.length} comentario{comentariosTarea.length !== 1 ? 's' : ''}</h4>
                                                     </div>
-                                                    
+
                                                     {estaAbierto && (
                                                         <>
                                                             <div style={{ maxHeight: "200px", overflowY: "auto", marginBottom: "8px" }}>
@@ -893,7 +910,7 @@
                                 )}
                             </div>
                         )}
-                        
+
                         {seccionAlumno === "historial" && (
                             <div>
                                 <div className="media-card">
@@ -909,7 +926,7 @@
                                     </div>
                                     <div style={{ fontSize: "3rem" }}>{emojiMedia}</div>
                                 </div>
-                                
+
                                 <div className="card">
                                     <h3>📋 Calificaciones</h3>
                                     <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "15px" }}>
@@ -927,16 +944,16 @@
                                 </div>
                             </div>
                         )}
-                        
+
                         <div className="footer"><div className="footer-texto">mlls</div></div>
                         {toast && <div className="toast">{toast}</div>}
                     </div>
                 );
             }
-            
+
             return null;
         }
-        
+
         ReactDOM.render(<App />, document.getElementById("root"));
     </script>
 </body>
